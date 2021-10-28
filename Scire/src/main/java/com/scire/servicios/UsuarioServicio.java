@@ -3,6 +3,7 @@ package com.scire.servicios;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -172,9 +173,19 @@ public class UsuarioServicio {
 		}
 		
 		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
-		public boolean comparaClave(String id, String claveingresada) throws ErrorException {
+		public boolean inicioSesion(String email, String claveingresada) throws ErrorException {
 		
-			Usuario entidad = usuarioRepo.getById(id);
+			try {
+			Usuario entidad = this.buscarPorEmail(email);
+			if(entidad==null){
+				throw new ErrorException ("El usuario no existe");
+			}
+				
+			}catch(Exception e) {
+				 throw new ErrorException ("Error al iniciar sesion");
+				 return false;
+			}
+		
 			
 			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
 			 boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
@@ -186,6 +197,20 @@ public class UsuarioServicio {
 			       }	
 		}
 		
+		@Transactional
+	    public void recuperarContraseña(String mail) {
+
+	        String claveNueva = UUID.randomUUID().toString();
+	        String claveNuevaEncriptada = new BCryptPasswordEncoder().encode(claveNueva);
+	        
+	        Usuario entidad = this.buscarPorEmail(mail);
+	        entidad.setClave(claveNuevaEncriptada);
+	        usuarioRepo.save(entidad);
+	        notificacionService.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
+	        
+	    }
+
+
 		
 		// 
 		
