@@ -1,9 +1,11 @@
 package com.scire.servicios;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,6 +22,8 @@ public class UsuarioServicio {
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
 	
+	
+	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 	public Usuario guardar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 
@@ -39,7 +43,7 @@ public class UsuarioServicio {
 	
 	}
 	
-	//hago las validaciones necesarias para crear un nuevo usuario
+	//HAGO LAS VALIDACIONES NECESARIAS PARA CREAR EL USUARIO
 	public void validar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 		
 		if(clave != clave2) {
@@ -68,7 +72,8 @@ public class UsuarioServicio {
 		}
 
 	}
-	
+
+	// ES PARA CAMBIAR EL ESTADO DEL USUARIO
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 	public void altaBaja(String id) throws ErrorException {
 		try {
@@ -80,26 +85,119 @@ public class UsuarioServicio {
 		}	
 	}
 	
+	// BUSCA UN USUARIO POR ID, SI LO ENCUENTRA LO DEVUELVE
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
 	public Usuario buscarPorId(String id) throws ErrorException {
 		Optional<Usuario> respuesta = usuarioRepo.findById(id);
 		if ( respuesta.isPresent() ) {
 			return respuesta.get();
 		}else {
-			throw new ErrorException ("No se pudo encontrar el creador solicitado");
+			throw new ErrorException ("No se pudo encontrar el usuario solicitado");
 		}
 	}
-
+	
+    // BUSCA UN USUARIO POR SU NOMBRE Y SI LO ENCUENTRA LO RETORNA
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
 	public Usuario buscarPorNombre(String nombre) throws ErrorException {
 		Usuario respuesta = usuarioRepo.buscarPorNombre(nombre);
 		if ( respuesta != null ) {
 			return respuesta;
 		}else {
-			throw new ErrorException ("No se pudo encontrar el creador solicitado");
+			throw new ErrorException ("No se pudo encontrar el usuario solicitado");
 		}
 	}
-  
+	
+	   // BUSCA UN USUARIO POR SU EMAIL Y SI LO ENCUENTRA LO RETORNA
+		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+		public Usuario buscarPorEmail(String email) throws ErrorException {
+			Usuario respuesta = usuarioRepo.buscarPorEmail(email);
+			if ( respuesta != null ) {
+				return respuesta;
+			}else {
+				throw new ErrorException ("No se pudo encontrar el usuario solicitado");
+			}
+		}
+		
+		// MOSTRAR TODOS LOS USUARIOS
+		@Transactional(readOnly =true)
+		public List<Usuario> mostrarTodos(){
+			
+			return usuarioRepo.findAll();
+		}
+		
+		// ELIMINAR USUARIO POR ID
+		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+		public void eliminar(String id) throws ErrorException {
+			
+			usuarioRepo.deleteById(id);
+		}
+		
+		
+		//MODIFICAR USUARIO
+		
+		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+		public void modificar(String id, String nuevonombre, String nuevoapellido, String nuevoemail) throws ErrorException {
+			try {
+			Usuario entidad = usuarioRepo.getById(id);
+			entidad.setNombre(nuevonombre);
+			entidad.setApellido(nuevoapellido);
+			usuarioRepo.save(entidad);
+			}catch(Exception e) {
+				throw new ErrorException ("No se pudieron modifcar los datos del usuario");
+			}
+
+		}
+		
+
+		//MODIFICAR CONTRASENIA
+		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
+		public void modificarClave(String id, String clave, String claveNueva) throws ErrorException {
+			
+			Usuario entidad = usuarioRepo.getById(id);
+			
+			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
+			 boolean passwordValid = BCrypt.checkpw(clave, entidad.getClave());
+			 
+			 if (passwordValid == true) {
+				 
+					if (claveNueva == null || claveNueva.isEmpty() || claveNueva.contains("  ") || claveNueva.length() < 8 || claveNueva.length() > 12) {
+						throw new ErrorException("La clave debe tener entre 8 y 12 caracteres");
+					   }else {
+						  entidad.setClave(new BCryptPasswordEncoder().encode(claveNueva));
+						  usuarioRepo.save(entidad);
+					  }	
+			}else {
+			       throw new ErrorException ("La clave actual no es la correcta");
+			      }	
+		}
+		
+		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
+		public boolean comparaClave(String id, String claveingresada) throws ErrorException {
+		
+			Usuario entidad = usuarioRepo.getById(id);
+			
+			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
+			 boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
+			 if (passwordValid == true) {
+				 return passwordValid;
+			}else {
+			       throw new ErrorException ("La clave no es la correcta");
+			       return passwordValid;
+			       }	
+		}
+		
+		
+		// 
+		
+		
+	
+
+		    // Output should be:
+
+		    // 	mySecretPassword is valid.
+		    // 	notAValidPassword is NOT valid.
+		  }
+		}
 	
 	
 	
