@@ -1,6 +1,7 @@
 package com.scire.servicios;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -57,7 +58,7 @@ public class UsuarioServicio {
 			throw new ErrorException("Debe tener un email valido");
 		}
 
-		if (usuarioRepo.encontrarPorEmail(email) != null) {
+		if (usuarioRepo.buscarPorEmail(email) != null) {
 			throw new ErrorException("El Email ya esta en uso");
 		}	
 		//la clave no debe ser nula, no debe estar vacia, no debe contener espacios, debe tener entre 8 y 12 caracteres
@@ -68,6 +69,37 @@ public class UsuarioServicio {
 
 	}
 	
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
+	public void altaBaja(String id) throws ErrorException {
+		try {
+			Usuario a = usuarioRepo.getById(id);
+			a.setAlta(!a.getAlta());
+			usuarioRepo.save(a);
+		} catch (Exception e) {
+			throw new ErrorException("No se pudo modificar el estado del alta");
+		}	
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+	public Usuario buscarPorId(String id) throws ErrorException {
+		Optional<Usuario> respuesta = usuarioRepo.findById(id);
+		if ( respuesta.isPresent() ) {
+			return respuesta.get();
+		}else {
+			throw new ErrorException ("No se pudo encontrar el creador solicitado");
+		}
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+	public Usuario buscarPorNombre(String nombre) throws ErrorException {
+		Usuario respuesta = usuarioRepo.buscarPorNombre(nombre);
+		if ( respuesta != null ) {
+			return respuesta;
+		}else {
+			throw new ErrorException ("No se pudo encontrar el creador solicitado");
+		}
+	}
+  
 	
 	
 	
