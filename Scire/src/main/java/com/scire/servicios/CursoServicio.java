@@ -59,7 +59,15 @@ public class CursoServicio {
 		curso.setCreador(creadorid);
 		return cursorepo.save(curso);
 	}
-
+	//ELIMINAR
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
+	public void eliminar(String id) throws ErrorException {
+		try {
+			cursorepo.deleteById(id);
+		} catch (Exception e) {
+			throw new ErrorException("error al eliminar el curso puede que no exista");
+		}
+	}
 	// ALTA Y BAJA
 	@Transactional
 	public Curso alta(String id) throws ErrorException {
