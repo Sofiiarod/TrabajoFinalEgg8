@@ -2,6 +2,7 @@ package com.scire.servicios;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,7 +20,8 @@ public class UsuarioServicio {
 	
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
-	
+	@Autowired
+	private NotificacionServicio notificacion;
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 	public Usuario guardar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 
@@ -34,9 +36,10 @@ public class UsuarioServicio {
 		entidad.setRol(Rol.USER);
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
+		
 
 		return usuarioRepo.save(entidad);
-	
+		
 	}
 	
 	//hago las validaciones necesarias para crear un nuevo usuario
@@ -99,8 +102,7 @@ public class UsuarioServicio {
 			throw new ErrorException ("No se pudo encontrar el creador solicitado");
 		}
 	}
-  
-	
+	 
 	
 	
 	
