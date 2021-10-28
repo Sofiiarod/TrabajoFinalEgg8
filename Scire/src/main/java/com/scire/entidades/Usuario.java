@@ -46,7 +46,7 @@ public class Usuario {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(alta, apellido, clave, email, fechaCreado, id, nombre, rol);
+		return Objects.hash(email);
 	}
 
 	@Override
@@ -58,10 +58,8 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(alta, other.alta) && Objects.equals(apellido, other.apellido)
-				&& Objects.equals(clave, other.clave) && Objects.equals(email, other.email)
-				&& Objects.equals(fechaCreado, other.fechaCreado) && Objects.equals(id, other.id)
-				&& Objects.equals(nombre, other.nombre) && rol == other.rol;
+		return  Objects.equals(email, other.email);
+		
 	}
 
 	@Override
@@ -70,10 +68,9 @@ public class Usuario {
 				+ rol + ", clave=" + clave + ", fechaCreado=" + fechaCreado + ", alta=" + alta + "]";
 	}
 
-	public Usuario(String id, String nombre, String apellido, String email, Rol rol, String clave, Date fechaCreado,
+	public Usuario(String nombre, String apellido, String email, Rol rol, String clave, Date fechaCreado,
 			Boolean alta) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
