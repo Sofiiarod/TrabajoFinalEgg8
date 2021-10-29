@@ -16,7 +16,6 @@ public class Creador {
 	private String nombre;
 	
 	
-	
 	public Creador() {
 		super();
 	}
