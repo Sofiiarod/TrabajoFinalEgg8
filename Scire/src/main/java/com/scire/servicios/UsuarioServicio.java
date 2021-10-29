@@ -23,6 +23,9 @@ public class UsuarioServicio {
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
 	
+	@Autowired
+	private NotificacionServicio notificacionServ;
+	
 	
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
@@ -39,6 +42,9 @@ public class UsuarioServicio {
 		entidad.setRol(Rol.USER);
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
+		
+		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+
 
 		return usuarioRepo.save(entidad);
 	
@@ -180,25 +186,24 @@ public class UsuarioServicio {
 			if(entidad==null){
 				throw new ErrorException ("El usuario no existe");
 			}
-				
-			}catch(Exception e) {
-				 throw new ErrorException ("Error al iniciar sesion");
-				 return false;
-			}
-		
 			
 			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
-			 boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
+			 
+			
+			boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
 			 if (passwordValid == true) {
 				 return passwordValid;
 			}else {
 			       throw new ErrorException ("La clave no es la correcta");
-			       return passwordValid;
 			       }	
+			}catch(Exception e) {
+				throw new ErrorException ("Error al iniciar sesion");
+			}
 		}
 		
 		@Transactional
-	    public void recuperarContraseña(String mail) {
+	    public void recuperarContraseña(String mail) throws ErrorException {
+			try {
 
 	        String claveNueva = UUID.randomUUID().toString();
 	        String claveNuevaEncriptada = new BCryptPasswordEncoder().encode(claveNueva);
@@ -206,25 +211,19 @@ public class UsuarioServicio {
 	        Usuario entidad = this.buscarPorEmail(mail);
 	        entidad.setClave(claveNuevaEncriptada);
 	        usuarioRepo.save(entidad);
-	        notificacionService.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
-	        
+	        notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
+			} catch(Exception e) {
+				throw new ErrorException ("error");
+			}
+			
 	    }
 
 
-		
-		// 
-		
-		
 	
+		  
 
-		    // Output should be:
-
-		    // 	mySecretPassword is valid.
-		    // 	notAValidPassword is NOT valid.
-		  }
-		}
 	
-	
+}	
 	
 	
 //PARA INVESTIGAR, AGUSTINFIORDE EN PERROS V2
@@ -251,4 +250,4 @@ public class UsuarioServicio {
 	
 	
 	
-}
+
