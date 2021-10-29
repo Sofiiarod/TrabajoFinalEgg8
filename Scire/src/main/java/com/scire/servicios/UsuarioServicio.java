@@ -200,7 +200,7 @@ public class UsuarioServicio {
 				throw new ErrorException ("Error al iniciar sesion");
 			}
 		}
-		
+		/*
 		@Transactional
 	    public void recuperarContraseña(String mail) throws ErrorException {
 			try {
@@ -217,7 +217,7 @@ public class UsuarioServicio {
 			}
 			
 	    }
-
+			*/
 
 	
 		  
