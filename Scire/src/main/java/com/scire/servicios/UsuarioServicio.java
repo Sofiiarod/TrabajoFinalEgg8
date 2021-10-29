@@ -2,8 +2,6 @@ package com.scire.servicios;
 
 import java.util.Date;
 import java.util.Optional;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,8 +18,7 @@ public class UsuarioServicio {
 	
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
-	@Autowired
-	private NotificacionServicio notificacion;
+	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 	public Usuario guardar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 
