@@ -88,5 +88,15 @@ public class CreadorServicio {
 	public void guardarCambios (Creador creador) throws ErrorException { 
 		creadorRepo.save(creador);
 	}
-	
+//	
+//	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+//	public void buscarPorNombre(String nombre) {
+//		Optional<Creador> respuesta = creadorRepo.buscarPorNombre(nombre);
+//		if (respuesta.isPresent()) {
+//			return respuesta.get();
+//	} else {
+//			throw new ErrorException ("No se ha encontrado el creador solicitada");
+//	}
+//	}
+//	
 }
