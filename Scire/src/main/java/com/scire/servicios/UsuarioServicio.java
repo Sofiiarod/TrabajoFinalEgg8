@@ -1,16 +1,26 @@
 package com.scire.servicios;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
@@ -18,10 +28,13 @@ import com.scire.repositorios.UsuarioRepositorio;
 import com.scire.roles.Rol;
 
 @Service
-public class UsuarioServicio {
+public class UsuarioServicio implements UserDetailsService {
 	
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
+	
+	@Autowired
+	private NotificacionServicio notificacionServ;
 	
 	
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
@@ -39,6 +52,9 @@ public class UsuarioServicio {
 		entidad.setRol(Rol.USER);
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
+		
+		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+
 
 		return usuarioRepo.save(entidad);
 	
@@ -172,35 +188,46 @@ public class UsuarioServicio {
 			      }	
 		}
 		
-		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
-		public boolean inicioSesion(String email, String claveingresada) throws ErrorException {
+//		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
+//		public boolean inicioSesion(String email, String claveingresada) throws ErrorException {
+//		
+//			try {
+//			Usuario entidad = this.buscarPorEmail(email);
+//
+//			if(entidad==null){
+//				throw new ErrorException ("El usuario no existe");
+//			}
+//
+//			
+//			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
+//			 
+//			
+//			boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
+//			 if (passwordValid == true) {
+//				 return passwordValid;
+//			}else {
+//			       throw new ErrorException ("La clave no es la correcta");
+//			       }	
+//			}catch(Exception e) {
+//				throw new ErrorException ("Error al iniciar sesion");
+//			}
+//		}
+//			if(entidad==null){
+//				throw new ErrorException ("El usuario no existe");
+//			}
+//				
+//			}catch(Exception e) {
+//				 throw new ErrorException ("Error al iniciar sesion");
+//				 return false;
+//			}
+//		
 		
-			try {
-			Usuario entidad = this.buscarPorEmail(email);
 			
-			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
-			 boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
-			 if (passwordValid == true) {
-				 return passwordValid;
-			}else {
-			       throw new ErrorException ("La clave no es la correcta");
-			       return passwordValid;
-			       }	
-		}
-			if(entidad==null){
-				throw new ErrorException ("El usuario no existe");
-			}
-				
-			}catch(Exception e) {
-				 throw new ErrorException ("Error al iniciar sesion");
-				 return false;
-			}
 		
-		
-			
-		
+
 		@Transactional
-	    public void recuperarContraseña(String mail) {
+	    public void recuperarContraseña(String mail) throws ErrorException {
+			try {
 
 	        String claveNueva = UUID.randomUUID().toString();
 	        String claveNuevaEncriptada = new BCryptPasswordEncoder().encode(claveNueva);
@@ -208,49 +235,44 @@ public class UsuarioServicio {
 	        Usuario entidad = this.buscarPorEmail(mail);
 	        entidad.setClave(claveNuevaEncriptada);
 	        usuarioRepo.save(entidad);
-	        notificacionService.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
-	        
+	        notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
+			} catch(Exception e) {
+				throw new ErrorException ("error");
+			}
+			
 	    }
+			
 
-
-		
-		// 
-		
-		
 	
+		  
 
-		    // Output should be:
-
-		    // 	mySecretPassword is valid.
-		    // 	notAValidPassword is NOT valid.
-		  }
-		}
 	
 	
 	
 	
 //PARA INVESTIGAR, AGUSTINFIORDE EN PERROS V2
 	
-//	@Override
-//	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//		
-//		Usuario user = usuarioRepository.buscarPorEmail(email);
-//		
-//		if (user != null) {
-//			List<GrantedAuthority> permissions = new ArrayList<>();
-//			GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
-//			permissions.add(p);
-//			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-//			HttpSession session = attr.getRequest().getSession(true);
-//			session.setAttribute("usuario", user);
-//			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
-//					permissions);
-//		}
-//		return null;
-//
-//	}
-	
-	
-	
-	
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		
+		Usuario user = usuarioRepo.buscarPorEmail(email);
+		
+		if (user != null) {
+			List<GrantedAuthority> permissions = new ArrayList<>();
+			GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
+			permissions.add(p);
+			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			HttpSession session = attr.getRequest().getSession(true);
+			session.setAttribute("usuario", user);
+			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
+				permissions);
+	}
+	return null;
+
+	}
 }
+	
+	
+	
+	
+

@@ -1,4 +1,15 @@
 spring:
+  mail: 
+    host: smtp.gmail.com
+    port: 587
+    username: ...@gmail.com
+    password: .....
+    properties:
+        mail:
+            smtp:              
+                auth: true
+                starttls:
+                    enable: true
   datasource: 
     url: jdbc:mysql://localhost:3306/scire?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8&createDatabaseIfNotExist=true
     username: root
@@ -14,7 +25,7 @@ spring:
   thymeleaf:
     cache: false 
 server:
-  port: 8081
+  port: 8080
   error:
     whitelabel:
       enabled: false
