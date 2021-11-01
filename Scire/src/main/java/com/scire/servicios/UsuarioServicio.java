@@ -1,16 +1,25 @@
 package com.scire.servicios;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
@@ -18,7 +27,7 @@ import com.scire.repositorios.UsuarioRepositorio;
 import com.scire.roles.Rol;
 
 @Service
-public class UsuarioServicio {
+public class UsuarioServicio implements UserDetailsService {
 	
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
@@ -223,29 +232,30 @@ public class UsuarioServicio {
 		  
 
 	
-}	
+	
 	
 	
 //PARA INVESTIGAR, AGUSTINFIORDE EN PERROS V2
 	
-//	@Override
-//	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//		
-//		Usuario user = usuarioRepository.buscarPorEmail(email);
-//		
-//		if (user != null) {
-//			List<GrantedAuthority> permissions = new ArrayList<>();
-//			GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
-//			permissions.add(p);
-//			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-//			HttpSession session = attr.getRequest().getSession(true);
-//			session.setAttribute("usuario", user);
-//			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
-//					permissions);
-//		}
-//		return null;
-//
-//	}
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		
+		Usuario user = usuarioRepo.buscarPorEmail(email);
+		
+		if (user != null) {
+			List<GrantedAuthority> permissions = new ArrayList<>();
+			GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
+			permissions.add(p);
+			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			HttpSession session = attr.getRequest().getSession(true);
+			session.setAttribute("usuario", user);
+			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
+				permissions);
+	}
+	return null;
+
+	}
+}
 	
 	
 	
