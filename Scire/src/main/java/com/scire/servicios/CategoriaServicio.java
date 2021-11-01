@@ -87,15 +87,15 @@ public class CategoriaServicio {
 	}
 	
 
-@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-public void buscarPorNombre(String nombre) {
-	Optional<Categoria> respuesta = categoriaRepo.buscarPorNombre(nombre);
-	if (respuesta.isPresent()) {
-		return respuesta.get();
-} else {
-		throw new ErrorException ("No se ha encontrado la categoria solicitada");
-}
-}
+//	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+//	public void buscarPorNombre(String nombre) {
+//		Categoria respuesta = categoriaRepo.buscarPorNombre(nombre);
+//		if (respuesta.isPresent()) {
+//			return respuesta.get();
+//		} else {
+//			throw new ErrorException("No se ha encontrado la categoria solicitada");
+//		}
+//	}
 
 
 

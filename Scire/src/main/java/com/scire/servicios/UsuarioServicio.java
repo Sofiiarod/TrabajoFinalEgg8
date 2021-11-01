@@ -177,15 +177,6 @@ public class UsuarioServicio {
 		
 			try {
 			Usuario entidad = this.buscarPorEmail(email);
-			if(entidad==null){
-				throw new ErrorException ("El usuario no existe");
-			}
-				
-			}catch(Exception e) {
-				 throw new ErrorException ("Error al iniciar sesion");
-				 return false;
-			}
-		
 			
 			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
 			 boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
@@ -196,6 +187,17 @@ public class UsuarioServicio {
 			       return passwordValid;
 			       }	
 		}
+			if(entidad==null){
+				throw new ErrorException ("El usuario no existe");
+			}
+				
+			}catch(Exception e) {
+				 throw new ErrorException ("Error al iniciar sesion");
+				 return false;
+			}
+		
+		
+			
 		
 		@Transactional
 	    public void recuperarContraseña(String mail) {
