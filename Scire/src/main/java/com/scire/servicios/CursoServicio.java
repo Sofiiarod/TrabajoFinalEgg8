@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.scire.entidades.Categoria;
 import com.scire.entidades.Creador;
 import com.scire.entidades.Curso;
-import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
 import com.scire.repositorios.CursoRepositorio;
 
@@ -123,17 +122,17 @@ public class CursoServicio {
 	}
 
 //QUERY , ENCONTRAR EN EL REPOSITORIO
-	@Transactional(readOnly = true)
-	public List<Curso> listarTodos() {
-		return cursorepo.findAll();
-	}
-@Transactional(readOnly = true)
-public List<Curso> listarPorNombre(String nombre){
-	return cursorepo.buscarPorNombre(nombre);
-}
-@Transactional(readOnly = true)
-public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
-       Usuario u =  usuarioService.buscarPorId(idUsuario);
-return cursorepo.buscarPorUsuario(u);
-}
+//	@Transactional(readOnly = true)
+//	public List<Curso> listarTodos() {
+//		return cursorepo.findAll();
+//	}
+//@Transactional(readOnly = true)
+//public List<Curso> listarPorNombre(String nombre){
+//	return cursorepo.buscarPorNombre(nombre);
+//}
+//@Transactional(readOnly = true)
+//public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
+//       Usuario u =  usuarioService.buscarPorId(idUsuario);
+//return cursorepo.buscarPorUsuario(u);
+//}
 }
