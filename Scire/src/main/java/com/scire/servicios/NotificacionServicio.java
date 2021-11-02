@@ -1,5 +1,5 @@
 package com.scire.servicios;
-/**
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 public class NotificacionServicio {
 @Autowired(required = true)
  private JavaMailSender sender;
-@Autowired
-private UsuarioServicio usuarioserv;
+//@Autowired
+//private UsuarioServicio usuarioserv;
 
 
 @Async
@@ -45,4 +45,3 @@ public void enviarModificarContraseña(String cuerpo, String titulo, String mail
 
 
 }
-**/
