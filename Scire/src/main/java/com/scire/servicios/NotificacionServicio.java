@@ -11,7 +11,7 @@ public class NotificacionServicio {
 @Autowired
  private JavaMailSender sender;
 @Autowired
- private UsuarioServicio usuarioserv;
+private UsuarioServicio usuarioserv;
 
 @Async
 public void enviar(String cuerpo, String titulo, String mail) {

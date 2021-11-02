@@ -7,20 +7,20 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Creador {
+public class Profesor {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	
 	private String nombre;
+	private Boolean alta;
 	
 	
-	public Creador() {
+	public Profesor() {
 		super();
 	}
 	
-	public Creador(String id, String nombre) {
+	public Profesor(String id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -39,9 +39,18 @@ public class Creador {
 		this.nombre = nombre;
 	}
 
+	public Boolean getAlta() {
+		return alta;
+	}
+	
+	public void setAlta(Boolean alta) {
+		this.alta = alta;
+	}
+
 	@Override
 	public String toString() {
-		return "Creador [id=" + id + ", nombre=" + nombre + "]";
+		return "Creador [id=" + id + ", nombre=" + nombre + ", alta=" + alta + "]";
 	}
+
 	
 }

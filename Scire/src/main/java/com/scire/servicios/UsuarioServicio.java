@@ -38,7 +38,11 @@ public class UsuarioServicio {
 		entidad.setNombre(nombre);
 		entidad.setApellido(apellido);
 		entidad.setEmail(email);
-		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
+		
+		String claveEncriptada = new BCryptPasswordEncoder().encode(clave);
+		entidad.setClave(claveEncriptada);
+//		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
+		
 		entidad.setRol(Rol.USER);
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
@@ -170,7 +174,11 @@ public class UsuarioServicio {
 					if (claveNueva == null || claveNueva.isEmpty() || claveNueva.contains("  ") || claveNueva.length() < 8 || claveNueva.length() > 12) {
 						throw new ErrorException("La clave debe tener entre 8 y 12 caracteres");
 					   }else {
-						  entidad.setClave(new BCryptPasswordEncoder().encode(claveNueva));
+						   
+						  String claveEncriptada = new BCryptPasswordEncoder().encode(claveNueva);
+						  entidad.setClave(claveEncriptada);
+						   
+//						  entidad.setClave(new BCryptPasswordEncoder().encode(claveNueva));
 						  usuarioRepo.save(entidad);
 					  }	
 			}else {
