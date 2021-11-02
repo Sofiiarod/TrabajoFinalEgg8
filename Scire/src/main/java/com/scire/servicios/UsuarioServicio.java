@@ -1,14 +1,26 @@
 package com.scire.servicios;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
@@ -16,19 +28,18 @@ import com.scire.repositorios.UsuarioRepositorio;
 import com.scire.roles.Rol;
 
 @Service
-public class UsuarioServicio {
+public class UsuarioServicio implements UserDetailsService {
 	
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
 	
-<<<<<<< HEAD
-=======
-	@Autowired
-	private NotificacionServicio notificacionServ;
+
+//	@Autowired
+//	private NotificacionServicio notificacionServ;
 	
 	
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
->>>>>>> bcd7500b933da6df5b7b6fbed8b5538849f4f2fb
+
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 	public Usuario guardar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 
@@ -44,7 +55,7 @@ public class UsuarioServicio {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 		
-		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+	//	notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
 
 
 		return usuarioRepo.save(entidad);
@@ -212,7 +223,7 @@ public class UsuarioServicio {
 	        Usuario entidad = this.buscarPorEmail(mail);
 	        entidad.setClave(claveNuevaEncriptada);
 	        usuarioRepo.save(entidad);
-	        notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
+	     //   notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
 			} catch(Exception e) {
 				throw new ErrorException ("error");
 			}
@@ -224,31 +235,31 @@ public class UsuarioServicio {
 		  
 
 	
-}	
+	
 	
 	
 //PARA INVESTIGAR, AGUSTINFIORDE EN PERROS V2
 	
-//	@Override
-//	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//		
-//		Usuario user = usuarioRepository.buscarPorEmail(email);
-//		
-//		if (user != null) {
-//			List<GrantedAuthority> permissions = new ArrayList<>();
-//			GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
-//			permissions.add(p);
-//			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-//			HttpSession session = attr.getRequest().getSession(true);
-//			session.setAttribute("usuario", user);
-//			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
-//					permissions);
-//		}
-//		return null;
-//
-//	}
+		@Override
+		public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+			
+			Usuario user = usuarioRepo.buscarPorEmail(email);
+			
+			if (user != null) {
+				List<GrantedAuthority> permissions = new ArrayList<>();
+				GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
+				permissions.add(p);
+				ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+				HttpSession session = attr.getRequest().getSession(true);
+				session.setAttribute("usuario", user);
+				return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
+					permissions);
+		}
+		return null;
+
+		}
 	
-	
+	}	
 	
 	
 

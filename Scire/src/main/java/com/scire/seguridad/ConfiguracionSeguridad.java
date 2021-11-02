@@ -10,19 +10,23 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.scire.servicios.UsuarioServicio;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 	
-	//@Autowired
-	//@Qualifier("usuarioService")
-	//public UsuarioServicio usuarioService;
-    //
-	//@Autowired
-	//public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-	//	auth.userDetailsService(usuarioServicio).passwordEncoder(new BCryptPasswordEncoder());
-	//}
+	@Autowired
+	@Qualifier("usuarioServicio")
+	public UsuarioServicio usuarioServicio;
+    
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+		.userDetailsService(usuarioServicio) 
+		.passwordEncoder(new BCryptPasswordEncoder());
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
