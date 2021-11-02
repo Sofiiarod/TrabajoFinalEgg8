@@ -8,6 +8,7 @@ import com.scire.entidades.Creador;
 
 @Repository
 public interface CreadorRepositorio extends JpaRepository<Creador,String> {
+	
 	@Query ("SELECT c FROM Creador c WHERE c.nombre = :nombre")
 	public Creador buscarPorNombre (@Param("nombre") String nombre);
 }

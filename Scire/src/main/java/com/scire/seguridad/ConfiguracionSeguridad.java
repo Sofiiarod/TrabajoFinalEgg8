@@ -19,14 +19,15 @@ import com.scire.servicios.UsuarioServicio;
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 	
+
 //	@Autowired
-//	@Qualifier("usuarioService")
-//	public UsuarioServicio usuarioService;
-    
+//	@Qualifier("usuarioServicio")
+//	public UsuarioServicio usuarioServicio;
+//    
 //	@Autowired
 //	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //		auth
-//		.userDetailsService(usuarioService) 
+//		.userDetailsService(usuarioServicio) 
 //		.passwordEncoder(new BCryptPasswordEncoder());
 //	}
 

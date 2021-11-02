@@ -30,15 +30,16 @@ import com.scire.repositorios.UsuarioRepositorio;
 import com.scire.roles.Rol;
 
 @Service
-public class UsuarioServicio implements UserDetailsService {
+public class UsuarioServicio<NotificacionServicio> implements UserDetailsService {
 	
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
 	
 
+
 	@Autowired
 	private NotificacionServicio notificacionServ;
-	
+
 	
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
 
@@ -57,7 +58,7 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 		
-		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+	//	notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
 
 
 		return usuarioRepo.save(entidad);
@@ -239,7 +240,7 @@ public class UsuarioServicio implements UserDetailsService {
 	        Usuario entidad = this.buscarPorEmail(mail);
 	        entidad.setClave(claveNuevaEncriptada);
 	        usuarioRepo.save(entidad);
-	        notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
+	     //   notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
 			} catch(Exception e) {
 				throw new ErrorException ("error");
 			}
@@ -251,11 +252,7 @@ public class UsuarioServicio implements UserDetailsService {
 		  
 
 	
-	
-	
-	
-//PARA INVESTIGAR, AGUSTINFIORDE EN PERROS V2
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
@@ -276,7 +273,9 @@ public class UsuarioServicio implements UserDetailsService {
 	}
 }
 	
+		
 	
+		
 	
 	
 
