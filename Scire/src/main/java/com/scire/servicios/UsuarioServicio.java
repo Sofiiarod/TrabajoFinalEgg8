@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,11 +35,13 @@ public class UsuarioServicio implements UserDetailsService {
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
 	
+
 	@Autowired
 	private NotificacionServicio notificacionServ;
 	
 	
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
+
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 	public Usuario guardar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 

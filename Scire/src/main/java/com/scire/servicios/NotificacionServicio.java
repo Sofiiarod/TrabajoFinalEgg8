@@ -6,12 +6,12 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class NotificacionServicio {
-@Autowired
+@Autowired(required = true)
  private JavaMailSender sender;
-@Autowired
- private UsuarioServicio usuarioserv;
+
 
 @Async
 public void enviar(String cuerpo, String titulo, String mail) {
