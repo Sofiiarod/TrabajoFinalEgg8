@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,9 +36,10 @@ public class UsuarioServicio implements UserDetailsService {
 	private UsuarioRepositorio usuarioRepo;
 	
 
+
 //	@Autowired
 //	private NotificacionServicio notificacionServ;
-	
+
 	
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
 
@@ -81,7 +84,7 @@ public class UsuarioServicio implements UserDetailsService {
 			throw new ErrorException("Debe tener un email valido");
 		}
 
-		if (usuarioRepo.buscarPorEmail(email) != null) {
+		if (usuarioRepo.buscarPorEmail (email) != null) {
 			throw new ErrorException("El Email ya esta en uso");
 		}	
 		//la clave no debe ser nula, no debe estar vacia, no debe contener espacios, debe tener entre 8 y 12 caracteres
@@ -190,29 +193,43 @@ public class UsuarioServicio implements UserDetailsService {
 			      }	
 		}
 		
-		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
-		public boolean inicioSesion(String email, String claveingresada) throws ErrorException {
+//		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
+//		public boolean inicioSesion(String email, String claveingresada) throws ErrorException {
+//		
+//			try {
+//			Usuario entidad = this.buscarPorEmail(email);
+//
+//			if(entidad==null){
+//				throw new ErrorException ("El usuario no existe");
+//			}
+//
+//			
+//			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
+//			 
+//			
+//			boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
+//			 if (passwordValid == true) {
+//				 return passwordValid;
+//			}else {
+//			       throw new ErrorException ("La clave no es la correcta");
+//			       }	
+//			}catch(Exception e) {
+//				throw new ErrorException ("Error al iniciar sesion");
+//			}
+//		}
+//			if(entidad==null){
+//				throw new ErrorException ("El usuario no existe");
+//			}
+//				
+//			}catch(Exception e) {
+//				 throw new ErrorException ("Error al iniciar sesion");
+//				 return false;
+//			}
+//		
 		
-			try {
-			Usuario entidad = this.buscarPorEmail(email);
-			if(entidad==null){
-				throw new ErrorException ("El usuario no existe");
-			}
 			
-			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
-			 
-			
-			boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
-			 if (passwordValid == true) {
-				 return passwordValid;
-			}else {
-			       throw new ErrorException ("La clave no es la correcta");
-			       }	
-			}catch(Exception e) {
-				throw new ErrorException ("Error al iniciar sesion");
-			}
-		}
 		
+
 		@Transactional
 	    public void recuperarContraseña(String mail) throws ErrorException {
 			try {
@@ -229,37 +246,36 @@ public class UsuarioServicio implements UserDetailsService {
 			}
 			
 	    }
-
+			
 
 	
 		  
 
 	
-	
-	
-	
-//PARA INVESTIGAR, AGUSTINFIORDE EN PERROS V2
-	
-		@Override
-		public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-			
-			Usuario user = usuarioRepo.buscarPorEmail(email);
-			
-			if (user != null) {
-				List<GrantedAuthority> permissions = new ArrayList<>();
-				GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
-				permissions.add(p);
-				ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-				HttpSession session = attr.getRequest().getSession(true);
-				session.setAttribute("usuario", user);
-				return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
-					permissions);
-		}
-		return null;
 
-		}
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		
+		Usuario user = usuarioRepo.buscarPorEmail(email);
+		
+		if (user != null) {
+			List<GrantedAuthority> permissions = new ArrayList<>();
+			GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
+			permissions.add(p);
+			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			HttpSession session = attr.getRequest().getSession(true);
+			session.setAttribute("usuario", user);
+			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
+				permissions);
+	}
+	return null;
+
+	}
+}
 	
-	}	
+		
+	
+		
 	
 	
 

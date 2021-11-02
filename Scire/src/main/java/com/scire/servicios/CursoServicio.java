@@ -18,9 +18,11 @@ import com.scire.repositorios.CursoRepositorio;
 public class CursoServicio {
 
 	@Autowired
-	CursoRepositorio cursorepo;
-	@Autowired
-  UsuarioServicio usuarioService;
+	private CursoRepositorio cursoRepo;
+//	@Autowired
+//    private UsuarioServicio usuarioService;
+	
+	
 	/**
 	 * 
 	 * @param nombre
@@ -32,6 +34,7 @@ public class CursoServicio {
 	 * @throws ErrorException
 	 * @param Usuario el curso no necesita un usuario para crearse
 	 */
+	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Creador creadorID)
 			throws ErrorException {
@@ -43,7 +46,7 @@ public class CursoServicio {
 		curso.setEstado(true);
 		curso.setCategoria(categoriaID);
 		curso.setCreador(creadorID);
-		return cursorepo.save(curso);
+		return cursoRepo.save(curso);
 	}
 
 	// MODIFICAR O ACTUALIZAR DATOS
@@ -57,13 +60,13 @@ public class CursoServicio {
 		curso.setUrl(url);
 		curso.setCategoria(categoriaid);
 		curso.setCreador(creadorid);
-		return cursorepo.save(curso);
+		return cursoRepo.save(curso);
 	}
 	//ELIMINAR
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public void eliminar(String id) throws ErrorException {
 		try {
-			cursorepo.deleteById(id);
+			cursoRepo.deleteById(id);
 		} catch (Exception e) {
 			throw new ErrorException("error al eliminar el curso puede que no exista");
 		}
@@ -90,7 +93,7 @@ public class CursoServicio {
 	 * @throws ErrorException
 	 */
 	public Curso encontrarPorID(String id) throws ErrorException {
-		Optional<Curso> respuesta = cursorepo.findById(id);
+		Optional<Curso> respuesta = cursoRepo.findById(id);
 		if (respuesta.isPresent()) {
 			return respuesta.get();
 		} else {
@@ -124,15 +127,18 @@ public class CursoServicio {
 //QUERY , ENCONTRAR EN EL REPOSITORIO
 //	@Transactional(readOnly = true)
 //	public List<Curso> listarTodos() {
-//		return cursorepo.findAll();
+
+//		return cursoRepo.findAll();
 //	}
 //@Transactional(readOnly = true)
 //public List<Curso> listarPorNombre(String nombre){
-//	return cursorepo.buscarPorNombre(nombre);
+//	return cursoRepo.buscarPorNombre(nombre);
 //}
 //@Transactional(readOnly = true)
 //public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
 //       Usuario u =  usuarioService.buscarPorId(idUsuario);
+
 //return cursorepo.buscarPorUsuario(u);
+
 //}
 }

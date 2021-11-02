@@ -1,5 +1,7 @@
 package com.scire.seguridad;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -17,16 +19,17 @@ import com.scire.servicios.UsuarioServicio;
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 	
-	@Autowired
-	@Qualifier("usuarioServicio")
-	public UsuarioServicio usuarioServicio;
-    
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-		.userDetailsService(usuarioServicio) 
-		.passwordEncoder(new BCryptPasswordEncoder());
-	}
+
+//	@Autowired
+//	@Qualifier("usuarioServicio")
+//	public UsuarioServicio usuarioServicio;
+//    
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth
+//		.userDetailsService(usuarioServicio) 
+//		.passwordEncoder(new BCryptPasswordEncoder());
+//	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
