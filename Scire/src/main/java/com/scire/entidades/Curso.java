@@ -3,8 +3,8 @@ package com.scire.entidades;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -21,19 +21,20 @@ public class Curso {
 	private String url;
 	private Boolean estado;
 
+	
 	@ManyToOne
 	private Usuario usuario;
 	@ManyToOne
 	private Categoria categoria;
 	@ManyToOne
-	private Creador creador;
+	private Profesor profesor;
 
 	public Curso() {
 		super();
 	}
 
 	public Curso(String id, String nombre, String descripcion, String url, Boolean estado, Categoria categoria,
-			Creador creador) {
+			Profesor profesor) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -42,7 +43,7 @@ public class Curso {
 		this.estado = estado;
 		
 		this.categoria = categoria;
-		this.creador = creador;
+		this.profesor = profesor;
 	}
 
 	public String getId() {
@@ -101,18 +102,18 @@ public class Curso {
 		this.categoria = categoria;
 	}
 
-	public Creador getCreador() {
-		return creador;
+	public Profesor getCreador() {
+		return profesor;
 	}
 
-	public void setCreador(Creador creador) {
-		this.creador = creador;
+	public void setCreador(Profesor profesor) {
+		this.profesor = profesor;
 	}
 
 	@Override
 	public String toString() {
 		return "Curso [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", url=" + url + ", estado="
-				+ estado + ", usuario=" + usuario + ", categoria=" + categoria + ", creador=" + creador + "]";
+				+ estado + ", usuario=" + usuario + ", categoria=" + categoria + ", creador=" + profesor + "]";
 	}
 
 }

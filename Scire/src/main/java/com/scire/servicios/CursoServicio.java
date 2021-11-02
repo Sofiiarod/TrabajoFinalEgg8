@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.scire.entidades.Categoria;
-import com.scire.entidades.Creador;
+import com.scire.entidades.Profesor;
 import com.scire.entidades.Curso;
 import com.scire.errores.ErrorException;
 import com.scire.repositorios.CursoRepositorio;
@@ -33,7 +33,7 @@ public class CursoServicio {
 	 * @param Usuario el curso no necesita un usuario para crearse
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
-	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Creador creadorID)
+	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Profesor creadorID)
 			throws ErrorException {
 		validar(nombre, descripcion, url, categoriaID, creadorID);
 		Curso curso = new Curso();
@@ -49,7 +49,7 @@ public class CursoServicio {
 	// MODIFICAR O ACTUALIZAR DATOS
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public Curso modificar(String id, String nombre, String descripcion, String url, Categoria categoriaid,
-			Creador creadorid) throws ErrorException {
+			Profesor creadorid) throws ErrorException {
 		validar(nombre, descripcion, url, categoriaid, creadorid);
 		Curso curso = encontrarPorID(id);
 		curso.setNombre(nombre);
@@ -101,7 +101,7 @@ public class CursoServicio {
 	/**
 	 * --------------------------- validaciones
 	 */
-	public void validar(String nombre, String descripcion, String url, Categoria categoria, Creador creador)
+	public void validar(String nombre, String descripcion, String url, Categoria categoria, Profesor profesor)
 			throws ErrorException {
 
 		if (nombre.isEmpty() || nombre == null || nombre.contains(" ")) {
@@ -116,7 +116,7 @@ public class CursoServicio {
 		if (categoria == null) {
 			throw new ErrorException("Debe de indicarle una categoria");
 		}
-		if (creador == null) {
+		if (profesor == null) {
 			throw new ErrorException("Debe de indicarle un creador");
 		}
 	}
