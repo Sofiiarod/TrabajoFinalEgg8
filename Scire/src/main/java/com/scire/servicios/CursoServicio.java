@@ -20,8 +20,8 @@ public class CursoServicio {
 
 	@Autowired
 	private CursoRepositorio cursoRepo;
-//	@Autowired
-//    private UsuarioServicio usuarioService;
+	@Autowired
+    private UsuarioServicio usuarioService;
 	
 	
 	/**
@@ -126,17 +126,19 @@ public class CursoServicio {
 	}
 
 //QUERY , ENCONTRAR EN EL REPOSITORIO
-//	@Transactional(readOnly = true)
-//	public List<Curso> listarTodos() {
-//		return cursoRepo.findAll();
-//	}
-//@Transactional(readOnly = true)
-//public List<Curso> listarPorNombre(String nombre){
-//	return cursoRepo.buscarPorNombre(nombre);
-//}
-//@Transactional(readOnly = true)
-//public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
-//       Usuario u =  usuarioService.buscarPorId(idUsuario);
-//return cursoRepo.buscarPorUsuario(u);
-//}
+	@Transactional(readOnly = true)
+	public List<Curso> listarTodos() {
+		return cursoRepo.findAll();
+	}
+@Transactional(readOnly = true)
+public List<Curso> listarPorNombre(String nombre){
+	return cursoRepo.buscarPorNombre(nombre);
+}
+@Transactional(readOnly = true)
+public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
+	
+       Usuario u =  usuarioService.buscarPorId(idUsuario);
+       
+       return cursoRepo.buscarPorUsuario(u.toString());
+}
 }
