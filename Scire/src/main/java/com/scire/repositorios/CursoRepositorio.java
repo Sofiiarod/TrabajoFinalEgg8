@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.scire.entidades.Curso;
-import com.scire.entidades.Usuario;
+
 
 @Repository
 public interface CursoRepositorio extends JpaRepository<Curso,String> {
@@ -19,8 +19,8 @@ public interface CursoRepositorio extends JpaRepository<Curso,String> {
 	@Query("SELECT a from Curso a WHERE a.categoria LIKE :categoria")
 	public List<Curso> buscarPorCategoria(@Param("categoria") String categoria);
 	
-	@Query("SELECT a from Curso a WHERE a.creador LIKE :creador")
-	public List<Curso> buscarPorCreador(@Param("creador") String creador);
+	@Query("SELECT a from Curso a WHERE a.profesor LIKE :profesor")
+	public List<Curso> buscarPorCreador(@Param("profesor") String profesor);
 	
 	
 	

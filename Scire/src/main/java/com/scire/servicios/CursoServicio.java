@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.scire.entidades.Categoria;
 import com.scire.entidades.Profesor;
 import com.scire.entidades.Curso;
-import com.scire.entidades.Usuario;
+
 import com.scire.errores.ErrorException;
 import com.scire.repositorios.CursoRepositorio;
 
@@ -20,8 +20,8 @@ public class CursoServicio {
 
 	@Autowired
 	private CursoRepositorio cursoRepo;
-	@Autowired
-    private UsuarioServicio usuarioService;
+//	@Autowired
+//    private UsuarioServicio usuarioService;
 	
 	
 	/**

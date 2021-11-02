@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,8 +35,8 @@ public class UsuarioServicio implements UserDetailsService {
 	
 
 
-//	@Autowired
-//	private NotificacionServicio notificacionServ;
+	@Autowired
+	private NotificacionServicio notificacionServ;
 
 	
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
@@ -56,13 +54,13 @@ public class UsuarioServicio implements UserDetailsService {
 		
 		String claveEncriptada = new BCryptPasswordEncoder().encode(clave);
 		entidad.setClave(claveEncriptada);
-//		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
+		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
 		
 		entidad.setRol(Rol.USER);
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 		
-	//	notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
 
 
 		return usuarioRepo.save(entidad);
@@ -248,7 +246,7 @@ public class UsuarioServicio implements UserDetailsService {
 	        Usuario entidad = this.buscarPorEmail(mail);
 	        entidad.setClave(claveNuevaEncriptada);
 	        usuarioRepo.save(entidad);
-	     //   notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
+	        notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
 			} catch(Exception e) {
 				throw new ErrorException ("error");
 			}
