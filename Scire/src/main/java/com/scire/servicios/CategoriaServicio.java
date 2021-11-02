@@ -80,21 +80,29 @@ public class CategoriaServicio {
 
 	}
 
-	// BUSCAR LA ENTIDAD POR NOMBRE.
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-	public Categoria buscarPorNombre(String nombre) throws ErrorException {
 
-		Optional<Categoria> respuesta = categoriaRepo.buscarPorNombre(nombre);
+//	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+//	public void buscarPorNombre(String nombre) {
 
-		if (respuesta.isPresent()) {
+//		Categoria respuesta = categoriaRepo.buscarPorNombre(nombre);
 
-			return respuesta.get();
+//		if (respuesta.isPresent()) {
+//			return respuesta.get();
+//		} else {
+//			throw new ErrorException("No se ha encontrado la categoria solicitada");
+//		}
+//	}
 
-		} else {
-
-			throw new ErrorException("No se pudo encontrar el creador solicitado");
-		}
-	}
+//
+//		if (respuesta.isPresent()) {
+//
+//			return respuesta.get();
+//
+//		} else {
+//
+//			throw new ErrorException("No se pudo encontrar el creador solicitado");
+//		}
+//	}
 
 	public void validar(String nombre) throws ErrorException {
 		

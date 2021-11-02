@@ -12,6 +12,7 @@ import com.scire.entidades.Categoria;
 
 @Repository
 public interface CategoriaRepositorio extends JpaRepository<Categoria,String> {
+	
 	@Query ("SELECT c FROM Categoria c WHERE c.nombre = :nombre")
 	public Optional<Categoria> buscarPorNombre (@Param("nombre") String nombre);
 }

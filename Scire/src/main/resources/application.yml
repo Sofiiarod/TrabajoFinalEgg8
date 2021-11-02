@@ -10,6 +10,7 @@ spring:
                 auth: true
                 starttls:
                     enable: true
+ 
   datasource: 
     url: jdbc:mysql://localhost:3306/scire?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8&createDatabaseIfNotExist=true
     username: root
@@ -25,7 +26,7 @@ spring:
   thymeleaf:
     cache: false 
 server:
-  port: 8080
+  port: 8081
   error:
     whitelabel:
       enabled: false
