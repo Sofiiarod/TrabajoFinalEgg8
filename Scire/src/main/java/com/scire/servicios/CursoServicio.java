@@ -1,6 +1,4 @@
 package com.scire.servicios;
-
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,9 @@ public class CursoServicio {
 
 	@Autowired
 	private CursoRepositorio cursoRepo;
-//	@Autowired
-//    private UsuarioServicio usuarioService;
+	
+	@Autowired
+    private UsuarioServicio usuarioService;
 	
 	
 	/**
@@ -125,9 +124,9 @@ public class CursoServicio {
 	}
 
 //QUERY , ENCONTRAR EN EL REPOSITORIO
+//
 //	@Transactional(readOnly = true)
 //	public List<Curso> listarTodos() {
-
 //		return cursoRepo.findAll();
 //	}
 //@Transactional(readOnly = true)
@@ -136,9 +135,9 @@ public class CursoServicio {
 //}
 //@Transactional(readOnly = true)
 //public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
+//	
 //       Usuario u =  usuarioService.buscarPorId(idUsuario);
-
-//return cursorepo.buscarPorUsuario(u);
-
+//       
+//       return cursoRepo.buscarPorUsuario(u.toString());
 //}
 }
