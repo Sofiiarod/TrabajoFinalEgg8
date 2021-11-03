@@ -1,0 +1,34 @@
+/*Id #categorias*/
+.categoria_contenedor{
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    line-height: 10px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: #000000;
+
+}
+
+.categoria_texto{
+    font-family: 'Yaldevi', sans-serif;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.card{
+    margin: 5px;
+}
+
+.card:hover{
+    background-color: #5e5e5e;
+}
+
+.cambio-color{
+    text-decoration: none;
+    color: #5e5e5e;
+}
+
+.cambio-color:hover{
+    color: lightgrey;
+}
