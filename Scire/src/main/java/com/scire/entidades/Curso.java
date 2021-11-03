@@ -107,11 +107,11 @@ public class Curso {
 		this.categoria = categoria;
 	}
 
-	public Profesor getCreador() {
+	public Profesor getProfesor() {
 		return profesor;
 	}
 
-	public void setCreador(Profesor profesor) {
+	public void setProfesor(Profesor profesor) {
 		this.profesor = profesor;
 	}
 

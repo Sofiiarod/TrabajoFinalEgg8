@@ -37,30 +37,30 @@ public class CursoServicio {
 	 */
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
-	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Profesor creadorID)
+	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Profesor profesorID)
 			throws ErrorException {
-		validar(nombre, descripcion, url, categoriaID, creadorID);
+		validar(nombre, descripcion, url, categoriaID, profesorID);
 		Curso curso = new Curso();
 		curso.setNombre(nombre);
 		curso.setDescripcion(descripcion);
 		curso.setUrl(url);
 		curso.setEstado(true);
 		curso.setCategoria(categoriaID);
-		curso.setCreador(creadorID);
+		curso.setProfesor(profesorID);
 		return cursoRepo.save(curso);
 	}
 
 	// MODIFICAR O ACTUALIZAR DATOS
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public Curso modificar(String id, String nombre, String descripcion, String url, Categoria categoriaid,
-			Profesor creadorid) throws ErrorException {
-		validar(nombre, descripcion, url, categoriaid, creadorid);
+			Profesor profesorid) throws ErrorException {
+		validar(nombre, descripcion, url, categoriaid, profesorid);
 		Curso curso = encontrarPorID(id);
 		curso.setNombre(nombre);
 		curso.setDescripcion(descripcion);
 		curso.setUrl(url);
 		curso.setCategoria(categoriaid);
-		curso.setCreador(creadorid);
+		curso.setProfesor(profesorid);
 		return cursoRepo.save(curso);
 	}
 	//ELIMINAR
@@ -121,7 +121,7 @@ public class CursoServicio {
 			throw new ErrorException("Debe de indicarle una categoria");
 		}
 		if (profesor == null) {
-			throw new ErrorException("Debe de indicarle un creador");
+			throw new ErrorException("Debe de indicarle un profesor");
 		}
 	}
 

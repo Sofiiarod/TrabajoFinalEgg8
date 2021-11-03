@@ -14,7 +14,7 @@ public class ErrorControlador implements ErrorController {
     @RequestMapping(value = "/error", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {
 
-        ModelAndView errorPage = new ModelAndView("error");
+        ModelAndView errorPage = new ModelAndView("../template/error.html");
         String errorMsg = "";
         int httpErrorCode = getErrorCode(httpRequest);
 
@@ -40,17 +40,18 @@ public class ErrorControlador implements ErrorController {
                 break;
             }
         }
-
+        
         errorPage.addObject("codigo", httpErrorCode);
         errorPage.addObject("mensaje", errorMsg);
         return errorPage;
     }
 
     private int getErrorCode(HttpServletRequest httpRequest) {
+    	
         return (Integer) httpRequest.getAttribute("javax.servlet.error.status_code");
     }
 
     public String getErrorPath() {
-        return "/error";
+        return "../template/error.html";
     }
 }

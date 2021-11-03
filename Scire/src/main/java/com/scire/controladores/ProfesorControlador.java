@@ -17,7 +17,7 @@ import com.scire.servicios.ProfesorServicio;
 
 @Controller
 @RequestMapping("/")
-public class CreadorControlador {
+public class ProfesorControlador {
 	
 	
 	

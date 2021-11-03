@@ -9,10 +9,43 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
     <title>Inicio</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/index.css" th:href="@{../css/index.css}">
 </head>
- 	<body>
+	 <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="../img/user.jpg" th:src="@{../img/user.jpg}"/>
+                </div>
+
+ 	<body><center> 		
  		<h1> HOLA MUNDO</h1>
+ 		<a th:href="@{/login}" class="btn btn-success">Iniciar sesión</a>
+ 		
+ 		</br>
+ 		</br>
+ 		</br>
+ 				
+ 		<a class="btn btn-danger">Registrarse</a>
+ 		
+ 		</br>
+ 		</br>
+ 		</br>	
  		<a th:href="@{/profesores}" class="btn btn-primary">Lista Profesores</a>
+ 		
+ 		</br>
+ 		</br>
+ 		</br>
+ 					
  		<a th:href="@{/profesores/create}" class="btn btn-primary">Cargar Profesor</a>
-	 </body>
+	 </div>
+	 </div>
+	 </center></body>
 </html>

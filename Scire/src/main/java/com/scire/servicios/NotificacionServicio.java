@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 public class NotificacionServicio {
 @Autowired(required = true)
  private JavaMailSender sender;
-@Autowired
-private UsuarioServicio usuarioserv;
+//@Autowired
+//private UsuarioServicio usuarioserv;
 
 
 @Async
@@ -27,7 +27,7 @@ public void enviar(String cuerpo, String titulo, String mail) {
     sender.send(mensaje);
 }
 @Async
-public void enviarModificarContraseña(String cuerpo, String titulo, String mail, String contraseña) {
+ public void enviarModificarContraseña(String cuerpo, String titulo, String mail, String contraseña) {
     SimpleMailMessage mensaje = new SimpleMailMessage();
     String mensajeAnterior = "";
 
@@ -44,4 +44,8 @@ public void enviarModificarContraseña(String cuerpo, String titulo, String mail
 
 
 
+
 }
+
+
+
