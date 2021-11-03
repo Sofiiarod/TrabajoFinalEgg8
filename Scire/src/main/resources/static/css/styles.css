@@ -1,3 +1,55 @@
+
+:root {
+    --bs-brown: #a59d86;
+}
+
+/*ID cursos*/
+.main{
+    background-image: url(/img/escritorio.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+}
+
+.elementos{
+    margin:5em;
+    display:flex;
+    text-align: left;
+    justify-content: space-between;
+    
+}
+
+h1,h2,h3,h4,a{
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    
+}
+
+
+.boton >a{
+    color: white;
+    text-decoration: none;
+}
+
+
+
+.boton > a:hover{
+    background-color: var(--bs-brown);
+}
+
+p{
+    font-family: 'Yaldevi', sans-serif;
+
+}
+
 /*Id #categorias*/
 .categoria_contenedor{
     font-family: 'Lora', serif;
