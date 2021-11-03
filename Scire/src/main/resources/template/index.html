@@ -1,18 +1,103 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.79.0">
-    <title>Inicio</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
- 	<body>
- 		<h1> HOLA MUNDO</h1>
- 		<a th:href="@{/profesores}" class="btn btn-primary">Lista Profesores</a>
- 		<a th:href="@{/profesores/create}" class="btn btn-primary">Cargar Profesor</a>
-	 </body>
+
+<body>
+<section id="categorias">
+    <div class="categoria_contenedor">
+        <h1>Categorías disponibles</h1>
+    </div>
+    <div class="categoria_texto">
+        <h3>El conocimiento al alcance de un click. Te presentamos nuestras categorías. Vos elegis... </h3>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card text-center py-2">
+                    <a href="#" class="cambio-color">
+                        <i class="fas fa-camera-retro fa-3x"></i>
+                        <div class="card-body pb-0">Fotografía</div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card text-center py-2">
+                    <a href="#" class="cambio-color">
+                        <i class="fas fa-drafting-compass fa-3x"></i>
+                        <div class="card-body pb-0">Diseño</div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card text-center py-2">
+                    <a href="#" class="cambio-color">
+                        <i class="fas fa-paint-brush fa-3x"></i>
+                        <div class="card-body pb-0"> Ilustración </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card text-center py-2">
+                    <a href="#" class="cambio-color">
+                        <i class="fas fa-code fa-3x"></i>
+                        <div class="card-body pb-0"> Programación </div>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card text-center py-2">
+                    <a href="#" class="cambio-color">
+                        <i class="fas fa-lightbulb fa-3x"></i>
+                        <div class="card-body pb-0">Marketing</div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card text-center py-2">
+                    <a href="#" class="cambio-color">
+                        <i class="fas fa-feather-alt fa-3x"></i>
+                        <div class="card-body pb-0">Escritura</div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card text-center py-2">
+                    <a href="#" class="cambio-color">
+                        <i class="fas fa-music fa-3x"></i>
+                        <div class="card-body pb-0"> Música y audio </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card text-center py-2">
+                    <a href="#" class="cambio-color">
+                        <i class="fas fa-plus fa-3x"></i>
+                        <div class="card-body pb-0"> Ver más </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
 </html>
