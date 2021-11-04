@@ -8,16 +8,21 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.scire.entidades.Categoria;
-import com.scire.entidades.Profesor;
 import com.scire.entidades.Curso;
+import com.scire.entidades.Profesor;
+import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
 import com.scire.repositorios.CursoRepositorio;
+import com.scire.repositorios.UsuarioRepositorio;
 
 @Service
 public class CursoServicio {
 
 	@Autowired
 	private CursoRepositorio cursoRepo;
+	@Autowired
+	private UsuarioRepositorio usuarioRepo;
+
 
 	
 //	@Autowired
@@ -134,12 +139,15 @@ public class CursoServicio {
 public List<Curso> listarPorNombre(String nombre){
 	return cursoRepo.buscarPorNombre(nombre);
 }
+ 
+//INSCRIPCION
+public void inscripcion(String id_usuario, String id_curso) {
+	
+	Curso curso = cursoRepo.getById(id_curso);
+	Usuario usuario = usuarioRepo.getById(id_usuario);
+	
+	curso.getUsuarios().add(usuario);
+	cursoRepo.save(curso);
+}
 
-//@Transactional(readOnly = true)
-//public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
-//	
-//       Usuario u =  usuarioService.buscarPorId(idUsuario);
-//       
-//       return cursoRepo.buscarPorUsuario(u.toString());
-//}
 }
