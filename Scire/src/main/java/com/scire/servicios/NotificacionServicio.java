@@ -22,22 +22,22 @@ public class NotificacionServicio {
 		mensaje.setSubject(titulo);
 		mensaje.setText(cuerpo);
 
-		sender.send(mensaje);
-	}
 
-	@Async
-	public void enviarModificarContraseña(String cuerpo, String titulo, String email, String contraseña) {
-		SimpleMailMessage mensaje = new SimpleMailMessage();
-		String mensajeAnterior = "";
+    sender.send(mensaje);
+}
+@Async
+public void enviarModificarContraseña(String cuerpo, String titulo, String email, String contraseña) {
 
-		mensajeAnterior = " Su nueva Contraseña es: " + contraseña;
+    SimpleMailMessage mensaje = new SimpleMailMessage();
+    String mensajeAnterior = "";
 
-		mensaje.setFrom("scireedu@gmail.com");
-		mensaje.setTo(email);
-		mensaje.setSubject(titulo);
-		mensaje.setText(mensajeAnterior.concat(cuerpo));
+    mensajeAnterior = " Su nueva Contraseña es: " + contraseña;
 
-		sender.send(mensaje);
-	}
+    mensaje.setFrom("scireedu@gmail.com");
+    mensaje.setTo(email);
+    mensaje.setSubject(titulo);
+    mensaje.setText(mensajeAnterior.concat(cuerpo));
 
+    sender.send(mensaje);
+}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -26,6 +28,7 @@ public class Curso {
 
 	
 	@ManyToMany
+	@JoinTable(name="curso_usuarios", joinColumns = @JoinColumn(name="curso_id"), inverseJoinColumns = @JoinColumn(name="usuario_id"))
 	private List<Usuario> usuarios;
 	@ManyToOne
 	private Categoria categoria;
