@@ -28,7 +28,6 @@
 <body>
 
 	<div class="container m-5">
-		<h1>Crear Profesor</h1>
 		<div th:if="${exito}!=null" class="card text-white bg-success mb-3">
 			<div class="card-body">
 				<h5 class="card-title">Exito</h5>
@@ -44,6 +43,7 @@
 		<div class="modal-dialog text-center">
 			<div class="col-sm-8 main-section">
 				<div class="modal-content">
+					<h1>Crear Profesor</h1>
 					<form th:action="@{/profesores/registrar}" method="POST">
 						<p th:if="${Error != null}" th:text="${Error}"></p>
 						<div class="form-group">
@@ -51,7 +51,7 @@
 								name="nombre" placeholder="Nombre del creador">
 						</div>
 
-						<button type="submit" class="btn btn-primary">Guardar</button>
+						<button type="submit" class="btn btn-primary">Registrar</button>
 					</form>
 				</div>
 			</div>
@@ -78,5 +78,6 @@
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous"></script>
+	</div>
 </body>
 </html>
