@@ -29,9 +29,9 @@ public class UsuarioControlador {
 		return "admin.html";
 	}
 
-	@GetMapping("/user")
+	@GetMapping("/login")
 	public String user() {
-		return "user.html";
+		return "login.html";
 	}
 
 	@GetMapping("/registro")

@@ -46,7 +46,7 @@ public class ProfesorControlador {
 	
 	@PostMapping("/registrar")
 	public String registrar(ModelMap model, @RequestParam String nombre) throws ErrorException {
-		String res = "redirect:/profesores";
+		String res = "redirect:/profesores/lista";
 		
 		
 		try {
