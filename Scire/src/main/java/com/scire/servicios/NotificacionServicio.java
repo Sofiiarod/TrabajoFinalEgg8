@@ -27,11 +27,8 @@ public void enviar(String cuerpo, String titulo, String email) {
     sender.send(mensaje);
 }
 @Async
-<<<<<<< HEAD
 public void enviarModificarContraseña(String cuerpo, String titulo, String email, String contraseña) {
-=======
- public void enviarModificarContraseña(String cuerpo, String titulo, String mail, String contraseña) {
->>>>>>> e4d82cf2fd46126a4ad40bd6ab54fc47fefb59bb
+
     SimpleMailMessage mensaje = new SimpleMailMessage();
     String mensajeAnterior = "";
 
