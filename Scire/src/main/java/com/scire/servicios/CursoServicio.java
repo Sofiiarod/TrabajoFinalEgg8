@@ -1,4 +1,5 @@
 package com.scire.servicios;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.scire.entidades.Categoria;
-import com.scire.entidades.Creador;
+import com.scire.entidades.Profesor;
 import com.scire.entidades.Curso;
 import com.scire.errores.ErrorException;
 import com.scire.repositorios.CursoRepositorio;
@@ -17,10 +18,10 @@ public class CursoServicio {
 
 	@Autowired
 	private CursoRepositorio cursoRepo;
+
 	
-	@Autowired
-    private UsuarioServicio usuarioService;
-	
+//	@Autowired
+//    private UsuarioServicio usuarioService;
 	
 	/**
 	 * 
@@ -35,30 +36,30 @@ public class CursoServicio {
 	 */
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
-	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Creador creadorID)
+	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Profesor profesorID)
 			throws ErrorException {
-		validar(nombre, descripcion, url, categoriaID, creadorID);
+		validar(nombre, descripcion, url, categoriaID, profesorID);
 		Curso curso = new Curso();
 		curso.setNombre(nombre);
 		curso.setDescripcion(descripcion);
 		curso.setUrl(url);
 		curso.setEstado(true);
 		curso.setCategoria(categoriaID);
-		curso.setCreador(creadorID);
+		curso.setProfesor(profesorID);
 		return cursoRepo.save(curso);
 	}
 
 	// MODIFICAR O ACTUALIZAR DATOS
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public Curso modificar(String id, String nombre, String descripcion, String url, Categoria categoriaid,
-			Creador creadorid) throws ErrorException {
-		validar(nombre, descripcion, url, categoriaid, creadorid);
+			Profesor profesorid) throws ErrorException {
+		validar(nombre, descripcion, url, categoriaid, profesorid);
 		Curso curso = encontrarPorID(id);
 		curso.setNombre(nombre);
 		curso.setDescripcion(descripcion);
 		curso.setUrl(url);
 		curso.setCategoria(categoriaid);
-		curso.setCreador(creadorid);
+		curso.setProfesor(profesorid);
 		return cursoRepo.save(curso);
 	}
 	//ELIMINAR
@@ -103,7 +104,7 @@ public class CursoServicio {
 	/**
 	 * --------------------------- validaciones
 	 */
-	public void validar(String nombre, String descripcion, String url, Categoria categoria, Creador creador)
+	public void validar(String nombre, String descripcion, String url, Categoria categoria, Profesor profesor)
 			throws ErrorException {
 
 		if (nombre.isEmpty() || nombre == null || nombre.contains(" ")) {
@@ -118,21 +119,22 @@ public class CursoServicio {
 		if (categoria == null) {
 			throw new ErrorException("Debe de indicarle una categoria");
 		}
-		if (creador == null) {
-			throw new ErrorException("Debe de indicarle un creador");
+		if (profesor == null) {
+			throw new ErrorException("Debe de indicarle un profesor");
 		}
 	}
 
-//QUERY , ENCONTRAR EN EL REPOSITORIO
-//
-//	@Transactional(readOnly = true)
-//	public List<Curso> listarTodos() {
-//		return cursoRepo.findAll();
-//	}
-//@Transactional(readOnly = true)
-//public List<Curso> listarPorNombre(String nombre){
-//	return cursoRepo.buscarPorNombre(nombre);
-//}
+//QUERY , ENCONTRAR EN EL REPOSITORIO	
+@Transactional(readOnly = true)
+	public List<Curso> listarTodos() {
+	return cursoRepo.findAll();
+	}
+	
+@Transactional(readOnly = true)
+public List<Curso> listarPorNombre(String nombre){
+	return cursoRepo.buscarPorNombre(nombre);
+}
+
 //@Transactional(readOnly = true)
 //public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
 //	

@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>Inicio</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" th:href="@{css/index.css}">
+</head>
+	 <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div>
+<!--                class="col-12 user-img"     <img src="img/user.jpg" th:src="@{img/user.jpg}"/> -->
+                </div>
+
+ 	<body><center> 		
+ 		<h1> HOLA MUNDO</h1>
+ 		</br>
+ 		</br>
+ 		<a th:href="@{/login}" class="btn btn-success">Iniciar sesión</a>
+ 		
+ 		</br>
+ 		</br>
+ 		</br>
+ 				
+ 		<a th:href="@{/registro}" class="btn btn-danger">Registrarse</a>
+ 		
+ 		</br>
+ 		</br>
+ 		</br>	
+ 		<a th:href="@{/profesores}" class="btn btn-primary">Lista Profesores</a>
+ 		
+ 		</br>
+ 		</br>
+ 		</br>
+ 					
+ 		<a th:href="@{/profesores/registro}" class="btn btn-primary">Cargar Profesor</a>
+	 </div>
+	 </div>
+	 </center></body>
+</html>

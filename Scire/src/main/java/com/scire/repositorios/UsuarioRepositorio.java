@@ -1,7 +1,5 @@
 package com.scire.repositorios;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +16,5 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario,String> {
 	@Query("SELECT a from Usuario a WHERE a.nombre LIKE :nombre")
 	public Usuario buscarPorNombre(@Param("nombre") String nombre);
 	
-	@Query("SELECT a from Curso a WHERE a.usu LIKE :id")
-	public List<Usuario> buscarPorUsuario(@Param("id") String idCurso);
+
 }

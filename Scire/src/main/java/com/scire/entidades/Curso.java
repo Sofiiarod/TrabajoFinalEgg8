@@ -23,19 +23,21 @@ public class Curso {
 	private String url;
 	private Boolean estado;
 
+
+	
 	@ManyToMany
 	private List<Usuario> usuarios;
 	@ManyToOne
 	private Categoria categoria;
 	@ManyToOne
-	private Creador creador;
+	private Profesor profesor;
 
 	public Curso() {
 		super();
 	}
 
 	public Curso(String id, String nombre, String descripcion, String url, Boolean estado, Categoria categoria,
-			Creador creador) {
+			Profesor profesor) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -44,7 +46,7 @@ public class Curso {
 		this.estado = estado;
 		
 		this.categoria = categoria;
-		this.creador = creador;
+		this.profesor = profesor;
 	}
 
 	public String getId() {
@@ -105,18 +107,21 @@ public class Curso {
 		this.categoria = categoria;
 	}
 
-	public Creador getCreador() {
-		return creador;
+	public Profesor getProfesor() {
+		return profesor;
 	}
 
-	public void setCreador(Creador creador) {
-		this.creador = creador;
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
 	}
 
 	@Override
 	public String toString() {
 		return "Curso [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", url=" + url + ", estado="
-				+ estado + ", usuario=" + usuarios + ", categoria=" + categoria + ", creador=" + creador + "]";
+				+ estado + ", usuarios=" + usuarios + ", categoria=" + categoria + ", profesor=" + profesor + "]";
 	}
 
+
 }
+
+
