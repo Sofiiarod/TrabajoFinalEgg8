@@ -6,23 +6,22 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class NotificacionServicio {
-@Autowired(required = true)
- private JavaMailSender sender;
+	@Autowired(required = true)
+	private JavaMailSender sender;
 //@Autowired
 //private UsuarioServicio usuarioserv;
 
+	@Async
+	public void enviar(String cuerpo, String titulo, String email) {
+		SimpleMailMessage mensaje = new SimpleMailMessage();
 
-@Async
-public void enviar(String cuerpo, String titulo, String email) {
-    SimpleMailMessage mensaje = new SimpleMailMessage();
+		mensaje.setTo(email);
+		mensaje.setFrom("scireedu@gmail.com");
+		mensaje.setSubject(titulo);
+		mensaje.setText(cuerpo);
 
-    mensaje.setTo(email);
-    mensaje.setFrom("scireedu@gmail.com");
-    mensaje.setSubject(titulo);
-    mensaje.setText(cuerpo);
 
     sender.send(mensaje);
 }
@@ -41,12 +40,4 @@ public void enviarModificarContraseña(String cuerpo, String titulo, String emai
 
     sender.send(mensaje);
 }
-
-
-
-
-
 }
-
-
-

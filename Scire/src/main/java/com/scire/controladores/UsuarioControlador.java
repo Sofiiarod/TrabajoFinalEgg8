@@ -12,7 +12,7 @@ import com.scire.errores.ErrorException;
 import com.scire.servicios.UsuarioServicio;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/usuario")
 public class UsuarioControlador {
 
 	@Autowired
@@ -29,9 +29,9 @@ public class UsuarioControlador {
 		return "admin.html";
 	}
 
-	@GetMapping("/user")
+	@GetMapping("/login")
 	public String user() {
-		return "user.html";
+		return "login.html";
 	}
 
 	@GetMapping("/registro")
@@ -45,7 +45,7 @@ public class UsuarioControlador {
 			usuarioServicio.guardar(nombre, apellido, email, clave, clave2);
 			model.put("exito", "Se ha registrado con éxito");
 		} catch (Exception e) {
-			model.put("Error", e.getMessage());
+			model.put("error", e.getMessage());
 			return "registro-usuario.html";
 		}
 //		System.out.println("Nombre: " + nombre);
@@ -54,7 +54,7 @@ public class UsuarioControlador {
 //		System.out.println("Clave: " + clave);
 //		System.out.println("Clave2: " + clave2);
 		
-		return "registro-usuario.html";
+		return "../template/registro-usuario.html";
 
 	}
 

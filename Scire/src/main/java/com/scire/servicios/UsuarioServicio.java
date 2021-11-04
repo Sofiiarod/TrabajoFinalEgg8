@@ -93,9 +93,9 @@ public class UsuarioServicio implements UserDetailsService {
 		}	
 		//la clave no debe ser nula, no debe estar vacia, no debe contener espacios, debe tener entre 8 y 12 caracteres
 		
-//		if (clave == null || clave.isEmpty() || clave.contains("  ") || clave.trim().isEmpty()|| clave.length() >= 8) {
-//			throw new ErrorException("Debe tener una clave valida");
-//		}
+		if (clave == null || clave.length() < 8) {
+			throw new ErrorException("Debe tener una clave valida");
+		}
 
 	}
 

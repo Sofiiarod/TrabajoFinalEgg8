@@ -16,7 +16,7 @@ import com.scire.servicios.ProfesorServicio;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/profesores")
 public class ProfesorControlador {
 	
 	
@@ -26,7 +26,7 @@ public class ProfesorControlador {
 	
 	
 	
-	@GetMapping("/profesores")
+	@GetMapping("/lista")
 	public String profesores(ModelMap modeloDeProfesores) throws ErrorException {
 		List<Profesor> misProfesores = profesorServicio.mostrarTodos();
 		modeloDeProfesores.addAttribute("misProfesores", misProfesores);
@@ -35,7 +35,7 @@ public class ProfesorControlador {
 	
 	
 	
-	@GetMapping("/profesores/registro")
+	@GetMapping("/registro")
 	public String registro() {
 		
 		return "registro-profesor";
@@ -44,9 +44,9 @@ public class ProfesorControlador {
 	
 	
 	
-	@PostMapping("/profesores/registrar")
+	@PostMapping("/registrar")
 	public String registrar(ModelMap model, @RequestParam String nombre) throws ErrorException {
-		String res = "redirect:/profesores";
+		String res = "redirect:/profesores/lista";
 		
 		
 		try {
