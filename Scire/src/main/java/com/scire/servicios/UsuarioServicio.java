@@ -60,11 +60,9 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 		
-<<<<<<< HEAD
-		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu te da la bienvenida a nuestra pagina web, disfrutala capo", entidad.getEmail());
-=======
+
 		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
->>>>>>> e4d82cf2fd46126a4ad40bd6ab54fc47fefb59bb
+
 
 
 		return usuarioRepo.save(entidad);
