@@ -18,10 +18,6 @@ public class UsuarioControlador {
 	@Autowired
 	private UsuarioServicio usuarioServicio;
 
-	@GetMapping({ "/login" })
-	public String login() {
-		return "login.html";
-	}
 
 	@GetMapping("/menu")
 	public String menu() {
