@@ -160,7 +160,7 @@ public class UsuarioServicio implements UserDetailsService {
 		//MODIFICAR USUARIO
 		
 		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-		public void modificar(String id, String nuevonombre, String nuevoapellido, String nuevoemail) throws ErrorException {
+		public void modificar(String id, String nuevonombre, String nuevoapellido) throws ErrorException {
 			try {
 			Usuario entidad = usuarioRepo.getById(id);
 			entidad.setNombre(nuevonombre);
@@ -257,9 +257,10 @@ public class UsuarioServicio implements UserDetailsService {
 	
 		  
 
-	
+
 
 	@Override
+	
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		Usuario user = usuarioRepo.buscarPorEmail(email);
@@ -268,9 +269,13 @@ public class UsuarioServicio implements UserDetailsService {
 			List<GrantedAuthority> permissions = new ArrayList<>();
 			GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
 			permissions.add(p);
+			//Una vez que el usuario pudo entrar a inicio hace una llamada al HttpSession que pide los atributos del Http
 			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			//Aca una vez que obtubo los atributos del http inicia una session
 			HttpSession session = attr.getRequest().getSession(true);
-			session.setAttribute("usuario", user);
+			//y aca se le da un nombre con el que se va a utilizar ese usuario ya autenticado y que pudo entrar a inicio
+			//el usuariosession es para usar en thymeleaf si solo si el usuario esta autenticado y pudo loguearse
+			session.setAttribute("usuariosession", user);
 			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
 				permissions);
 	}

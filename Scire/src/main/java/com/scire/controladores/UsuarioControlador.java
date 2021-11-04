@@ -7,14 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/usuario")
 public class UsuarioControlador {
 	
 	
-	@GetMapping({"/login"})
-	public String login() {
-		return "../template/login.html";
-	}
+	
 	
 	@GetMapping("/menu")
 	public String menu() {
