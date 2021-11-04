@@ -16,25 +16,25 @@ public class NotificacionServicio {
 
 
 @Async
-public void enviar(String cuerpo, String titulo, String mail) {
+public void enviar(String cuerpo, String titulo, String email) {
     SimpleMailMessage mensaje = new SimpleMailMessage();
 
-    mensaje.setTo(mail);
-    mensaje.setFrom("Scireedu@gmail.com");
+    mensaje.setTo(email);
+    mensaje.setFrom("scireedu@gmail.com");
     mensaje.setSubject(titulo);
     mensaje.setText(cuerpo);
 
     sender.send(mensaje);
 }
 @Async
-public void enviarModificarContraseña(String cuerpo, String titulo, String mail, String contraseña) {
+public void enviarModificarContraseña(String cuerpo, String titulo, String email, String contraseña) {
     SimpleMailMessage mensaje = new SimpleMailMessage();
     String mensajeAnterior = "";
 
     mensajeAnterior = " Su nueva Contraseña es: " + contraseña;
 
-    mensaje.setFrom("Scireedu@gmail.com");
-    mensaje.setTo(mail);
+    mensaje.setFrom("scireedu@gmail.com");
+    mensaje.setTo(email);
     mensaje.setSubject(titulo);
     mensaje.setText(mensajeAnterior.concat(cuerpo));
 

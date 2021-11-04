@@ -30,22 +30,22 @@ public class ProfesorControlador {
 	public String profesores(ModelMap modeloDeProfesores) throws ErrorException {
 		List<Profesor> misProfesores = profesorServicio.mostrarTodos();
 		modeloDeProfesores.addAttribute("misProfesores", misProfesores);
-		return "../template/lista-profesores.html";
+		return "lista-profesores";
 	}
 	
 	
 	
-	@GetMapping("/profesores/create")
+	@GetMapping("/profesores/registro")
 	public String registro() {
 		
-		return "../template/formulario-profesor.html";
+		return "registro-profesor";
 		
 	}
 	
 	
 	
-	@PostMapping("/profesores/create")
-	public String guardar(ModelMap model, @RequestParam String nombre) throws ErrorException {
+	@PostMapping("/profesores/registrar")
+	public String registrar(ModelMap model, @RequestParam String nombre) throws ErrorException {
 		String res = "redirect:/profesores";
 		
 		
@@ -55,7 +55,7 @@ public class ProfesorControlador {
 			
 		} catch (Exception e) {
 			model.put("Error", e.getMessage());
-			return "../template/formulario-profesor.html";
+			return "registro-profesor";
 		}
 		return res;
 	}

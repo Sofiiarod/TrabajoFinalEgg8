@@ -37,8 +37,8 @@ public class UsuarioServicio implements UserDetailsService {
 	
 
 
-//	@Autowired
-//	private NotificacionServicio notificacionServ;
+	@Autowired
+	private NotificacionServicio notificacionServ;
 
 	
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
@@ -62,7 +62,7 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 		
-	//	notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu te da la bienvenida a nuestra pagina web, disfrutala capo", entidad.getEmail());
 
 
 		return usuarioRepo.save(entidad);
@@ -72,7 +72,7 @@ public class UsuarioServicio implements UserDetailsService {
 	//HAGO LAS VALIDACIONES NECESARIAS PARA CREAR EL USUARIO
 	public void validar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 		
-		if(clave != clave2) {
+		if(!clave.equals(clave2)) {
 			throw new ErrorException("Las claves no coinciden");
 		}
 		
@@ -93,9 +93,9 @@ public class UsuarioServicio implements UserDetailsService {
 		}	
 		//la clave no debe ser nula, no debe estar vacia, no debe contener espacios, debe tener entre 8 y 12 caracteres
 		
-		if (clave == null || clave.isEmpty() || clave.contains("  ") || clave.length() < 8 || clave.length() > 12) {
-			throw new ErrorException("Debe tener una clave valida");
-		}
+//		if (clave == null || clave.isEmpty() || clave.contains("  ") || clave.trim().isEmpty()|| clave.length() >= 8) {
+//			throw new ErrorException("Debe tener una clave valida");
+//		}
 
 	}
 
