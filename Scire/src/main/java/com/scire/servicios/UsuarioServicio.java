@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -56,13 +54,17 @@ public class UsuarioServicio implements UserDetailsService {
 		
 		String claveEncriptada = new BCryptPasswordEncoder().encode(clave);
 		entidad.setClave(claveEncriptada);
-//		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
+		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
 		
 		entidad.setRol(Rol.USER);
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 		
+<<<<<<< HEAD
 		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu te da la bienvenida a nuestra pagina web, disfrutala capo", entidad.getEmail());
+=======
+		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+>>>>>>> e4d82cf2fd46126a4ad40bd6ab54fc47fefb59bb
 
 
 		return usuarioRepo.save(entidad);
@@ -162,7 +164,7 @@ public class UsuarioServicio implements UserDetailsService {
 		//MODIFICAR USUARIO
 		
 		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-		public void modificar(String id, String nuevonombre, String nuevoapellido, String nuevoemail) throws ErrorException {
+		public void modificar(String id, String nuevonombre, String nuevoapellido) throws ErrorException {
 			try {
 			Usuario entidad = usuarioRepo.getById(id);
 			entidad.setNombre(nuevonombre);
@@ -248,7 +250,7 @@ public class UsuarioServicio implements UserDetailsService {
 	        Usuario entidad = this.buscarPorEmail(mail);
 	        entidad.setClave(claveNuevaEncriptada);
 	        usuarioRepo.save(entidad);
-	     //   notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
+	        notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
 			} catch(Exception e) {
 				throw new ErrorException ("error");
 			}
@@ -259,9 +261,10 @@ public class UsuarioServicio implements UserDetailsService {
 	
 		  
 
-	
+
 
 	@Override
+	
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		Usuario user = usuarioRepo.buscarPorEmail(email);
@@ -270,9 +273,13 @@ public class UsuarioServicio implements UserDetailsService {
 			List<GrantedAuthority> permissions = new ArrayList<>();
 			GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
 			permissions.add(p);
+			//Una vez que el usuario pudo entrar a inicio hace una llamada al HttpSession que pide los atributos del Http
 			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			//Aca una vez que obtubo los atributos del http inicia una session
 			HttpSession session = attr.getRequest().getSession(true);
-			session.setAttribute("usuario", user);
+			//y aca se le da un nombre con el que se va a utilizar ese usuario ya autenticado y que pudo entrar a inicio
+			//el usuariosession es para usar en thymeleaf si solo si el usuario esta autenticado y pudo loguearse
+			session.setAttribute("usuariosession", user);
 			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
 				permissions);
 	}

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<title>Ejemplo de session</title>
+</head>
+<body>
+<!-- va a validar si existe una session de usuario-->   <!-- y si existe una session va a mostrar el nombre y apellido en el h2 -->
+<h2 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' '+ session.usuariosession.apellido "></h2>
+</body>
+</html>
