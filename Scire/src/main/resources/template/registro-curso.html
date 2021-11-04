@@ -3,36 +3,67 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="ISO-8859-1">
-<title>Registro de Profesor</title>
+<title>Registro usuario</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/index.css"
+	th:href="@{css/index.css}">
 </head>
 <body>
 
 	<div class="container m-5">
-		<h1>Crear Profesor</h1>
-		<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+		<h1>Registrarse</h1>
+		<div th:if="${exito}!=null" class="card text-white bg-success mb-3">
 			<div class="card-body">
 				<h5 class="card-title">Exito</h5>
 				<p class="card-text" th:text="${exito}"></p>
 			</div>
 		</div>
-		<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+		<div th:if="${error}!=null" class="card text-white bg-danger mb-3">
 			<div class="card-body">
 				<h5 class="card-title">Error</h5>
 				<p class="card-text" th:text="${error}"></p>
 			</div>
 		</div>
-		<form th:action="@{/profesores/create}" method="POST">
+		<form th:action="@{/cursos/registrar}" method="POST">
 			<p th:if="${Error != null}" th:text="${Error}"></p>
 			<div class="form-group">
 				<label>Nombre</label> <input type="text" class="form-control"
-					name="nombre" placeholder="Nombre del creador">
-			</div>
+					name="nombre" placeholder="Ingrese su nombre"> 
+				<label>Descripcion</label>
+					<input type="text" class="form-control" name="descripcion"
+						placeholder="Ingrese una descripcion"> 
+				<label>Url</label> <input type="url" class="form-control" name="url"
+						placeholder="Ingrese la url del curso">
+				<label>Categoría</label> <input type="text" class="form-control" 
+					   name="categoria" placeholder="Seleccione su categoria">
+				<label>Profesor</label> <input type="text" class="form-control"
+						name="clave2" placeholder="Vuelva a ingresar su clave">
 
-			<button type="submit" class="btn btn-primary">Guardar</button>
+
+			</div>
+			<button type="submit" class="btn btn-primary">Registrarme</button>
+			
 		</form>
 
 		<section class="py-5 text-center container">

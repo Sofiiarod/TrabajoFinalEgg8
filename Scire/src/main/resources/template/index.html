@@ -16,35 +16,37 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../css/index.css" th:href="@{../css/index.css}">
+    <link rel="stylesheet" type="text/css" href="css/index.css" th:href="@{css/index.css}">
 </head>
 	 <div class="modal-dialog text-center">
         <div class="col-sm-8 main-section">
             <div class="modal-content">
-                <div class="col-12 user-img">
-                    <img src="../img/user.jpg" th:src="@{../img/user.jpg}"/>
+                <div>
+<!--                class="col-12 user-img"     <img src="img/user.jpg" th:src="@{img/user.jpg}"/> -->
                 </div>
 
  	<body>	
  		<h1> HOLA MUNDO</h1>
- 		<a th:href="@{/login}" class="btn btn-success">Iniciar sesión</a>
+ 		</br>
+ 		</br>
+ 		<a th:href="@{usuario/login}" class="btn btn-success">Iniciar sesión</a>
  		
  		</br>
  		</br>
  		</br>
  				
- 		<a class="btn btn-danger">Registrarse</a>
+ 		<a th:href="@{usuario/registro}" class="btn btn-danger">Registrarse</a>
  		
  		</br>
  		</br>
  		</br>	
- 		<a th:href="@{/profesores}" class="btn btn-primary">Lista Profesores</a>
+ 		<a th:href="@{/profesores/lista}" class="btn btn-primary">Lista Profesores</a>
  		
  		</br>
  		</br>
  		</br>
  					
- 		<a th:href="@{/profesores/create}" class="btn btn-primary">Cargar Profesor</a>
+ 		<a th:href="@{/profesores/registro}" class="btn btn-primary">Cargar Profesor</a>
 	 </div>
 	 </div>
 	</body>
