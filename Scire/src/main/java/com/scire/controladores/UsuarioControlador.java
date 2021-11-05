@@ -43,7 +43,7 @@ public class UsuarioControlador {
 //		System.out.println("Clave: " + clave);
 //		System.out.println("Clave2: " + clave2);
 
-		return "../template/registro-usuario.html";
+		return "registro-usuario.html";
 
 	}
 
@@ -95,5 +95,33 @@ public class UsuarioControlador {
 
 
 	}
-
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@GetMapping("/recuperacion")
+	public String recuperacion() {
+		return "recuperar.html";
+	}
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@PostMapping("/recuperar")
+	public String recuperar(ModelMap model,@RequestParam String email) throws ErrorException {
+		try {
+			String retorno = checkearEmail(email);
+			if (retorno.equals("usuario")) {
+				usuarioServicio.recuperarContrasenia(email);
+			}
+		} catch (ErrorException e) {
+			model.addAttribute("error", e.getMessage());
+			return "recuperar.html";
+		}
+		
+		 model.put("exito", "Se ha enviado tu nueva contraseña a tu mail. Luego podrás cambiarla en tu perfil.");
+	        return "login.html";
+		
+	}
+	private String checkearEmail(String mail) throws ErrorException {
+		 Usuario u = usuarioServicio.buscarPorEmail(mail);
+		 if (u == null) {
+			 throw new ErrorException("No hay nadie con ese mail.");
+		}
+		 return "usuario";
+	}
 }
