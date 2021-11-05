@@ -28,49 +28,58 @@
         <h1>Nuestros Cursos</h1>
       </div>
         <div class="container ">
+        
           <div class="row row-cols-md-2 ">
               <div class=" row elementos">
                 <h3 th:text="${curso1.nombre}"></h3>
-                <p th:text="${curso1.descripcion}">
-                  
-                </p>
+                	
+                		<img 
+                		th:src="${plantilla1}" 
+                		alt="imagen del curso">
+                		
+                <p th:text="${curso1.descripcion}"></p>
               
                 <div class="boton">
                     <a  href="#" class="btn btn-dark">Ver mas</a>
                 </div>
               </div>
+              
               <div class="row elementos text-end">
                   <h3  th:text="${curso2.nombre}"></h3>
-                  <p  th:text="${curso2.descripcion}">
-                    
-                  </p>
+                  <img  
+                		th:src="${plantilla2}" 
+                		alt="imagen del curso">
+                  <p  th:text="${curso2.descripcion}"></p>
                   <div class="boton">
                       <a  href="#" class="btn btn-dark">Ver mas</a>
                   </div>
               </div>
-          
-            
+                      
                 <div class="row elementos">
                   <h3  th:text="${curso3.nombre}"></h3>
-                  <p  th:text="${curso3.descripcion}">
-
-                  </p>
+				  <img  
+                		th:src="${plantilla3}" 
+                		alt="imagen del curso">
+                  <p  th:text="${curso3.descripcion}"></p>
                 <div class="boton">
                     <a  href="#" class="btn btn-dark">Ver mas</a>
                 </div>
                 </div>
+                
                 <div class="row elementos text-end">
                   <h3 th:text="${curso4.nombre}"></h3>
-                  <p th:text="${curso4.descripcion}">
-                    
-                  </p>
+                  <img  
+                		th:src="${plantilla4}" 
+                		alt="imagen del curso">
+                  <p th:text="${curso4.descripcion}"></p>
                   <div class="boton">
                       <a  href="#" class="btn btn-dark">Ver mas</a>
                   </div>
+                  
                 </div>
             </div> 
           </div>
-        </div>
+        
     </main>
     
     

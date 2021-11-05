@@ -101,10 +101,34 @@ public class CursoServicio {
 			throw new ErrorException("No existe un libro con ese ID");
 		}
 	}
+	
+	public String urlDelVideo(String id) throws ErrorException{
+		Curso curso = encontrarPorID(id);
+		
+		String url =curso.getUrl();
+		String urlVideo= "https://www.youtube.com/embed/"+url;
+		
+		return urlVideo;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return url de la imagen para poder ingresarla en la vista
+	 * @throws ErrorException
+	 */
+	public String urlImagen(String id) throws ErrorException{
+		Curso curso = encontrarPorID(id);
+		
+		String url = curso.getUrl();
+		String urlImg = "https://img.youtube.com/vi/".concat(url).concat("/maxresdefault.jpg");
+		
+		return urlImg;
+	}
 
 	/**
 	 * --------------------------- validaciones
-	 */
+	 */	
 	public void validar(String nombre, String descripcion, String url, Categoria categoria, Profesor profesor)
 			throws ErrorException {
 
