@@ -43,9 +43,9 @@ public class MainControlador {
 			model.addAttribute("logout","Ha salido correctamente");
 		}
 		if (session.getAttribute("usuariosession") != null) {
-			return "/inicio";
+			return "inicio.html";
 		}else {
-			return "../template/login.html";
+			return "login.html";
 		}
 	}
 	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
@@ -55,13 +55,6 @@ public class MainControlador {
 		return "inicio.html";
 	}
 	
-		
-	
-	
-	
-	
-
-
 	
 }
 	
