@@ -87,7 +87,7 @@ public class UsuarioControlador {
 			Usuario usuario = usuarioServicio.buscarPorId(id);
                usuarioServicio.modificar(id, nombre, apellido, clave, clave2);
                session.setAttribute("usuariosession", usuario); // es para usar el usuario logueado en thymeleaf 
-               return "redirect:../template/inicio.html";
+               return "inicio.html";
 		} catch (ErrorException e) {
 			model.addAttribute("error", e.getMessage());
 			return "perfil.html";
