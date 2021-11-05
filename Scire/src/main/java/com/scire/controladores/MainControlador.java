@@ -11,10 +11,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.scire.entidades.Curso;
+import com.scire.entidades.Profesor;
 import com.scire.errores.ErrorException;
 import com.scire.servicios.CursoServicio;
+import com.scire.servicios.ProfesorServicio;
 
 
 
@@ -24,6 +25,8 @@ public class MainControlador {
 	
 	@Autowired
 	CursoServicio cursoServicio;
+	@Autowired
+	ProfesorServicio profesorServicio;
 	
 	/**
 	 * 
@@ -32,9 +35,8 @@ public class MainControlador {
 	 * de las imagenes de los videos cargados en base de datos
 	 */
 	@GetMapping("/")
-	public String index(ModelMap modelo) {
-		List<Curso> cursos = cursoServicio.listarTodos();
-		
+	public String index(ModelMap modelo){
+		List<Curso> cursos = cursoServicio.listarTodos();	
 		try {
 			Curso curso1 = cursos.get(0);
 			Curso curso2 = cursos.get(1);
@@ -51,12 +53,21 @@ public class MainControlador {
 			modelo.addAttribute("plantilla3", cursoServicio.urlImagen(curso3.getId()));
 			modelo.addAttribute("plantilla4", cursoServicio.urlImagen(curso4.getId()));
 			
+			List<Profesor> profesor = profesorServicio.mostrarTodos();
+			Profesor profesor1 = profesor.get(0);
+			Profesor profesor2 = profesor.get(1);
+			Profesor profesor3 = profesor.get(2);
+			
+			modelo.addAttribute("profesor1", profesor1);
+			modelo.addAttribute("profesor2", profesor2);
+			modelo.addAttribute("profesor3", profesor3);
 			
 		}catch(ErrorException e) {
 			e.getMessage();
 		}
 
 		
+
 	return "index.html";
 	
 	}
@@ -92,6 +103,10 @@ public class MainControlador {
 				
 		return "inicio.html";
 	}
+
+	
+	}
+	
 	
 		
 	
@@ -101,7 +116,7 @@ public class MainControlador {
 
 
 	
-}
+
 	
 
 
