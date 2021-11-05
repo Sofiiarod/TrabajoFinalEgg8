@@ -84,3 +84,25 @@ p{
 .cambio-color:hover{
     color: lightgrey;
 }
+
+.profesores_contenedor{
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    line-height: 10px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: #000000;
+}
+
+.profesores_texto{
+    font-family: 'Yaldevi', sans-serif;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.tamanio-img{
+	width: 100%;
+	height: 300px;
+}
+
