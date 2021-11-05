@@ -162,11 +162,14 @@ public class UsuarioServicio implements UserDetailsService {
 		//MODIFICAR USUARIO
 		
 		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-		public void modificar(String id, String nuevonombre, String nuevoapellido) throws ErrorException {
+		public void modificar(String id, String nuevonombre, String nuevoapellido,String clave1,String clave2) throws ErrorException {
 			try {
+				validar(nuevonombre, nuevoapellido, nuevoapellido, clave1, clave2);
 			Usuario entidad = usuarioRepo.getById(id);
 			entidad.setNombre(nuevonombre);
 			entidad.setApellido(nuevoapellido);
+			 String encriptada = new BCryptPasswordEncoder().encode(clave1);
+		        entidad.setClave(encriptada);
 			usuarioRepo.save(entidad);
 			}catch(Exception e) {
 				throw new ErrorException ("No se pudieron modifcar los datos del usuario");
@@ -200,46 +203,13 @@ public class UsuarioServicio implements UserDetailsService {
 			       throw new ErrorException ("La clave actual no es la correcta");
 			      }	
 		}
-		
-//		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
-//		public boolean inicioSesion(String email, String claveingresada) throws ErrorException {
-//		
-//			try {
-//			Usuario entidad = this.buscarPorEmail(email);
-//
-//			if(entidad==null){
-//				throw new ErrorException ("El usuario no existe");
-//			}
-//
-//			
-//			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
-//			 
-//			
-//			boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
-//			 if (passwordValid == true) {
-//				 return passwordValid;
-//			}else {
-//			       throw new ErrorException ("La clave no es la correcta");
-//			       }	
-//			}catch(Exception e) {
-//				throw new ErrorException ("Error al iniciar sesion");
-//			}
-//		}
-//			if(entidad==null){
-//				throw new ErrorException ("El usuario no existe");
-//			}
-//				
-//			}catch(Exception e) {
-//				 throw new ErrorException ("Error al iniciar sesion");
-//				 return false;
-//			}
-//		
+	
 		
 			
 		
 
 		@Transactional
-	    public void recuperarContraseña(String mail) throws ErrorException {
+	    public void recuperarContrasenia(String mail) throws ErrorException {
 			try {
 
 	        String claveNueva = UUID.randomUUID().toString();
