@@ -77,6 +77,11 @@ public class UsuarioControlador {
 	public String actualizar(ModelMap model, HttpSession session, @RequestParam String id, @RequestParam String nombre,
 			@RequestParam String apellido,@RequestParam String clave,
 			@RequestParam String clave2) {
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+		if (logueado == null || !logueado.getId().equals(id)) {
+			return "redirect:../template/index";
+			}
+		
 		try {
 			Usuario usuario = usuarioServicio.buscarPorId(id);
                usuarioServicio.modificar(id, nombre, apellido, clave, clave2);
