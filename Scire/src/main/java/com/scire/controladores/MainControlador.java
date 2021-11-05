@@ -51,6 +51,14 @@ public class MainControlador {
 			modelo.addAttribute("plantilla3", cursoServicio.urlImagen(curso3.getId()));
 			modelo.addAttribute("plantilla4", cursoServicio.urlImagen(curso4.getId()));
 			
+			List<Profesor> profesor = profesorServicio.mostrarTodos();
+			Profesor profesor1 = profesor.get(0);
+			Profesor profesor2 = profesor.get(1);
+			Profesor profesor3 = profesor.get(2);
+			
+			modelo.addAttribute("profesor1", profesor1);
+			modelo.addAttribute("profesor2", profesor2);
+			modelo.addAttribute("profesor3", profesor3);
 			
 		}catch(ErrorException e) {
 			e.getMessage();
