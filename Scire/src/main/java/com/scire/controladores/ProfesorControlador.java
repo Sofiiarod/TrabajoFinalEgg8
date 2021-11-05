@@ -16,7 +16,7 @@ import com.scire.servicios.ProfesorServicio;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/profesores")
 public class ProfesorControlador {
 	
 	
@@ -26,27 +26,27 @@ public class ProfesorControlador {
 	
 	
 	
-	@GetMapping("/profesores")
+	@GetMapping("/lista")
 	public String profesores(ModelMap modeloDeProfesores) throws ErrorException {
 		List<Profesor> misProfesores = profesorServicio.mostrarTodos();
 		modeloDeProfesores.addAttribute("misProfesores", misProfesores);
-		return "../template/lista-profesores.html";
+		return "lista-profesores";
 	}
 	
 	
 	
-	@GetMapping("/profesores/create")
+	@GetMapping("/registro")
 	public String registro() {
 		
-		return "../template/formulario-profesor.html";
+		return "registro-profesor";
 		
 	}
 	
 	
 	
-	@PostMapping("/profesores/create")
-	public String guardar(ModelMap model, @RequestParam String nombre) throws ErrorException {
-		String res = "redirect:/profesores";
+	@PostMapping("/registrar")
+	public String registrar(ModelMap model, @RequestParam String nombre) throws ErrorException {
+		String res = "redirect:/profesores/lista";
 		
 		
 		try {
@@ -55,7 +55,7 @@ public class ProfesorControlador {
 			
 		} catch (Exception e) {
 			model.put("Error", e.getMessage());
-			return "../template/formulario-profesor.html";
+			return "registro-profesor";
 		}
 		return res;
 	}

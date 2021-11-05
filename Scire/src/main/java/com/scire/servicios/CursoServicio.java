@@ -1,5 +1,4 @@
 package com.scire.servicios;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -9,11 +8,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.scire.entidades.Categoria;
-import com.scire.entidades.Profesor;
 import com.scire.entidades.Curso;
+import com.scire.entidades.Profesor;
 import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
 import com.scire.repositorios.CursoRepositorio;
+import com.scire.repositorios.UsuarioRepositorio;
 
 @Service
 public class CursoServicio {
@@ -21,8 +21,12 @@ public class CursoServicio {
 	@Autowired
 	private CursoRepositorio cursoRepo;
 	@Autowired
-    private UsuarioServicio usuarioService;
+	private UsuarioRepositorio usuarioRepo;
+
+
 	
+//	@Autowired
+//    private UsuarioServicio usuarioService;
 	
 	/**
 	 * 
@@ -149,20 +153,25 @@ public class CursoServicio {
 		}
 	}
 
-//QUERY , ENCONTRAR EN EL REPOSITORIO
-	@Transactional(readOnly = true)
+//QUERY , ENCONTRAR EN EL REPOSITORIO	
+@Transactional(readOnly = true)
 	public List<Curso> listarTodos() {
-		return cursoRepo.findAll();
+	return cursoRepo.findAll();
 	}
+	
 @Transactional(readOnly = true)
 public List<Curso> listarPorNombre(String nombre){
 	return cursoRepo.buscarPorNombre(nombre);
 }
-//@Transactional(readOnly = true)
-//public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
-//	
-//       Usuario u =  usuarioService.buscarPorId(idUsuario);
-//       
-//       return cursoRepo.buscarPorUsuario(u.toString());
-//}
+ 
+//INSCRIPCION
+public void inscripcion(String id_usuario, String id_curso) {
+	
+	Curso curso = cursoRepo.getById(id_curso);
+	Usuario usuario = usuarioRepo.getById(id_usuario);
+	
+	curso.getUsuarios().add(usuario);
+	cursoRepo.save(curso);
+}
+
 }
