@@ -26,7 +26,8 @@
                     <img src="../img/user.jpg" th:src="@{../img/user.jpg}"/>
                 </div>
 
-                <form class="col-12" th:action="@{/logincheck}" method="get">
+                <form class="col-12" th:action="@{/logincheck}" method="POST">
+
                     <div class="form-group" id="user-group">
                         <input type="text" class="form-control" placeholder="Email de usuario" name="email"/>
                     </div>
@@ -36,7 +37,7 @@
                     <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
                 </form>
                 <div class="col-12 forgot">
-                    <a href="#">Recordar contrasena?</a>
+                    <a href="/recuperacion">Olvidaste la contrasena ?</a>
                 </div>
                 <div th:if="${param.error}" class="alert alert-danger" role="alert">
 		            Invalid username and password.

@@ -2,6 +2,7 @@ package com.scire.controladores;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,14 +19,11 @@ public class MainControlador {
 	
 	@GetMapping("/")
 	public String index() {
-	return "../template/index.html";
+	return "index.html";
 	
 	}
-	
-	@GetMapping("/inicio")// Si el Usuario Se loguea correctamente deberia ir a inicio
-	public String inicio() {
-		return "../template/inicio.html";
-	}
+
+
 /**
  * 
  * @param error //Si el usuario ingresa algo incorrecto ingresa al model y imprime el msj a travez de "error" en thymeleaf
@@ -45,24 +43,18 @@ public class MainControlador {
 			model.addAttribute("logout","Ha salido correctamente");
 		}
 		if (session.getAttribute("usuariosession") != null) {
-			return "../template/inicio";
+			return "inicio.html";
+		}else {
+			return "login.html";
 		}
-		return "../template/login.html";
 	}
-	
+	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
 	@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
 	public String loginresolver() {
 				
-		return "redirect:/inicio";
+		return "inicio.html";
 	}
 	
-		
-	
-	
-	
-	
-
-
 	
 }
 	
