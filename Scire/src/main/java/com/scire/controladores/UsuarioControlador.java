@@ -48,11 +48,7 @@ public class UsuarioControlador {
 			model.put("error", e.getMessage());
 			return "registro-usuario.html";
 		}
-//		System.out.println("Nombre: " + nombre);
-//		System.out.println("Apellido: " + apellido);
-//		System.out.println("Email: " + email);
-//		System.out.println("Clave: " + clave);
-//		System.out.println("Clave2: " + clave2);
+
 		
 		return "../template/registro-usuario.html";
 
