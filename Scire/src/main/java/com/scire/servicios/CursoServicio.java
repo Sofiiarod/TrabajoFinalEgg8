@@ -150,4 +150,14 @@ public void inscripcion(String id_usuario, String id_curso) {
 	cursoRepo.save(curso);
 }
 
+//DESINSCRIPCION
+public void desinscripcion(String id_usuario, String id_curso) {
+	
+	Curso curso = cursoRepo.getById(id_curso);
+	Usuario usuario = usuarioRepo.getById(id_usuario);
+	List<Usuario> usuarios = curso.getUsuarios();
+	usuarios.removeIf( usu -> usu == usuario );
+	
+	cursoRepo.save(curso);
+}
 }
