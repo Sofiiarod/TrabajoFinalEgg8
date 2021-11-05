@@ -19,14 +19,11 @@ public class MainControlador {
 	
 	@GetMapping("/")
 	public String index() {
-	return "../template/index.html";
+	return "index.html";
 	
 	}
-	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
-	@GetMapping("/inicio")// Si el Usuario Se loguea correctamente deberia ir a inicio
-	public String inicio() {
-		return "../template/inicio.html";
-	}
+
+
 /**
  * 
  * @param error //Si el usuario ingresa algo incorrecto ingresa al model y imprime el msj a travez de "error" en thymeleaf
@@ -46,16 +43,16 @@ public class MainControlador {
 			model.addAttribute("logout","Ha salido correctamente");
 		}
 		if (session.getAttribute("usuariosession") != null) {
-			return "../template/inicio";
+			return "/inicio";
 		}else {
 			return "../template/login.html";
 		}
 	}
-	
+	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
 	@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
 	public String loginresolver() {
 				
-		return "redirect:/inicio";
+		return "inicio.html";
 	}
 	
 		

@@ -59,7 +59,7 @@ public class UsuarioControlador {
 																				// logueado usa logueado como variable
 		if (logueado == null || !logueado.getId().equals(id)) {// si logueado es null significa que en esa session no
 																// hay ningun usuario
-			return "redirect:../template/index"; // || y si el usuario logueado no es igual al usuario que quiere
+			return "index.html"; // || y si el usuario logueado no es igual al usuario que quiere
 													// modificar lo mando a la csm
 
 		}
@@ -69,7 +69,7 @@ public class UsuarioControlador {
 		} catch (ErrorException e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "../template/perfil.html";
+		return "perfil.html";
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_USER')") // El Usuario puede editar el perfil si solo si esta registrado
@@ -77,9 +77,10 @@ public class UsuarioControlador {
 	public String actualizar(ModelMap model, HttpSession session, @RequestParam String id, @RequestParam String nombre,
 			@RequestParam String apellido,@RequestParam String clave,
 			@RequestParam String clave2) {
+		
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 		if (logueado == null || !logueado.getId().equals(id)) {
-			return "redirect:../template/index";
+			return "index.html";
 			}
 		
 		try {
@@ -87,10 +88,11 @@ public class UsuarioControlador {
                usuarioServicio.modificar(id, nombre, apellido, clave, clave2);
                session.setAttribute("usuariosession", usuario); // es para usar el usuario logueado en thymeleaf 
                return "redirect:../template/inicio.html";
-		} catch (Exception e) {
-			
+		} catch (ErrorException e) {
+			model.addAttribute("error", e.getMessage());
+			return "perfil.html";
 		}
-		return "../template/perfil.html";
+
 
 	}
 
