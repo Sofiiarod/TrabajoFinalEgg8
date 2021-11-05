@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.scire.entidades.Curso;
-<<<<<<< HEAD
 import com.scire.entidades.Profesor;
-=======
->>>>>>> 2a50207a8382b50e4f0bf6a770d3ba1fc9a57f49
 import com.scire.errores.ErrorException;
 import com.scire.servicios.CursoServicio;
 import com.scire.servicios.ProfesorServicio;
@@ -38,20 +34,7 @@ public class MainControlador {
 	 */
 	@GetMapping("/")
 	public String index(ModelMap modelo){
-		List<Curso> cursos = cursoServicio.listarTodos();
-<<<<<<< HEAD
-		Curso curso1 = cursos.get(0);
-		Curso curso2 = cursos.get(1);
-		Curso curso3 = cursos.get(2);
-		Curso curso4 = cursos.get(3);
-		modelo.addAttribute("curso1", curso1);
-		modelo.addAttribute("curso2", curso2);
-		modelo.addAttribute("curso3", curso3);
-		modelo.addAttribute("curso4", curso4);
-		
-			
-=======
-		
+		List<Curso> cursos = cursoServicio.listarTodos();	
 		try {
 			Curso curso1 = cursos.get(0);
 			Curso curso2 = cursos.get(1);
@@ -74,7 +57,7 @@ public class MainControlador {
 		}
 
 		
->>>>>>> 2a50207a8382b50e4f0bf6a770d3ba1fc9a57f49
+
 	return "../template/index.html";
 	
 	}
