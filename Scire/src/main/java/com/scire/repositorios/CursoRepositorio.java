@@ -18,6 +18,7 @@ public interface CursoRepositorio extends JpaRepository<Curso,String> {
 	@Query("SELECT a from Curso a WHERE a.nombre LIKE :nombre")
 	public List<Curso> buscarPorNombre(@Param("nombre") String nombre);
 	
+	
 //	@Query("SELECT a from Curso a WHERE a.estado=1")
 //	public List<Curso> buscarActivos();
 //	

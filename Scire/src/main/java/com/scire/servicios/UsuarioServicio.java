@@ -203,9 +203,7 @@ public class UsuarioServicio implements UserDetailsService {
 			       throw new ErrorException ("La clave actual no es la correcta");
 			      }	
 		}
-	
 		
-			
 		
 
 		@Transactional

@@ -34,7 +34,7 @@ public class CategoriaServicio {
 
 	// MOSTRAR TODAS LAS CATEGORÍAS.
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-	public List<Categoria> mostrarTodos(String id) throws ErrorException {
+	public List<Categoria> mostrarTodos() throws ErrorException {
 
 		return categoriaRepo.findAll();
 
@@ -79,7 +79,8 @@ public class CategoriaServicio {
 		}
 
 	}
-
+	
+	
 
 //	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
 //	public void buscarPorNombre(String nombre) {
