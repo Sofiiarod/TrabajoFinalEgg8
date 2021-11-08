@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de contacto</title>
+</head>
+<link rel="stylesheet" href="/src/main/resources/static/css/form-style.css">
+<body>
+    <div class="contenedor">
+        <form action="" class="form">
+            <div class="form-header">
+                <h1 class="form-title">Scire<span> Contacto</span></h1>
+            </div>
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" id="nombre" class="form-input" placeholder="Ingrese su nombre">
+
+            <label for="apellido" class="form-label">Apellido:</label>
+            <input type="text" id="apellido" class="form-input" placeholder="Ingrese su apellido">
+
+            <label for="mail" class="form-label">Correo Electrónico:</label>
+            <input type="text" id="mail" class="form-input" placeholder="Ingrese su correo electrónico">
+
+            <label for="opciones" class="form-label">Opciones:</label>
+            
+            <div class="select">
+                <select name="opciones" id="opciones">
+                    <option selected disabled>Seleccionar</option>
+                    <option value="consultas">Consultas</option>
+                    <option value="comentarios">Comentarios</option>
+                    <option value="curso">Añadir Curso</option>
+                </select>
+            </div> <br>
+
+            <label for="descripcion" class="form-label">Descripción:</label>
+            <input type="text" id="descripcion" class="form-textarea" placeholder="Ingrese descripción de la opción seleccionada">
+
+            <input type="submit" class="btn-submit" value="Enviar">
+        </form>
+    </div>
+</body>
+</html>
