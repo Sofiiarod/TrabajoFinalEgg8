@@ -32,7 +32,7 @@ public class ProfesorControlador {
 		modeloDeProfesores.addAttribute("misProfesores", misProfesores);
 		return "lista-profesores";
 	}
-	
+//	@GetMapping()
 	
 	
 	@GetMapping("/registro")
