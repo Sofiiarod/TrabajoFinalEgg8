@@ -22,6 +22,7 @@ public class UsuarioControlador {
 	@Autowired
 	private UsuarioServicio usuarioServicio;
 
+
 	@GetMapping("/registrar")
 	public String registrar() {
 		return "registrarse.html";
@@ -35,7 +36,10 @@ public class UsuarioControlador {
 			model.put("exito", "Se ha registrado con éxito");
 		} catch (Exception e) {
 			model.put("error", e.getMessage());
+
 			return "registrarse.html";
+
+
 		}
 //		System.out.println("Nombre: " + nombre);
 //		System.out.println("Apellido: " + apellido);
@@ -43,7 +47,9 @@ public class UsuarioControlador {
 //		System.out.println("Clave: " + clave);
 //		System.out.println("Clave2: " + clave2);
 
+
 		return "redirect:/login";
+
 
 	}
 
@@ -95,6 +101,7 @@ public class UsuarioControlador {
 
 
 	}
+
 	//@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@GetMapping("/recuperar")
 	public String recuperacion() {
@@ -121,5 +128,6 @@ public class UsuarioControlador {
 			 throw new ErrorException("No hay nadie con ese mail.");	 
 		}
 		 return true;
+	
 	}
 }
