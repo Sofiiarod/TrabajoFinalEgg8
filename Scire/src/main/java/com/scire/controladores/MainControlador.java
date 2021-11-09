@@ -48,10 +48,10 @@ public class MainControlador {
 			modelo.addAttribute("curso3", curso3);
 			modelo.addAttribute("curso4", curso4);
 			
-			modelo.addAttribute("plantilla1", cursoServicio.urlImagen(curso1.getId()));
+			/*modelo.addAttribute("plantilla1", cursoServicio.urlImagen(curso1.getId()));
 			modelo.addAttribute("plantilla2", cursoServicio.urlImagen(curso2.getId()));
 			modelo.addAttribute("plantilla3", cursoServicio.urlImagen(curso3.getId()));
-			modelo.addAttribute("plantilla4", cursoServicio.urlImagen(curso4.getId()));
+			modelo.addAttribute("plantilla4", cursoServicio.urlImagen(curso4.getId()));*/
 			
 			List<Profesor> profesor = profesorServicio.mostrarTodos();
 			Profesor profesor1 = profesor.get(0);
