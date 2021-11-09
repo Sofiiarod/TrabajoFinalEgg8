@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="/plantillas-admin/base-plantilla :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+	<body>
+	    
+	    <nav th:replace="/plantillas-admin/base-plantilla :: nav"></nav>
+	
+		<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
+	
+		<div class="container-fluid" style="width:50%;">
+		
+				<a th:href="@{./lista-de-categorias}" class="btn btn-outline-warning">Volver</a>
+						
+				<form class="row g-3" th:action="@{../edicion-categoria}" method="post">
+				
+				  <div class="col-md-6">
+				  	<input type="hidden" name="id" th:value="${categoria.id}" th:text="${categoria.id}" class="form-control" >
+				  	
+				    <label for="inputEmail4" class="form-label" th:text="'El nombre a cambiar es: '+${categoria.nombre}"></label>
+				    <input type="text" name="nombreDeCategoria" class="form-control" id="inputEmail4" required>
+				  </div>
+				  
+				  <div class="col-md-12">
+				    <button type="submit" class="btn btn-outline-danger">Editar curso</button>
+				  </div>
+			</form>
+		</div>
+	
+		<script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+	</body>
+</html>

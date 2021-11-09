@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="/plantillas-admin/base-plantilla :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <nav th:replace="/plantillas-admin/base-plantilla :: nav"></nav>
+
+	<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
+
+
+                <table class="table table-bordered table-hover" >
+                    
+                    <thead>
+                    <tr>
+                        
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Modificar estado</th>
+                        <th scope="col">Editar</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody >
+                    <tr th:each="profesor : ${profesores}">
+                        
+                        <th th:text="${profesor.id}" scope="row"></th>
+                        <td th:text="${profesor.nombre}"></td>
+                        <td th:text="${profesor.alta}"></td>
+                        <td>Modifcacion</td>
+                        <td>boton editar</td>
+                    </tr>
+                    </tbody>
+                </table>
+                
+    
+    
+ <script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+</body>
+</html>
