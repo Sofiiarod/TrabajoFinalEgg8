@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="/plantillas-admin/base-plantilla :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <nav th:replace="/plantillas-admin/base-plantilla :: nav"></nav>
+
+	<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
+
+<div class="container-fluid" style="width:50%;">
+		<form class="row g-3" th:action="@{./agregar-curso}" method="post">
+	  <div class="col-md-6">
+	    <label for="inputEmail4" class="form-label">Nombre del curso</label>
+	    <input type="text" name="nombreDelCurso" class="form-control" id="inputEmail4" required>
+	  </div>
+	  <div class="col-md-6">
+	    <label for="inputState" class="form-label">Profesores</label>
+	    <select name="idProfesor" id="inputState" class="form-select">
+	      <option th:each="profesor : ${profesores}" th:text="${profesor.nombre}" th:value="${profesor.id}" required></option>
+	    </select>
+	  </div>
+	  	  <div class="col-md-12">
+	    <label for="inputState" class="form-label">Categoria</label>
+	    <select name="idCategoria" id="inputState" class="form-select" >
+	      <option  th:each="categoria : ${categorias}" th:text="${categoria.nombre}" th:value="${categoria.id}" required ></option>
+	    </select>
+	  </div>
+	  <div class="col-md-12">
+	  <label for="floatingTextarea2">Descripcion</label>
+	    <textarea class="form-control" name="descripcion" placeholder="Deje una breve descripcion..." id="floatingTextarea2" style="height: 100px" required></textarea>
+	  
+	  </div>
+	  <div class="col-md-12">
+	    <label for="inputAddress" class="form-label" required>Id de Youtube</label>
+	    <input type="text" name="idDeYoutube" class="form-control" id="inputAddress" placeholder="Ingrese id de youtube">
+	  </div>
+	  <div class="col-md-6">
+	    <button type="submit" class="btn btn-outline-success sticky-sm-top">Cargar curso</button>
+	  </div>
+	</form>
+</div>
+
+<script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+</body>
+</html>
