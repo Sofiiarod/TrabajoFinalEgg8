@@ -79,6 +79,10 @@ public class CategoriaServicio {
 		}
 
 	}
+	
+	public List<Categoria> listarTodos(){
+		return categoriaRepo.findAll();
+	}
 
 
 //	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })

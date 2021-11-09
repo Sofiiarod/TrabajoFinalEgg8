@@ -11,35 +11,7 @@
 </head>
 
 <body>
-<!--::::Pie de Pagina::::::-->
-    <footer class="pie-pagina">
-        <div class="grupo-1">
-            <div class="box">
-                <figure>
-                    <a href="#">
-                        <img src="/src/main/resources/static/img/logo-completo.png" static alt="Logo">
-                    </a>
-                </figure>
-            </div>
-            <div class="box">
-                <h2>SOBRE NOSOTROS</h2>
-                <p>Al conectar estudiantes de todo el mundo con los mejores instructores, Scire ayuda a las personas a alcanzar sus metas y perseguir sus sueños.</p>
-                <p>Inspírate con profesionales destacados del sector aprendiendo sus técnicas y secretos. Aprende en comunidad, compartiendo ideas y proyectos con miles de creativos del mundo.</p>
-                
-            </div>
-            <div class="box">
-                <h2>NUESTRAS REDES</h2>
-                <div class="red-social">
-                    <a href="#" class="fa fa-facebook"></a> 
-                    <a href="#" class="fa fa-instagram"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-youtube"></a>
-                </div>
-            </div>
-        </div>
-        <div class="grupo-2">
-            <small>&copy; 2021 <b>Scire</b> - Todos los Derechos Reservados.</small>
-        </div>
-    </footer>
+	<div th:replace="fragments/footer :: footer-front"></div>
+   
 </body>
 </html>

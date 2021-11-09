@@ -39,7 +39,13 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 				.passwordParameter("clave")
 				.defaultSuccessUrl("/loginsuccess")//aca definimos a que url va a ingresar si el usuario se logueo correctamente
 				.failureUrl("/login?error=error")
-				.permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and().csrf()
+				.permitAll().and()
+				
+				.rememberMe()
+				.key("myUniqueKey")		
+				.rememberMeCookieName("websparrow-login-remember-me")
+				.tokenValiditySeconds(10000000)
+				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and().csrf()
 				.disable();
 	}
 

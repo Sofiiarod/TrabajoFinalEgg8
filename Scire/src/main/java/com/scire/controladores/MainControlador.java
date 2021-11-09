@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.scire.entidades.Curso;
 import com.scire.entidades.Profesor;
+
+import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
 import com.scire.servicios.CursoServicio;
 import com.scire.servicios.ProfesorServicio;
+import com.scire.servicios.UsuarioServicio;
+
 
 
 
@@ -66,7 +70,7 @@ public class MainControlador {
 			e.getMessage();
 		}
 
-		
+
 
 	return "index.html";
 	
@@ -109,7 +113,3 @@ public class MainControlador {
 	
 	
 	
-
-	
-
-
