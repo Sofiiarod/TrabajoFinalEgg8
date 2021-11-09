@@ -1,84 +1,191 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categorias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+    <title>Scire</title>
     <!-- Estilos css -->
     <link rel="stylesheet" href="/css/styles.css">
+    <!-- CSS EMI -->
+    <link rel="stylesheet" href="/css/emi.css">
+    
+    <!-- CSS BARBI -->
+    <link rel="stylesheet" href="/css/footer-style.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
     <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
     <!-- Iconos -->
     <script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- ESTA ES LA VERSION DE Bootstrap QUE ANDA!!!!!!!!!!!!! -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <!-- Link normalizacion -->
     <link rel ="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">    
 </head>
 
 <body>
-<main class="main" id="cursos">
-      <div class="elemento-centrado">
-        <h1>Nuestros Cursos</h1>
-      </div>
-        <div class="container ">
-          <div class="row row-cols-md-2 ">
-              <div class=" row elementos">
-                <h3 th:text="${curso1.nombre}"></h3>
-                <p th:text="${curso1.descripcion}">
-                  
-                </p>
-              
-                <div class="boton">
-                    <a  href="#" class="btn btn-dark">Ver mas</a>
-                </div>
-              </div>
-              <div class="row elementos text-end">
-                  <h3  th:text="${curso2.nombre}"></h3>
-                  <p  th:text="${curso2.descripcion}">
-                    
-                  </p>
-                  <div class="boton">
-                      <a  href="#" class="btn btn-dark">Ver mas</a>
-                  </div>
-              </div>
-          
-            
-                <div class="row elementos">
-                  <h3  th:text="${curso3.nombre}"></h3>
-                  <p  th:text="${curso3.descripcion}">
+	<!-- **EMPIEZA** SECCIÓN HEADER NAVBAR (EMI) -->
+	<header th:replace="fragments/header :: header-front"></header>
+	
+	<!-- **TERMINA** SECCIÓN HEADER NAVBAR (EMI) -->
+	
+	<!-- **EMPIEZA** SECCION HERO, DONDE ESTÁ LA IMAGEN (EMI) -->
+	<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Aprender hoy,<br>para liderar el mañana</h1>
+      <p class="lead text-white mt-3">Somos un equipo de talentosos desarrolladores <br> que modelan el mundo de hoy para ofrecerte <br> la <strong>mejor capacitación</strong></p>
+      <a class="btn-get-started" href="courses.html">Comienza ahora</a>
+    </div>
+  </section><!-- End Hero -->
+	<!-- **TERMINA** SECCION HERO, DONDE ESTÁ LA IMAGEN (EMI) -->
+	
+	<!-- **EMPIEZA** SECCIÓN "QUE PODES HACER EN SCIRE" (EMI) -->
+	<section>
 
-                  </p>
-                <div class="boton">
-                    <a  href="#" class="btn btn-dark">Ver mas</a>
-                </div>
-                </div>
-                <div class="row elementos text-end">
-                  <h3 th:text="${curso4.nombre}"></h3>
-                  <p th:text="${curso4.descripcion}">
-                    
-                  </p>
-                  <div class="boton">
-                      <a  href="#" class="btn btn-dark">Ver mas</a>
-                  </div>
-                </div>
-            </div> 
+    <!-- título de la sección -->
+    <div class="container py-5">
+      <h2 class="text-center">Qué esperar de un curso de Scire</h2>
+    </div>
+
+    <!-- contiene todas las descripciones -->
+    <div class="container">
+
+      <!-- fila 1 -->
+      <div class="row">
+        <!-- columna 1 de la fila 1 -->
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-1 pl-1 pt-4">
+              <!-- icon: carita feliz -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+              </svg>
+            </div>
+            <div class="col-lg-11">
+              <p class="lead">Aprende a tu ritmo</p>
+              <p>Disfruta aprendiendo desde casa, sin horarios y a tu ritmo. Tú decides cuándo seguir con cada unidad.</p>
+            </div>
           </div>
         </div>
-    </main>
-<section id="categorias">
+        <!-- columna 2 de la fila 1 -->
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-1 pl-1 pt-4">
+              <!-- icon: notebook sola -->
+             <!-- <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+                <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+              </svg> -->
+              <!-- icon: notebook con persona delante -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
+                <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
+              </svg>
+            </div>
+            <div class="col-lg-11">
+              <p class="lead">Ponte en primera fila</p>
+              <p>La alta calidad de los videos permitirá que no te pierdas ni un solo detalle. Gracias al acceso ilimitado, podrás ver las lecciones todas las veces que necesites para perfeccionar tus habilidades.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <!-- fila 2 -->
+      <div class="row">
+        <!-- columna 1 de la fila 2 -->
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-1 pl-1 pt-4">
+              <!-- icon: manito ok -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+              </svg>
+            </div>
+            <div class="col-lg-11">
+              <p class="lead">Aprende de los mejores</p>
+              <p>Aprende los métodos y técnicas más útiles con los mejores profesionales del sector creativo.</p>
+            </div>
+          </div>
+        </div>
+        <!-- columna 2 de la fila 2 -->
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-1 pl-1 pt-4">
+              <!-- icon: foco de luz -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+                <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+              </svg>
+            </div>
+            <div class="col-lg-11">
+              <p class="lead">Comparte conocimientos e ideas</p>
+              <p>Pregunta, pide opinión y ofrece soluciones. Comparte tu experiencia de aprendizaje con otros estudiantes de la comunidad tan apasionados por la creatividad como vos.</p>
+            </div>
+          </div>
+        </div>
+      </div> <!-- cierra el row -->
+
+
+      <!-- fila 3 -->
+      <div class="row">
+        <!-- columna 1 de la fila 3 -->
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-1 pl-1 pt-4">
+              <!-- icon: persona dentro de un recuadro -->
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
+                <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              </svg> -->
+              <!-- 2da opción -> icon: banderín con estrella en el medio -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-bookmark-star" viewBox="0 0 16 16">
+                <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
+                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+              </svg>
+            </div>
+            <div class="col-lg-11">
+              <p class="lead">Conoce a profesores expertos</p>
+              <p>Cada profesor te transmitirá sus conocimientos con pasión, ofreciéndote explicaciones claras y una perspectiva profesional en cada lección.</p>
+            </div>
+          </div>
+        </div>
+        <!-- columna 2 de la fila 3 -->
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-1 pl-1 pt-4">
+              <!-- icon: persona con tilde  -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              </svg>
+            </div>
+            <div class="col-lg-11">
+              <p class="lead">Realiza cursos profesionales</p>
+              <p>Scire selecciona cuidadosamente los profesores y produce cada curso internamente para garatinzar una experiencia de aprendizaje online excelente.</p>
+            </div>
+          </div>
+        </div>
+      </div> <!-- cierra el row -->
+
+    </div> <!--cierra el container -->
+
+  </section>
+  
+<!-- **TERMINA** SECCIÓN "QUE PODES HACER EN SCIRE" (EMI) -->
+
+ <!-- **EMPIEZA** SECCIÓN "CATEGORÍAS" (PARTE EUGE) -->  
+    
+<section id="categorias" class="bg-light">
     <div class="categoria_contenedor">
         <h1>Categorías disponibles</h1>
     </div>
     <div class="categoria_texto">
         <h3>El conocimiento al alcance de un click. Te presentamos nuestras categorías. Vos elegis... </h3>
     </div>
+
 
     <div class="container">
         <div class="row">
@@ -154,5 +261,153 @@
     </div>
 </section>
 
+<!-- **TERMINA** SECCIÓN "CATEGORÍAS" (PARTE EUGE) -->  
+
+<!-- **INICIO** SECCIÓN "NUESTROS CURSOS" (PARTE IVAN) -->
+<main class="main" id="cursos">
+      <div class="elemento-centrado">
+        <h1>Nuestros Cursos</h1>
+      </div>
+        <div class="container ">
+        
+          <div class="row row-cols-md-2 ">
+              <div class=" row elementos">
+                <h3 th:text="${curso1.nombre}"></h3>
+                	
+                		<img 
+                		th:src="${plantilla1}" 
+                		alt="imagen del curso">
+                		
+                <p th:text="${curso1.descripcion}"></p>
+              
+                <div class="boton">
+                    <a  href="#" class="btn btn-dark">Ver mas</a>
+                </div>
+              </div>
+              
+              <div class="row elementos text-end">
+                  <h3  th:text="${curso2.nombre}"></h3>
+                  <img  
+                		th:src="${plantilla2}" 
+                		alt="imagen del curso">
+                  <p  th:text="${curso2.descripcion}"></p>
+                  <div class="boton">
+                      <a  href="#" class="btn btn-dark">Ver mas</a>
+                  </div>
+              </div>
+                      
+                <div class="row elementos">
+                  <h3  th:text="${curso3.nombre}"></h3>
+				  <img  
+                		th:src="${plantilla3}" 
+                		alt="imagen del curso">
+                  <p  th:text="${curso3.descripcion}"></p>
+                <div class="boton">
+                    <a  href="#" class="btn btn-dark">Ver mas</a>
+                </div>
+                </div>
+                
+                <div class="row elementos text-end">
+                  <h3 th:text="${curso4.nombre}"></h3>
+                  <img  
+                		th:src="${plantilla4}" 
+                		alt="imagen del curso">
+                  <p th:text="${curso4.descripcion}"></p>
+                  <div class="boton">
+                      <a  href="#" class="btn btn-dark">Ver mas</a>
+                  </div>
+                  
+                </div>
+            </div> 
+          </div>
+        
+    </main>
+    
+    <!-- **TERMINAR** SECCIÓN "NUESTROS CURSOS" (PARTE IVAN) -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+
+
+
+<!-- **EMPIEZA** SECCIÓN "CARRUSEL PROFESORES" (PARTE EUGE) -->
+  
+    <section id="profesores">
+        <div class="profesores_contenedor">
+            <h1>Nuestros Profesores</h1>
+        </div>
+        <div class="profesores_texto">
+            <h3>Aprende rápidamente junto a los mejores</h3>
+        </div>
+        
+       <div class="container py-3 pb-3">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/img/fondo_naranja.jpg" class="d-block tamanio-img" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h1 th:text="${profesor1.nombre}"></h1> 
+                  <!--<p>Some representative placeholder content for the first slide.</p>-->
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/img/fondo_amarillo.jpg"  class="d-block tamanio-img" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <a href="#" class="cambio-color"><h1 th:text="${profesor2.nombre}"></h1></a>
+                  <!--<p>Some representative placeholder content for the second slide.</p>-->
+                </div>
+              </div>
+              <div class="carousel-item">
+               <img src="/img/fondo_naranja.jpg" class="d-block tamanio-img" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                 <h1 th:text="${profesor3.nombre}"></h1>
+                  <!--<p>Some representative placeholder content for the third slide.</p>-->
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/img/fondo_amarillo.jpg" class="d-block tamanio-img" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <a href="#"><button type="button" class="btn btn-light">Ver más</button></a>
+                  <!--<p>Some representative placeholder content for the third slide.</p>-->
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          
+       </div>
+    </section>
+    
+    <!-- **TERMINA** SECCIÓN "CARRUSEL" (PARTE EUGE) -->  
+    
+    <!-- **EMPIEZA** SECCION FOOTER (BARBI) -->
+   	<div th:replace="fragments/footer :: footer-front"></div>
+    <!-- **TERMINA** SECCION FOOTER (BARBI) -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,8 +35,8 @@ public class UsuarioServicio implements UserDetailsService {
 	
 
 
-//	@Autowired
-//	private NotificacionServicio notificacionServ;
+	@Autowired
+	private NotificacionServicio notificacionServ;
 
 	
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
@@ -56,13 +54,15 @@ public class UsuarioServicio implements UserDetailsService {
 		
 		String claveEncriptada = new BCryptPasswordEncoder().encode(clave);
 		entidad.setClave(claveEncriptada);
-//		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
+		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
 		
 		entidad.setRol(Rol.USER);
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 		
-	//	notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+
+		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+
 
 
 		return usuarioRepo.save(entidad);
@@ -72,7 +72,7 @@ public class UsuarioServicio implements UserDetailsService {
 	//HAGO LAS VALIDACIONES NECESARIAS PARA CREAR EL USUARIO
 	public void validar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 		
-		if(clave != clave2) {
+		if(!clave.equals(clave2)) {
 			throw new ErrorException("Las claves no coinciden");
 		}
 		
@@ -93,7 +93,7 @@ public class UsuarioServicio implements UserDetailsService {
 		}	
 		//la clave no debe ser nula, no debe estar vacia, no debe contener espacios, debe tener entre 8 y 12 caracteres
 		
-		if (clave == null || clave.isEmpty() || clave.contains("  ") || clave.length() < 8 || clave.length() > 12) {
+		if (clave == null || clave.length() < 8) {
 			throw new ErrorException("Debe tener una clave valida");
 		}
 
@@ -162,11 +162,14 @@ public class UsuarioServicio implements UserDetailsService {
 		//MODIFICAR USUARIO
 		
 		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-		public void modificar(String id, String nuevonombre, String nuevoapellido, String nuevoemail) throws ErrorException {
+		public void modificar(String id, String nuevonombre, String nuevoapellido,String clave1,String clave2) throws ErrorException {
 			try {
+				validar(nuevonombre, nuevoapellido, nuevoapellido, clave1, clave2);
 			Usuario entidad = usuarioRepo.getById(id);
 			entidad.setNombre(nuevonombre);
 			entidad.setApellido(nuevoapellido);
+			 String encriptada = new BCryptPasswordEncoder().encode(clave1);
+		        entidad.setClave(encriptada);
 			usuarioRepo.save(entidad);
 			}catch(Exception e) {
 				throw new ErrorException ("No se pudieron modifcar los datos del usuario");
@@ -200,46 +203,13 @@ public class UsuarioServicio implements UserDetailsService {
 			       throw new ErrorException ("La clave actual no es la correcta");
 			      }	
 		}
-		
-//		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
-//		public boolean inicioSesion(String email, String claveingresada) throws ErrorException {
-//		
-//			try {
-//			Usuario entidad = this.buscarPorEmail(email);
-//
-//			if(entidad==null){
-//				throw new ErrorException ("El usuario no existe");
-//			}
-//
-//			
-//			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
-//			 
-//			
-//			boolean passwordValid = BCrypt.checkpw(claveingresada, entidad.getClave());
-//			 if (passwordValid == true) {
-//				 return passwordValid;
-//			}else {
-//			       throw new ErrorException ("La clave no es la correcta");
-//			       }	
-//			}catch(Exception e) {
-//				throw new ErrorException ("Error al iniciar sesion");
-//			}
-//		}
-//			if(entidad==null){
-//				throw new ErrorException ("El usuario no existe");
-//			}
-//				
-//			}catch(Exception e) {
-//				 throw new ErrorException ("Error al iniciar sesion");
-//				 return false;
-//			}
-//		
+	
 		
 			
 		
 
 		@Transactional
-	    public void recuperarContraseña(String mail) throws ErrorException {
+	    public void recuperarContrasenia(String mail) throws ErrorException {
 			try {
 
 	        String claveNueva = UUID.randomUUID().toString();
@@ -248,7 +218,7 @@ public class UsuarioServicio implements UserDetailsService {
 	        Usuario entidad = this.buscarPorEmail(mail);
 	        entidad.setClave(claveNuevaEncriptada);
 	        usuarioRepo.save(entidad);
-	     //   notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
+	        notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
 			} catch(Exception e) {
 				throw new ErrorException ("error");
 			}
@@ -259,9 +229,10 @@ public class UsuarioServicio implements UserDetailsService {
 	
 		  
 
-	
+
 
 	@Override
+	
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		Usuario user = usuarioRepo.buscarPorEmail(email);
@@ -270,9 +241,13 @@ public class UsuarioServicio implements UserDetailsService {
 			List<GrantedAuthority> permissions = new ArrayList<>();
 			GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRol().toString());
 			permissions.add(p);
+			//Una vez que el usuario pudo entrar a inicio hace una llamada al HttpSession que pide los atributos del Http
 			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			//Aca una vez que obtubo los atributos del http inicia una session
 			HttpSession session = attr.getRequest().getSession(true);
-			session.setAttribute("usuario", user);
+			//y aca se le da un nombre con el que se va a utilizar ese usuario ya autenticado y que pudo entrar a inicio
+			//el usuariosession es para usar en thymeleaf si solo si el usuario esta autenticado y pudo loguearse
+			session.setAttribute("usuariosession", user);
 			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
 				permissions);
 	}

@@ -20,22 +20,25 @@ import com.scire.servicios.UsuarioServicio;
 public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 	
 
-//	@Autowired
-//	@Qualifier("usuarioServicio")
-//	public UsuarioServicio usuarioServicio;
-//    
-//	@Autowired
-//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//		auth
-//		.userDetailsService(usuarioServicio) 
-//		.passwordEncoder(new BCryptPasswordEncoder());
-//	}
+	@Autowired
+	@Qualifier("usuarioServicio")
+	public UsuarioServicio usuarioServicio;
+    
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+		.userDetailsService(usuarioServicio) 
+		.passwordEncoder(new BCryptPasswordEncoder());
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll().and().formLogin()
-				.loginPage("/login").loginProcessingUrl("/logincheck").usernameParameter("email")
-				.passwordParameter("clave").defaultSuccessUrl("/loginsuccess").failureUrl("/login?error=error")
+				.loginPage("/login").loginProcessingUrl("/logincheck") // va a ir a el th:action y procesar si los datos estan correctos lo vamos a usar el form login
+				.usernameParameter("email") // lo vamos a enviar como name en el input es una validacion
+				.passwordParameter("clave")
+				.defaultSuccessUrl("/loginsuccess")//aca definimos a que url va a ingresar si el usuario se logueo correctamente
+				.failureUrl("/login?error=error")
 				.permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and().csrf()
 				.disable();
 	}

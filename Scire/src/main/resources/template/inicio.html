@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Probando 123</title>
+</head>
+<body>
+	<header th:replace="fragments/header :: header-front"></header>
+<h2 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido}" >Bienvenido</h2>
+</body>
+</html>

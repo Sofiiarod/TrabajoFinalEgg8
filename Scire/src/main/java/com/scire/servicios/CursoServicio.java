@@ -1,5 +1,4 @@
 package com.scire.servicios;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -9,11 +8,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.scire.entidades.Categoria;
-import com.scire.entidades.Profesor;
 import com.scire.entidades.Curso;
+import com.scire.entidades.Profesor;
 import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
 import com.scire.repositorios.CursoRepositorio;
+import com.scire.repositorios.UsuarioRepositorio;
 
 @Service
 public class CursoServicio {
@@ -21,8 +21,12 @@ public class CursoServicio {
 	@Autowired
 	private CursoRepositorio cursoRepo;
 	@Autowired
-    private UsuarioServicio usuarioService;
+	private UsuarioRepositorio usuarioRepo;
+
+
 	
+//	@Autowired
+//    private UsuarioServicio usuarioService;
 	
 	/**
 	 * 
@@ -101,10 +105,34 @@ public class CursoServicio {
 			throw new ErrorException("No existe un libro con ese ID");
 		}
 	}
+	
+	public String urlDelVideo(String id) throws ErrorException{
+		Curso curso = encontrarPorID(id);
+		
+		String url =curso.getUrl();
+		String urlVideo= "https://www.youtube.com/embed/"+url;
+		
+		return urlVideo;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return url de la imagen para poder ingresarla en la vista
+	 * @throws ErrorException
+	 */
+	public String urlImagen(String id) throws ErrorException{
+		Curso curso = encontrarPorID(id);
+		
+		String url = curso.getUrl();
+		String urlImg = "https://img.youtube.com/vi/".concat(url).concat("/maxresdefault.jpg");
+		
+		return urlImg;
+	}
 
 	/**
 	 * --------------------------- validaciones
-	 */
+	 */	
 	public void validar(String nombre, String descripcion, String url, Categoria categoria, Profesor profesor)
 			throws ErrorException {
 
@@ -125,20 +153,25 @@ public class CursoServicio {
 		}
 	}
 
-//QUERY , ENCONTRAR EN EL REPOSITORIO
-	@Transactional(readOnly = true)
+//QUERY , ENCONTRAR EN EL REPOSITORIO	
+@Transactional(readOnly = true)
 	public List<Curso> listarTodos() {
-		return cursoRepo.findAll();
+	return cursoRepo.findAll();
 	}
+	
 @Transactional(readOnly = true)
 public List<Curso> listarPorNombre(String nombre){
 	return cursoRepo.buscarPorNombre(nombre);
 }
-//@Transactional(readOnly = true)
-//public List<Curso> encontrarporUsuario(String idUsuario) throws ErrorException{
-//	
-//       Usuario u =  usuarioService.buscarPorId(idUsuario);
-//       
-//       return cursoRepo.buscarPorUsuario(u.toString());
-//}
+ 
+//INSCRIPCION
+public void inscripcion(String id_usuario, String id_curso) {
+	
+	Curso curso = cursoRepo.getById(id_curso);
+	Usuario usuario = usuarioRepo.getById(id_usuario);
+	
+	curso.getUsuarios().add(usuario);
+	cursoRepo.save(curso);
+}
+
 }
