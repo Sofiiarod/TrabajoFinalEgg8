@@ -42,8 +42,7 @@
 					<td th:text="${profesor.nombre}"></td>
 					<td th:if="${profesor.alta}">SI</td>
 					<td th:unless="${profesor.alta}">NO</td>
-					<td> <a th:href="@{/profesores/darbaja/{id}     (id=${profesor.id}) }" class="btn btn-primary">Dar baja</a> </td>
-					<td> <a th:href="@{/profesores/daralta/{id}     (id=${profesor.id}) }" class="btn btn-success">Dar alta</a> </td>
+					<td> <a th:href="@{/profesores/daralta/{id}     (id=${profesor.id}) }" class="btn btn-success">Cambiar Activo</a> </td>
 					<td> <a th:href="@{/profesores/editar/{id}     (id=${profesor.id}) }" class="btn btn-warning">Editar</a> </td>
 					<td> <a th:href="@{/profesores/eliminar/{id}     (id=${profesor.id}) }" class="btn btn-danger">Eliminar</a> </td>
 				</tr>
@@ -55,7 +54,6 @@
 			<div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto">
 					<a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
-					</p>
 				</div>
 			</div>
 		</section>

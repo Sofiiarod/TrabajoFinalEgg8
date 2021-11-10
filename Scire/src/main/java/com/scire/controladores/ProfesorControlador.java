@@ -88,23 +88,23 @@ public class ProfesorControlador {
 	@GetMapping("/daralta/{id}")
 	public String darAlta(@PathVariable("id") String id, ModelMap model) throws ErrorException {
 		try {
-			profesorServicio.alta(id, true);
+			profesorServicio.alta(id);
 		} catch (Exception e ) {
 			throw new ErrorException ("No se ha encontrado el profesor solicitado");
 		}
 		
 		return "redirect:/profesores/lista";
 	}
-	@GetMapping("/darbaja/{id}")
-	public String darBaja(@PathVariable("id") String id, ModelMap model) throws ErrorException {
-		try {
-			profesorServicio.baja(id, false);
-		} catch ( Exception e ) {
-			throw new ErrorException ("No se ha encontrado el profesor solicitado");
-		}
-		
-		return "redirect:/profesores/lista";
-	}
+//	@GetMapping("/darbaja/{id}")
+//	public String darBaja(@PathVariable("id") String id, ModelMap model) throws ErrorException {
+//		try {
+//			profesorServicio.baja(id);
+//		} catch ( Exception e ) {
+//			throw new ErrorException ("No se ha encontrado el profesor solicitado");
+//		}
+//		
+//		return "redirect:/profesores/lista";
+//	}
 	
 			
 	

@@ -4,7 +4,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 <head>
 <meta charset="UTF-8">
-<title>Registro usuario</title>
+<title>Registro curso</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -32,21 +32,21 @@
 <body>
 
 	<div class="container m-5">
-		<h1>Registrarse</h1>
-		<div th:if="${exito}!=null" class="card text-white bg-success mb-3">
-			<div class="card-body">
-				<h5 class="card-title">Exito</h5>
-				<p class="card-text" th:text="${exito}"></p>
-			</div>
-		</div>
-		<div th:if="${error}!=null" class="card text-white bg-danger mb-3">
-			<div class="card-body">
-				<h5 class="card-title">Error</h5>
-				<p class="card-text" th:text="${error}"></p>
-			</div>
-		</div>
-		<form th:action="@{/usuario/registrar}" method="POST">
-			<p th:if="${Error != null}" th:text="${Error}"></p>
+		<h1>Registrar curso</h1>
+<!-- 		<div th:if="${exito}!=null" class="card text-white bg-success mb-3"> -->
+<!-- 			<div class="card-body"> -->
+<!-- 				<h5 class="card-title">Exito</h5> -->
+<!-- 				<p class="card-text" th:text="${exito}"></p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div th:if="${error}!=null" class="card text-white bg-danger mb-3"> -->
+<!-- 			<div class="card-body"> -->
+<!-- 				<h5 class="card-title">Error</h5> -->
+<!-- 				<p class="card-text" th:text="${error}"></p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		<form th:action="@{/cursos/registrar}" method="POST">
+<!-- 			<p th:if="${Error != null}" th:text="${Error}"></p> -->
 			<div class="form-group">
 				<label>Nombre</label> <input type="text" class="form-control"
 					name="nombre" placeholder="Ingrese su nombre"> 
@@ -56,9 +56,9 @@
 				<label>Url</label> <input type="url" class="form-control" name="url"
 						placeholder="Ingrese la url del curso">
 				<label>Categoría</label> <input type="text" class="form-control" 
-					   name="categoria" placeholder="Seleccione una categoria">
+					   name="categoriaID" placeholder="Seleccione una categoria">
 				<label>Profesor</label> <input type="text" class="form-control"
-						name="profesor" placeholder="Seleccione un profesor">
+						name="profesorID" placeholder="Seleccione un profesor">
 
 
 			</div>

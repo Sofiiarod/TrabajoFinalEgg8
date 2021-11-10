@@ -6,6 +6,6 @@
 </head>
 <body>
 
-<h2 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido}" >Bienvenido</h2>
+<h2 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido + ' ' + session.usuariosession.rol}" >Bienvenido</h2>
 </body>
 </html>

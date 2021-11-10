@@ -11,26 +11,24 @@
 <body>
     <div class="container m-5">
 
-		<div class="card text-white bg-success mb-3" >
-			<div class="card-body">
-				<h5 class="card-title">Exito</h5>
-				<p class="card-text" th:text="${exito}"></p>
-			</div>
-		</div>
-		<div class="card text-white bg-danger mb-3" >
-			<div class="card-body">
-				<h5 class="card-title">Error</h5>
-				<p class="card-text" th:text="${error}"></p>
-			</div>
-		</div>
+<!-- 		<div class="card text-white bg-success mb-3" > -->
+<!-- 			<div class="card-body"> -->
+<!-- 				<h5 class="card-title">Exito</h5> -->
+<!-- 				<p class="card-text" th:text="${exito}"></p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="card text-white bg-danger mb-3" > -->
+<!-- 			<div class="card-body"> -->
+<!-- 				<h5 class="card-title">Error</h5> -->
+<!-- 				<p class="card-text" th:text="${error}"></p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<h1>Editar Categoria</h1>
 		<form th:action="@{/categorias/editar/guardar}" method="POST">
 		<input type="hidden" name="id" th:value="${categoria.id}">
 			<div class="form-group">
 				<label>Nombre</label> 
-				<input type="text" class="form-control" name="nombre" th:value="${autor.nombre}">
-				<label>Alta</label>
-				<input type="text" class="form-control" name="alta" th:value="${autor.alta}" disabled>
+				<input type="text" class="form-control" name="nombre" th:value="${categoria.nombre}">
 			</div>
 
 			<button type="submit" class="btn btn-success">Editar</button>

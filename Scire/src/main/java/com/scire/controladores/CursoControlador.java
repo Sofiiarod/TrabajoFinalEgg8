@@ -47,7 +47,7 @@ public class CursoControlador {
 			
 		}
 		
-		return "redirect:/index.html";
+		return "index.html";
 
 	}
 	
