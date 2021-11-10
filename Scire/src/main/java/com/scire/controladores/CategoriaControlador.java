@@ -29,7 +29,7 @@ public class CategoriaControlador {
 	
 	@GetMapping("/lista")
 	public String categorias(ModelMap modeloDeCategorias) throws ErrorException {
-		List<Categoria> misCategorias = categoriaServicio.mostrarTodos();
+		List<Categoria> misCategorias = categoriaServicio.listarTodos();
 		modeloDeCategorias.addAttribute("misCategorias", misCategorias);
 		return "lista-categorias";
 	}

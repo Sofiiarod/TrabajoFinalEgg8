@@ -71,7 +71,8 @@
 			                  </div>
 		                    </div>
                             <!-- Fin Mensajes emergentes -->
-                            <form class="user" th:action="@{/usuario/registrar}" method="POST">
+                            <form class="user" th:action="@{/usuario/registrar}" method="POST" enctype="multipart/form-data">
+                            	<p th:if="${error != null}" th:text=${error} style="color:red;"></p>
                                 <!--  
                                 <p th:if="${Error != null}" th:text="${Error}"></p>
                                 <div class="form-group row">
@@ -110,6 +111,8 @@
 											placeholder="Ingrese su apellido"> 
 									<label>Email</label> <input type="email" class="form-control" name="email"
 											placeholder="Ingrese su Email">
+									<label>Foto</label> <input type="file" class="form-control" name="archivo"
+											>
 									<div class="form-group" id="contrasena-group">
 										<label>Clave</label> <input type="password" class="form-control" 
 										   name="clave" placeholder="Ingrese su clave">

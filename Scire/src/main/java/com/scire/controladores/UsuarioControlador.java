@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
@@ -31,20 +32,20 @@ public class UsuarioControlador {
 	}
 
 	@PostMapping("/registrar")
-	public String registrar(ModelMap model, @RequestParam String nombre, @RequestParam String apellido,
+	public String registrar(ModelMap model,MultipartFile archivo, @RequestParam String nombre, @RequestParam String apellido,
 			@RequestParam String email, @RequestParam String clave, @RequestParam String clave2) throws ErrorException {
 		try {
-			usuarioServicio.guardar(nombre, apellido, email, clave, clave2);
-			model.put("exito", "Se ha registrado con éxito");
-		} catch (Exception e) {
+			usuarioServicio.guardar(archivo, nombre, apellido, email, clave, clave2);
+			model.put("exito", "Se ha registrado con exito");
+		} catch (ErrorException e) {
 			model.put("error", e.getMessage());
 
 			return "registrarse.html";
 
 
 		}
-
-
+		
+		model.put("exito", "Se ha registrado con exito");
 		return "redirect:/login";
 
 
@@ -77,7 +78,7 @@ public class UsuarioControlador {
 
 	@PreAuthorize("hasAnyRole('ROLE_USER')") // El Usuario puede editar el perfil si solo si esta registrado
 	@PostMapping("/actualizar-perfil")
-	public String actualizar(ModelMap model, HttpSession session, @RequestParam String id, @RequestParam String nombre,
+	public String actualizar(ModelMap model, HttpSession session,MultipartFile archivo, @RequestParam String id, @RequestParam String nombre,
 			@RequestParam String apellido,@RequestParam String clave,
 			@RequestParam String clave2) {
 		
@@ -88,7 +89,7 @@ public class UsuarioControlador {
 		
 		try {
 			Usuario usuario = usuarioServicio.buscarPorId(id);
-               usuarioServicio.modificar(id, nombre, apellido, clave, clave2);
+               usuarioServicio.modificar(archivo, id, nombre, apellido, clave, clave2);
                session.setAttribute("usuariosession", usuario); // es para usar el usuario logueado en thymeleaf 
                return "inicio.html";
 		} catch (ErrorException e) {

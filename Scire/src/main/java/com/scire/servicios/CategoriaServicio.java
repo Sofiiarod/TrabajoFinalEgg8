@@ -33,12 +33,16 @@ public class CategoriaServicio {
 	}
 
 	// MOSTRAR TODAS LAS CATEGORÍAS.
+//	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+//	public List<Categoria> mostrarTodos() throws ErrorException {
+//
+//		return categoriaRepo.findAll();
+//
+//	}
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-	public List<Categoria> mostrarTodos() throws ErrorException {
-
-		return categoriaRepo.findAll();
-
-	}
+	public List<Categoria> listarTodos(){
+	return categoriaRepo.findAll();
+}
 
 	// BUSCA LA CATEGORÍA POR ID, MODIFICAR EL NOMBRE Y GUARDAR LOS CAMBIOS.
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
@@ -80,9 +84,7 @@ public class CategoriaServicio {
 
 	}
 
-//	public List<Categoria> listarTodos(){
-//		return categoriaRepo.findAll();
-//	}
+
 
 
 

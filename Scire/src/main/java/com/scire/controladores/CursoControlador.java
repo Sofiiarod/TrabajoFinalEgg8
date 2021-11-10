@@ -43,22 +43,21 @@ public class CursoControlador {
 	
 
 	
-	@GetMapping()
-	public String cursosActivos(ModelMap modelo){
+	@GetMapping("/activos")
+	public String cursosActivos(ModelMap modelo) throws ErrorException {
 		try {
 			List<Curso> cursosActivos = cursoServicio.buscarCursosPorEstado(true);
 			modelo.addAttribute("cursos", cursosActivos);
-			List<Categoria> listaCategoriasActivas = categoriaServicio.mostrarTodos();
+			List<Categoria> listaCategoriasActivas = categoriaServicio.listarTodos();
 			modelo.addAttribute("categorias", listaCategoriasActivas);
 			List<Profesor> listaProfesoresActivos = profesorServicio.mostrarTodos();
 			modelo.addAttribute("profesores", listaProfesoresActivos);
-			
 			
 		} catch (ErrorException e) {
 				e.getMessage();
 		}
 		
-		return "cursos/index-menu-vertical.html";
+		return "index-menu-vertical.html";
 	}
 
 
@@ -74,7 +73,7 @@ public class CursoControlador {
 	
 	
 	
-	
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@GetMapping("/categorias")
 	public String categoriasActivas(@RequestParam String idCategoria, ModelMap modelo){
 
@@ -82,7 +81,7 @@ public class CursoControlador {
 			
 			List<Curso> cursosPorCategoria = cursoServicio.buscarCursosActivosPorCategoria(idCategoria);
 			modelo.addAttribute("cursos", cursosPorCategoria);
-			List<Categoria> listaCategoriasActivas = categoriaServicio.mostrarTodos();
+			List<Categoria> listaCategoriasActivas = categoriaServicio.listarTodos();
 			modelo.addAttribute("categorias", listaCategoriasActivas);
 			List<Profesor> listaProfesoresActivos = profesorServicio.mostrarTodos();
 			modelo.addAttribute("profesores", listaProfesoresActivos);
@@ -94,7 +93,6 @@ public class CursoControlador {
 		
 		return "cursos/index-menu-vertical.html";
 	}
-
 	@GetMapping("/registro")
 	public String registro() {
 		return "registro-curso.html";
@@ -125,7 +123,7 @@ public class CursoControlador {
 			
 			List<Curso> cursosPorProfesor = cursoServicio.buscarCursosActivosPorProfesor(idProfesor);
 			modelo.addAttribute("cursos", cursosPorProfesor);
-			List<Categoria> listaCategoriasActivas = categoriaServicio.mostrarTodos();
+			List<Categoria> listaCategoriasActivas = categoriaServicio.listarTodos();
 			modelo.addAttribute("categorias", listaCategoriasActivas);
 			List<Profesor> listaProfesoresActivos = profesorServicio.mostrarTodos();
 			modelo.addAttribute("profesores", listaProfesoresActivos);

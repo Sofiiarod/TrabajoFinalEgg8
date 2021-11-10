@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.scire.entidades.Curso;
 import com.scire.entidades.Profesor;
 
-import com.scire.entidades.Usuario;
+//import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
+//import com.scire.repositorios.UsuarioRepositorio;
 import com.scire.servicios.CursoServicio;
 import com.scire.servicios.ProfesorServicio;
-import com.scire.servicios.UsuarioServicio;
+//import com.scire.servicios.UsuarioServicio;
 
 
 
@@ -104,8 +105,7 @@ public class MainControlador {
 	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
 	@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
 	public String loginresolver() {
-				
-		return "redirect:/cursos";
+		return "../cursos/index-menu-vertical.html";
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
