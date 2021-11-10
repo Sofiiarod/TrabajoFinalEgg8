@@ -38,6 +38,10 @@ public class CursoControlador {
 		try {
 			List<Curso> cursosActivos = cursoServicio.buscarCursosPorEstado(true);
 			modelo.addAttribute("cursos", cursosActivos);
+			
+			List<String> imagenesCursos = cursoServicio.urlImagenesCursosActivos();
+			modelo.addAttribute("imgcursos", imagenesCursos);
+			
 			List<Categoria> listaCategoriasActivas = categoriaServicio.mostrarTodos();
 			modelo.addAttribute("categorias", listaCategoriasActivas);
 			List<Profesor> listaProfesoresActivos = profesorServicio.mostrarTodos();
@@ -54,11 +58,11 @@ public class CursoControlador {
 
 
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
-	@GetMapping("/ver/{id}")
+	@GetMapping("/ver")
 	public String vistaCurso(ModelMap model,@RequestParam String idCurso) throws ErrorException {
      Curso curso =cursoServicio.encontrarPorID(idCurso);//trae activos e inactivos
 		model.addAttribute("curso",curso);
-		return "ver-cursos.html";
+		return "cursos/vista-curso.html";
 
 	}
 	

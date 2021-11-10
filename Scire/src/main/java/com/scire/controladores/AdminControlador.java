@@ -16,6 +16,7 @@ import com.scire.entidades.Categoria;
 import com.scire.entidades.Curso;
 import com.scire.entidades.Profesor;
 import com.scire.errores.ErrorException;
+import com.scire.repositorios.CursoRepositorio;
 import com.scire.servicios.CategoriaServicio;
 import com.scire.servicios.CursoServicio;
 import com.scire.servicios.ProfesorServicio;
@@ -40,6 +41,8 @@ public class AdminControlador {
 	
 	@Autowired
 	CategoriaServicio categoriaServicio;
+	
+	
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/inicio")
@@ -113,12 +116,13 @@ public class AdminControlador {
 			modelo.addAttribute("profesores",profesorServicio.mostrarTodos());
 			modelo.addAttribute("categorias",categoriaServicio.listarTodos());
 			modelo.addAttribute("titulo", "Nuevo curso");
-			return "plantillas-admin/cargar-curso";
+			
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "";
+			return "plantillas-admin/cargar-curso";
 		}
-
+		
+		return "plantillas-admin/cargar-curso";
 	}
 	
 	@PostMapping("/agregar-curso")
@@ -129,10 +133,15 @@ public class AdminControlador {
 			@RequestParam("idCategoria") String idCategoria,
 			@RequestParam("idProfesor") String idProfesor) {
 		
+		
+		
 		try {
+			
 			
 			Categoria categoria = categoriaServicio.buscarPorId(idCategoria);
 			Profesor profesor = profesorServicio.buscarPorId(idProfesor);
+			
+			
 			
 			cursoServicio.guardar(nombreDelCurso, descripcion, idDeYoutube, categoria, profesor);
 			
@@ -140,6 +149,7 @@ public class AdminControlador {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
 		
 		return "redirect:/admin/lista-de-cursos";
 	}
