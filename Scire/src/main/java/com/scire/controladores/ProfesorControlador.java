@@ -3,6 +3,7 @@ package com.scire.controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.scire.entidades.Profesor;
 import com.scire.errores.ErrorException;
+import com.scire.servicios.CursoServicio;
 import com.scire.servicios.ProfesorServicio;
 
 
@@ -24,9 +26,10 @@ public class ProfesorControlador {
 	
 	@Autowired
 	private ProfesorServicio profesorServicio;
+	@Autowired
+	private CursoServicio cursoServicio;
 	
-	
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/lista")
 	public String profesores(ModelMap modeloDeProfesores) throws ErrorException {
 		List<Profesor> misProfesores = profesorServicio.mostrarTodos();
@@ -35,16 +38,17 @@ public class ProfesorControlador {
 	}
 	
 	
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/registro")
 	public String registro() {
 		
 		return "registro-profesor";
 		
 	}
+
 	
 	
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/registrar")
 	public String registrar(ModelMap model, @RequestParam String nombre) throws ErrorException {
 		String res = "redirect:/profesores/lista";

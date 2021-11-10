@@ -1,5 +1,7 @@
 package com.scire.controladores;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,4 +121,14 @@ public class UsuarioControlador {
 		}
 		 return "usuario";
 	}
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@GetMapping("/listar")
+	public String listaUsuarios(ModelMap model) {
+		List<Usuario> usuarios = usuarioServicio.mostrarTodos();
+		model.addAttribute("usuarios", usuarios);
+		return "list-usuarios.html";
+	}
+	
+	
 }
+
