@@ -101,15 +101,22 @@ public class MainControlador {
 			return "login.html";
 		}
 	}
-	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
-	@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
-	public String loginresolver() {
-				
+//	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
+//	@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
+//	public String loginresolver() {
+//				
+//		return "redirect:/cursos";
+//	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@RequestMapping("/cursos")
+	public String loginUsuario() {
 		return "redirect:/cursos";
 	}
 	
+	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-	@GetMapping("/admin")
+	@RequestMapping("/admin")
 	public String loginAdmin() {
 		return "redirect:/admin/inicio";
 	}
