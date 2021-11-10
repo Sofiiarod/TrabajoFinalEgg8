@@ -3,6 +3,7 @@ package com.scire.controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ import com.scire.servicios.ProfesorServicio;
  */
 @Controller
 @RequestMapping("/admin")
+
 public class AdminControlador {
 	
 	@Autowired
@@ -38,7 +40,8 @@ public class AdminControlador {
 	
 	@Autowired
 	CategoriaServicio categoriaServicio;
-
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/inicio")
 	public String inicio(ModelMap modelo) {
 		try {
@@ -228,16 +231,19 @@ public class AdminControlador {
 			modelo.addAttribute("titulo",curso.getNombre());
 			modelo.addAttribute("curso", curso);
 			
+		//	modelo.addAttribute("exito", "Se ha editado con exito");
+			
 			return "plantillas-admin/editar-curso";
 		} catch (Exception e) {
-			// TODO: handle exception
+			
+			//modelo.addAttribute("error", e.getMessage());
 		}
 		
 		return "plantillas-admin/editar-curso";
 	}
 	
 	@PostMapping("/edicion-curso")
-	public String editarCurso(
+	public String editarCurso(ModelMap modelo,
 			@RequestParam("id") String id, 
 			@RequestParam("nombreDelCurso") String nombreDelCurso,
 			@RequestParam("descripcion") String descripcion,
@@ -252,9 +258,11 @@ public class AdminControlador {
 			
 			cursoServicio.modificar(id, nombreDelCurso, descripcion, idDeYoutube, categoria, profesor);
 			
-			return "redirect:/admin/lista-de-cursos";
+			//modelo.addAttribute("exito", "Se ha editado con exito");
+			
+			//return "redirect:/admin/lista-de-cursos";
 		} catch (Exception e) {
-			// TODO: handle exception
+		//	modelo.addAttribute("error", e.getMessage());
 		}
 		
 		return "redirect:/admin/lista-de-cursos";
@@ -284,7 +292,7 @@ public class AdminControlador {
 		
 		try {
 			
-			Categoria categoria = categoriaServicio.buscarPorId(id);
+			// Categoria categoria = categoriaServicio.buscarPorId(id);
 			
 			categoriaServicio.modificar(id, nombreDeCategoria);
 			
@@ -296,4 +304,55 @@ public class AdminControlador {
 		
 		return "redirect:/admin/lista-de-categorias";
 	}
+	
+	@GetMapping("/editar-profesor/{id}")
+	public String editarProfesor(ModelMap modelo, @PathVariable("id") String idProfesor) {
+		
+		try {
+			
+			Profesor profesor = profesorServicio.buscarPorId(idProfesor);
+			
+			modelo.addAttribute("titulo",profesor.getNombre());
+			modelo.addAttribute("profesor", profesor);
+			
+			return "plantillas-admin/editar-profesor";
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "plantillas-admin/editar-profesor";
+	}
+	
+	@GetMapping("/modificar-estado-profesor/{id}")
+	public String modificarEstadoProfesor(@PathVariable("id") String id) {
+		
+		try {
+				profesorServicio.alta(id);
+	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return "redirect:/admin/lista-de-profesores";
+	}
+	
+	@PostMapping("/edicion-profesor")
+	public String editarProfesor(
+			@RequestParam("id") String id, 
+			@RequestParam("nombreDeProfesor") String nombreDeProfesor) {
+		
+		try {
+			profesorServicio.modificar(id, nombreDeProfesor);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "redirect:/admin/lista-de-profesores";
+	}
+	
+	
 }

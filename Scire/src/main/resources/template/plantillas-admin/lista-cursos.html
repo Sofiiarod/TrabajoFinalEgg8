@@ -12,6 +12,22 @@
 
 	<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
 
+<!-- 	<div> -->
+<!-- 		<div th:if="${exito != null}" class="card text-white bg-success mb-3"> -->
+<!-- 			<div class="card-body"> -->
+<!-- 				<h5 class="card-title">Exito</h5> -->
+<!-- 				<p class="card-text" th:text="${exito}"></p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div th:if="${error != null}" class="card text-white bg-danger mb-3"> -->
+<!-- 			<div class="card-body"> -->
+<!-- 				<h5 class="card-title">Error</h5> -->
+<!-- 				<p class="card-text" th:text="${error}"></p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+
+
                 <table class="table table-bordered table-hover" >
                     
                     <thead>
@@ -34,7 +50,7 @@
                         <th th:text="${curso.nombre}" scope="row"></th>
                         <td th:text="${curso.descripcion}"></td>
                         <td th:text="${curso.url}"></td>
-                        <td th:text="${curso.estado}? 'ACTIVO' : 'INACTIVO'" /></td>
+                        <td th:text="${curso.estado}? 'ACTIVO' : 'INACTIVO'" ></td>
                         <td>
                         	<a class="btn btn-seccondary" 
                         	th:href="@{/admin/modificar-estado/{id}(id=${curso.id})}" 

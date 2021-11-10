@@ -259,17 +259,17 @@ public class CursoServicio {
 		}
 
 //BUSCAR CURSOS DE UN USUARIO
-	public List<Curso> buscarCursosPorUsuario(String id_usuario) throws ErrorException {
-		Usuario usuario = usuarioRepo.getById(id_usuario);
-		List<Curso> listaCursos = cursoRepo.findByUsuarios(usuario);
-
-		if (!listaCursos.isEmpty()) {
-			return listaCursos;
-		} else {
-			throw new ErrorException("No hay cursos para este usuario");
-		}
-	}
-	
+//	public List<Curso> buscarCursosPorUsuario(String id_usuario) throws ErrorException {
+//		Usuario usuario = usuarioRepo.getById(id_usuario);
+//		List<Curso> listaCursos = cursoRepo.findByUsuarios(usuario);
+//
+//		if (!listaCursos.isEmpty()) {
+//			return listaCursos;
+//		} else {
+//			throw new ErrorException("No hay cursos para este usuario");
+//		}
+//	}
+//	
 	//BUSCAR CURSOS ACTIVOS DE UN USUARIO
 		public List<Curso> buscarCursosActivosPorUsuario(String id_usuario) throws ErrorException {
 			Usuario usuario = usuarioRepo.getById(id_usuario);	
