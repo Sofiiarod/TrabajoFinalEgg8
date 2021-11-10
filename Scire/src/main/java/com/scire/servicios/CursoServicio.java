@@ -113,10 +113,34 @@ public class CursoServicio {
 			throw new ErrorException("No existe un libro con ese ID");
 		}
 	}
+	
+	public String urlDelVideo(String id) throws ErrorException{
+		Curso curso = encontrarPorID(id);
+		
+		String url =curso.getUrl();
+		String urlVideo= "https://www.youtube.com/embed/"+url;
+		
+		return urlVideo;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return url de la imagen para poder ingresarla en la vista
+	 * @throws ErrorException
+	 */
+	public String urlImagen(String id) throws ErrorException{
+		Curso curso = encontrarPorID(id);
+		
+		String url = curso.getUrl();
+		String urlImg = "https://img.youtube.com/vi/".concat(url).concat("/maxresdefault.jpg");
+		
+		return urlImg;
+	}
 
 	/**
 	 * --------------------------- validaciones
-	 */
+	 */	
 	public void validar(String nombre, String descripcion, String url, Categoria categoria, Profesor profesor)
 			throws ErrorException {
 
@@ -126,9 +150,9 @@ public class CursoServicio {
 		if (descripcion.isEmpty() || descripcion == null || descripcion.contains(" ")) {
 			throw new ErrorException("El Curso necesita una descripcion");
 		}
-		if (url.isEmpty() || url == null || url.contains(" ")) {
+		/*if (url.isEmpty() || url == null || url.contains(" ")) {
 			throw new ErrorException("falta la url");
-		}
+		}*/
 		if (categoria == null) {
 			throw new ErrorException("Debe de indicarle una categoria");
 		}
@@ -235,17 +259,17 @@ public class CursoServicio {
 		}
 
 //BUSCAR CURSOS DE UN USUARIO
-	public List<Curso> buscarCursosPorUsuario(String id_usuario) throws ErrorException {
-		Usuario usuario = usuarioRepo.getById(id_usuario);
-		List<Curso> listaCursos = cursoRepo.findByUsuarios(usuario);
-
-		if (!listaCursos.isEmpty()) {
-			return listaCursos;
-		} else {
-			throw new ErrorException("No hay cursos para este usuario");
-		}
-	}
-	
+//	public List<Curso> buscarCursosPorUsuario(String id_usuario) throws ErrorException {
+//		Usuario usuario = usuarioRepo.getById(id_usuario);
+//		List<Curso> listaCursos = cursoRepo.findByUsuarios(usuario);
+//
+//		if (!listaCursos.isEmpty()) {
+//			return listaCursos;
+//		} else {
+//			throw new ErrorException("No hay cursos para este usuario");
+//		}
+//	}
+//	
 	//BUSCAR CURSOS ACTIVOS DE UN USUARIO
 		public List<Curso> buscarCursosActivosPorUsuario(String id_usuario) throws ErrorException {
 			Usuario usuario = usuarioRepo.getById(id_usuario);	

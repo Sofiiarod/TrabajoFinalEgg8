@@ -1,0 +1,109 @@
+
+:root {
+    --bs-brown: #a59d86;
+}
+
+/*ID cursos*/
+.main{
+    background-image: url(/img/escritorio.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.elementos{
+    margin:5em;
+    display:flex;
+    text-align: left;
+    justify-content: space-between;
+    
+}
+
+h1,h2,h3,h4,a{
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    
+}
+
+
+.boton >a{
+    color: white;
+    text-decoration: none;
+}
+
+
+
+.boton > a:hover{
+    background-color: var(--bs-brown);
+}
+
+p{
+    font-family: 'Yaldevi', sans-serif;
+
+}
+
+
+/*Id #categorias*/
+.categoria_contenedor{
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    line-height: 10px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: #000000;
+
+}
+
+.categoria_texto{
+    font-family: 'Yaldevi', sans-serif;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.card{
+    margin: 5px;
+}
+
+.card:hover{
+    background-color: #5e5e5e;
+}
+
+.cambio-color{
+    text-decoration: none;
+    color: #5e5e5e;
+}
+
+.cambio-color:hover{
+    color: lightgrey;
+}
+
+.profesores_contenedor{
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    line-height: 10px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: #000000;
+}
+
+.profesores_texto{
+    font-family: 'Yaldevi', sans-serif;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.tamanio-img{
+	width: 100%;
+	height: 300px;
+}
+

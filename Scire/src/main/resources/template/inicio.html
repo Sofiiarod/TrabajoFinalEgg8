@@ -6,6 +6,10 @@
 </head>
 <body>
 
+
 <h2 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido + ' ' + session.usuariosession.rol}" >Bienvenido</h2>
+
+	<header th:replace="fragments/header :: header-front"></header>
+
 </body>
 </html>
