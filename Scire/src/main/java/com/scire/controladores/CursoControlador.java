@@ -32,7 +32,7 @@ public class CursoControlador {
 	
 	
 
-	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping()
 	public String cursosActivos(ModelMap modelo){
 		try {
@@ -67,7 +67,7 @@ public class CursoControlador {
 	
 	
 	
-	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/categorias")
 	public String categoriasActivas(@RequestParam String idCategoria, ModelMap modelo){
 
@@ -88,6 +88,7 @@ public class CursoControlador {
 		return "cursos/index-menu-vertical.html";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/profesores")
 	public String profesoresActivos(@RequestParam String idProfesor, ModelMap modelo){
 
