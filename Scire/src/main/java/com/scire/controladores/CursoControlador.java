@@ -39,8 +39,7 @@ public class CursoControlador {
 			List<Curso> cursosActivos = cursoServicio.buscarCursosPorEstado(true);
 			modelo.addAttribute("cursos", cursosActivos);
 			
-			List<String> imagenesCursos = cursoServicio.urlImagenesCursosActivos();
-			modelo.addAttribute("imgcursos", imagenesCursos);
+			
 			
 			List<Categoria> listaCategoriasActivas = categoriaServicio.mostrarTodos();
 			modelo.addAttribute("categorias", listaCategoriasActivas);

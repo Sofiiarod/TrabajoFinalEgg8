@@ -205,17 +205,6 @@ public class CursoServicio {
 		}
 	}
 	
-	public List<String> urlImagenesCursosActivos()throws ErrorException{
-		List<String> urlImagenes = new ArrayList();
-		List<Curso> cursos = this.buscarCursosPorEstado(true);
-		
-		for (int i = 0; i < cursos.size(); i++) {
-			urlImagenes.add("https://img.youtube.com/vi/".concat(cursos.get(i).getUrl()).concat("/maxresdefault.jpg"));
-		}
-		
-		
-		return urlImagenes;
-	}
 
 //BUSCAR POR NOMBRE	
 	public Optional<Curso> buscarCursosPorNombre(String nombre) throws ErrorException {
