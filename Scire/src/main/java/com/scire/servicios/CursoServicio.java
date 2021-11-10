@@ -150,9 +150,9 @@ public class CursoServicio {
 		if (descripcion.isEmpty() || descripcion == null || descripcion.contains(" ")) {
 			throw new ErrorException("El Curso necesita una descripcion");
 		}
-		if (url.isEmpty() || url == null || url.contains(" ")) {
+		/*if (url.isEmpty() || url == null || url.contains(" ")) {
 			throw new ErrorException("falta la url");
-		}
+		}*/
 		if (categoria == null) {
 			throw new ErrorException("Debe de indicarle una categoria");
 		}
