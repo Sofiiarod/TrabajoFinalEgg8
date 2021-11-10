@@ -56,7 +56,7 @@ public class CursoControlador {
 
 
 
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/ver")
 	public String vistaCurso(ModelMap model,@RequestParam String idCurso) throws ErrorException {
      Curso curso =cursoServicio.encontrarPorID(idCurso);//trae activos e inactivos
