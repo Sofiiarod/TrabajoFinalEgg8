@@ -60,8 +60,17 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 		
+		String titulo= "Bienvenido a la comunidad Scire";
+		String cuerpo="Hola "+ entidad.getNombre()+ ","+"\n"+"\n"+
+		"Aprende participando,\r\n"
+		+ "accede a los mejores cursos online."+"\n"
+		+ "Interactúa con los mejores profesionales y descubre un mundo de posibilidades.\r\n"+"\n"
+		+ "Estamos para responderte todas tus dudas."+ "\n"
+		+"Saludos!"+"\n"+
+		"Comunidad Scire";
+		
 
-		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+		notificacionServ.enviar(cuerpo, titulo, entidad.getEmail());
 
 
 
@@ -196,7 +205,6 @@ public class UsuarioServicio implements UserDetailsService {
 						  String claveEncriptada = new BCryptPasswordEncoder().encode(claveNueva);
 						  entidad.setClave(claveEncriptada);
 						   
-//						  entidad.setClave(new BCryptPasswordEncoder().encode(claveNueva));
 						  usuarioRepo.save(entidad);
 					  }	
 			}else {
@@ -218,7 +226,7 @@ public class UsuarioServicio implements UserDetailsService {
 	        Usuario entidad = this.buscarPorEmail(mail);
 	        entidad.setClave(claveNuevaEncriptada);
 	        usuarioRepo.save(entidad);
-	        notificacionServ.enviarModificarContraseña("", "Recuperación de contraseña", mail, claveNueva);
+	        notificacionServ.enviarModificarContraseña("", "Restablecimiento de contraseña, Scire", mail, claveNueva);
 			} catch(Exception e) {
 				throw new ErrorException ("error");
 			}
