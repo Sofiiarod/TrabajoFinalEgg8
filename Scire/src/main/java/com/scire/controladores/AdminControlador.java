@@ -16,6 +16,7 @@ import com.scire.entidades.Categoria;
 import com.scire.entidades.Curso;
 import com.scire.entidades.Profesor;
 import com.scire.errores.ErrorException;
+import com.scire.repositorios.CursoRepositorio;
 import com.scire.servicios.CategoriaServicio;
 import com.scire.servicios.CursoServicio;
 import com.scire.servicios.ProfesorServicio;
@@ -41,6 +42,8 @@ public class AdminControlador {
 	@Autowired
 	CategoriaServicio categoriaServicio;
 	
+	
+	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/inicio")
 	public String inicio(ModelMap modelo) {
@@ -53,7 +56,7 @@ public class AdminControlador {
 		}
 		
 	}
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/lista-de-cursos")
 	public String listaDeCursos(ModelMap modelo) {
 
@@ -72,6 +75,7 @@ public class AdminControlador {
 	 * @param modelo
 	 * @return
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/lista-de-categorias")
 	public String listaDeCategorias(ModelMap modelo) {
 		try {
@@ -88,7 +92,7 @@ public class AdminControlador {
 		}
 
 	}
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/lista-de-profesores")
 	public String listaDeProfesores(ModelMap modelo) {
 		try {
@@ -104,7 +108,7 @@ public class AdminControlador {
 		}
 
 	}
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/cargar-curso")
 	public String cargarCurso(ModelMap modelo) {
 		
@@ -113,14 +117,16 @@ public class AdminControlador {
 			modelo.addAttribute("profesores",profesorServicio.mostrarTodos());
 			modelo.addAttribute("categorias",categoriaServicio.listarTodos());
 			modelo.addAttribute("titulo", "Nuevo curso");
-			return "plantillas-admin/cargar-curso";
+			
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "";
+			return "plantillas-admin/cargar-curso";
 		}
-
+		
+		return "plantillas-admin/cargar-curso";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/agregar-curso")
 	public String agregarCurso(ModelMap modelo,
 			@RequestParam("nombreDelCurso") String nombreDelCurso,
@@ -129,10 +135,15 @@ public class AdminControlador {
 			@RequestParam("idCategoria") String idCategoria,
 			@RequestParam("idProfesor") String idProfesor) {
 		
+		
+		
 		try {
+			
 			
 			Categoria categoria = categoriaServicio.buscarPorId(idCategoria);
 			Profesor profesor = profesorServicio.buscarPorId(idProfesor);
+			
+			
 			
 			cursoServicio.guardar(nombreDelCurso, descripcion, idDeYoutube, categoria, profesor);
 			
@@ -141,9 +152,11 @@ public class AdminControlador {
 			// TODO: handle exception
 		}
 		
+		
 		return "redirect:/admin/lista-de-cursos";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/cargar-categoria")
 	public String cargarCategoria(ModelMap modelo) {
 		try {
@@ -162,6 +175,8 @@ public class AdminControlador {
 	 * @return redireccion a admin/lista-de-cursos
 	 * @throws ErrorException
 	 */
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/agregar-categoria")
 	public String guardarCategoria(@RequestParam("nombreDeCategoria") String nombreDeCategoria) throws ErrorException {
 		try {
@@ -173,6 +188,7 @@ public class AdminControlador {
 		return "redirect:/admin/lista-de-categorias";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/cargar-profesor")
 	public String cargarProfesor(ModelMap modelo) {
 		
@@ -187,6 +203,7 @@ public class AdminControlador {
 
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/agregar-profesor")
 	public String agregarProfesor(@RequestParam("nombreDelProfesor") String nombreDelProfesor) {
 		try {
@@ -198,7 +215,7 @@ public class AdminControlador {
 		return "redirect:/admin/lista-de-profesores";
 	}
 	
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/modificar-estado/{id}")
 	public String modificarEstado(@PathVariable("id") String idCurso) {
 		
@@ -219,6 +236,7 @@ public class AdminControlador {
 		return "redirect:/admin/lista-de-cursos";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/editar-curso/{id}")
 	public String modificarCurso(ModelMap modelo,@PathVariable("id") String idCurso) {
 		
@@ -242,6 +260,7 @@ public class AdminControlador {
 		return "plantillas-admin/editar-curso";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/edicion-curso")
 	public String editarCurso(ModelMap modelo,
 			@RequestParam("id") String id, 
@@ -268,6 +287,7 @@ public class AdminControlador {
 		return "redirect:/admin/lista-de-cursos";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/editar-categoria/{id}")
 	public String modificarCategoria(ModelMap modelo,@PathVariable("id") String idCurso) {
 		
@@ -285,6 +305,7 @@ public class AdminControlador {
 		return "plantillas-admin/editar-categoria";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/edicion-categoria")
 	public String editarCategoria(
 			@RequestParam("id") String id, 
@@ -305,6 +326,7 @@ public class AdminControlador {
 		return "redirect:/admin/lista-de-categorias";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/editar-profesor/{id}")
 	public String editarProfesor(ModelMap modelo, @PathVariable("id") String idProfesor) {
 		
@@ -324,6 +346,7 @@ public class AdminControlador {
 		return "plantillas-admin/editar-profesor";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/modificar-estado-profesor/{id}")
 	public String modificarEstadoProfesor(@PathVariable("id") String id) {
 		
@@ -338,6 +361,7 @@ public class AdminControlador {
 		return "redirect:/admin/lista-de-profesores";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/edicion-profesor")
 	public String editarProfesor(
 			@RequestParam("id") String id, 

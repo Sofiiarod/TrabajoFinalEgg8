@@ -1,6 +1,7 @@
 package com.scire.servicios;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +50,9 @@ public class CursoServicio {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Profesor profesorID)
 			throws ErrorException {
-		try{
+
+
+		try {
 			validar(nombre, descripcion, url, categoriaID, profesorID);
 			Curso curso = new Curso();
 			curso.setNombre(nombre);
@@ -60,16 +63,9 @@ public class CursoServicio {
 			curso.setProfesor(profesorID);
 			return cursoRepo.save(curso);
 		} catch (Exception e) {
-			System.out.println("error " + e.getMessage());
+			System.out.println("ERROR "+ e.getMessage());
+			return null;
 		}
-		Curso curso = new Curso();
-		curso.setNombre(nombre);
-		curso.setDescripcion(descripcion);
-		curso.setUrl(url);
-		curso.setEstado(true);
-		curso.setCategoria(categoriaID);
-		curso.setProfesor(profesorID);
-		return cursoRepo.save(curso);
 	}
 
 	// MODIFICAR O ACTUALIZAR DATOS
@@ -156,9 +152,10 @@ public class CursoServicio {
 	public void validar(String nombre, String descripcion, String url, Categoria categoria, Profesor profesor)
 			throws ErrorException {
 
-		if (nombre.isEmpty() || nombre == null || nombre.contains(" ")) {
+		if (nombre.trim().isEmpty() || nombre == null) {
 			throw new ErrorException("Debe de indicarle un nombre");
 		}
+
 		if (descripcion.trim().isEmpty()) {
 			throw new ErrorException("El Curso necesita una descripcion");
 		}
@@ -209,6 +206,7 @@ public class CursoServicio {
 			}
 		}
 	}
+	
 
 //BUSCAR POR NOMBRE	
 	public Optional<Curso> buscarCursosPorNombre(String nombre) throws ErrorException {

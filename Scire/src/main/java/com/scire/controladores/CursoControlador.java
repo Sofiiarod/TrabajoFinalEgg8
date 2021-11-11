@@ -42,13 +42,16 @@ public class CursoControlador {
 	
 	
 
-	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping()
 	public String cursosActivos(ModelMap modelo) throws ErrorException {
 		try {
 			List<Curso> cursosActivos = cursoServicio.buscarCursosPorEstado(true);
 			modelo.addAttribute("cursos", cursosActivos);
+
 			List<Categoria> listaCategoriasActivas = categoriaServicio.listarTodos();
+
+//			List<Categoria> listaCategoriasActivas = categoriaServicio.mostrarTodos();
 			modelo.addAttribute("categorias", listaCategoriasActivas);
 			List<Profesor> listaProfesoresActivos = profesorServicio.mostrarTodos();
 			modelo.addAttribute("profesores", listaProfesoresActivos);
@@ -62,18 +65,21 @@ public class CursoControlador {
 
 
 
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
+
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/ver")
 	public String vistaCurso(ModelMap model,@RequestParam String idCurso) throws ErrorException {
      Curso curso =cursoServicio.encontrarPorID(idCurso);//trae activos e inactivos
 		model.addAttribute("curso",curso);
-		return "/cursos/vista-curso.html";
+
+		return "cursos/vista-curso.html";
 
 	}
 	
 	
 	
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
+
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/categorias")
 	public String categoriasActivas(@RequestParam String idCategoria, ModelMap modelo){
 
@@ -93,6 +99,7 @@ public class CursoControlador {
 		
 		return "cursos/index-menu-vertical.html";
 	}
+
 	@GetMapping("/registro")
 	public String registro() {
 		return "registro-curso.html";
@@ -116,6 +123,9 @@ public class CursoControlador {
 
 	}
 
+
+	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/profesores")
 	public String profesoresActivos(@RequestParam String idProfesor, ModelMap modelo){
 
