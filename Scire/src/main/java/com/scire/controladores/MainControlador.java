@@ -52,10 +52,10 @@ public class MainControlador {
 			modelo.addAttribute("curso3", curso3);
 			modelo.addAttribute("curso4", curso4);
 			
-			/*modelo.addAttribute("plantilla1", cursoServicio.urlImagen(curso1.getId()));
+			modelo.addAttribute("plantilla1", cursoServicio.urlImagen(curso1.getId()));
 			modelo.addAttribute("plantilla2", cursoServicio.urlImagen(curso2.getId()));
 			modelo.addAttribute("plantilla3", cursoServicio.urlImagen(curso3.getId()));
-			modelo.addAttribute("plantilla4", cursoServicio.urlImagen(curso4.getId()));*/
+			modelo.addAttribute("plantilla4", cursoServicio.urlImagen(curso4.getId()));
 			
 			List<Profesor> profesor = profesorServicio.mostrarTodos();
 			Profesor profesor1 = profesor.get(0);
@@ -101,11 +101,28 @@ public class MainControlador {
 			return "login.html";
 		}
 	}
-	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
-	@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
-	public String loginresolver() {
+
+	//@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
+	//@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
+	//public String loginresolver() {
 				
-		return "index-menu-vertical.html";
+	//	return "redirect:/cursos";
+
+	
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@RequestMapping("/cursos")
+	public String loginUsuario() {
+		return "redirect:/cursos";
+	}
+	
+	/**
+	 * TODO arreglar la redireccion del admin 
+	 * @return
+	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@RequestMapping("/admin")
+	public String loginAdmin() {
+		return "redirect:/admin/inicio";
 	}
 
 	

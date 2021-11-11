@@ -34,14 +34,16 @@ public class CursoControlador {
 	private ProfesorServicio profesorServicio;
 	
 
-	
 
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
-	@GetMapping("/")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@GetMapping()
 	public String cursosActivos(ModelMap modelo){
 		try {
 			List<Curso> cursosActivos = cursoServicio.buscarCursosPorEstado(true);
 			modelo.addAttribute("cursos", cursosActivos);
+			
+			
+			
 			List<Categoria> listaCategoriasActivas = categoriaServicio.mostrarTodos();
 			modelo.addAttribute("categorias", listaCategoriasActivas);
 			List<Profesor> listaProfesoresActivos = profesorServicio.mostrarTodos();
@@ -52,10 +54,21 @@ public class CursoControlador {
 				e.getMessage();
 		}
 		
-		return "index-menu-vertical.html";
+		return "cursos/index-menu-vertical.html";
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@GetMapping("/ver")
+	public String vistaCurso(ModelMap model,@RequestParam String idCurso) throws ErrorException {
+     Curso curso =cursoServicio.encontrarPorID(idCurso);//trae activos e inactivos
+		model.addAttribute("curso",curso);
+		return "cursos/vista-curso.html";
+
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	
+	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/categorias")
 	public String categoriasActivas(@RequestParam String idCategoria, ModelMap modelo){
 
@@ -73,10 +86,10 @@ public class CursoControlador {
 				e.getMessage();
 		}
 		
-		return "index-menu-vertical.html";
+		return "cursos/index-menu-vertical.html";
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/profesores")
 	public String profesoresActivos(@RequestParam String idProfesor, ModelMap modelo){
 
@@ -94,17 +107,9 @@ public class CursoControlador {
 				e.getMessage();
 		}
 		
-		return "index-menu-vertical.html";
+		return "cursos/index-menu-vertical.html";
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_USER')") 
-	@GetMapping("/ver/{id}") 
-	public String vistaCurso(ModelMap model,@RequestParam String idCurso) throws ErrorException { 
-		Curso curso =cursoServicio.encontrarPorID(idCurso);//trae activos e inactivos 
-		model.addAttribute("curso",curso); 
-		
-		return "vista-curso.html";
-		
-	}
+	
 	
 }

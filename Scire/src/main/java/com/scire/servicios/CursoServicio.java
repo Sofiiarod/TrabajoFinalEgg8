@@ -1,6 +1,7 @@
 package com.scire.servicios;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,15 +50,21 @@ public class CursoServicio {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Profesor profesorID)
 			throws ErrorException {
-		validar(nombre, descripcion, url, categoriaID, profesorID);
-		Curso curso = new Curso();
-		curso.setNombre(nombre);
-		curso.setDescripcion(descripcion);
-		curso.setUrl(url);
-		curso.setEstado(true);
-		curso.setCategoria(categoriaID);
-		curso.setProfesor(profesorID);
-		return cursoRepo.save(curso);
+
+		try {
+			validar(nombre, descripcion, url, categoriaID, profesorID);
+			Curso curso = new Curso();
+			curso.setNombre(nombre);
+			curso.setDescripcion(descripcion);
+			curso.setUrl(url);
+			curso.setEstado(true);
+			curso.setCategoria(categoriaID);
+			curso.setProfesor(profesorID);
+			return cursoRepo.save(curso);
+		} catch (Exception e) {
+			System.out.println("ERROR "+ e.getMessage());
+			return null;
+		}
 	}
 
 	// MODIFICAR O ACTUALIZAR DATOS
@@ -144,10 +151,10 @@ public class CursoServicio {
 	public void validar(String nombre, String descripcion, String url, Categoria categoria, Profesor profesor)
 			throws ErrorException {
 
-		if (nombre.isEmpty() || nombre == null || nombre.contains(" ")) {
+		if (nombre.trim().isEmpty() || nombre == null) {
 			throw new ErrorException("Debe de indicarle un nombre");
 		}
-		if (descripcion.isEmpty() || descripcion == null || descripcion.contains(" ")) {
+		if (descripcion.trim().isEmpty()|| descripcion == null) {
 			throw new ErrorException("El Curso necesita una descripcion");
 		}
 		/*if (url.isEmpty() || url == null || url.contains(" ")) {
@@ -197,6 +204,7 @@ public class CursoServicio {
 			}
 		}
 	}
+	
 
 //BUSCAR POR NOMBRE	
 	public Optional<Curso> buscarCursosPorNombre(String nombre) throws ErrorException {
@@ -259,17 +267,17 @@ public class CursoServicio {
 		}
 
 //BUSCAR CURSOS DE UN USUARIO
-	public List<Curso> buscarCursosPorUsuario(String id_usuario) throws ErrorException {
-		Usuario usuario = usuarioRepo.getById(id_usuario);
-		List<Curso> listaCursos = cursoRepo.findByUsuarios(usuario);
-
-		if (!listaCursos.isEmpty()) {
-			return listaCursos;
-		} else {
-			throw new ErrorException("No hay cursos para este usuario");
-		}
-	}
-	
+//	public List<Curso> buscarCursosPorUsuario(String id_usuario) throws ErrorException {
+//		Usuario usuario = usuarioRepo.getById(id_usuario);
+//		List<Curso> listaCursos = cursoRepo.findByUsuarios(usuario);
+//
+//		if (!listaCursos.isEmpty()) {
+//			return listaCursos;
+//		} else {
+//			throw new ErrorException("No hay cursos para este usuario");
+//		}
+//	}
+//	
 	//BUSCAR CURSOS ACTIVOS DE UN USUARIO
 		public List<Curso> buscarCursosActivosPorUsuario(String id_usuario) throws ErrorException {
 			Usuario usuario = usuarioRepo.getById(id_usuario);	

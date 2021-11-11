@@ -14,15 +14,15 @@
 	
 		<div class="container-fluid" style="width:50%;">
 		
-				<a th:href="@{../lista-de-categorias}" class="btn btn-outline-warning">Volver</a>
+				<a th:href="@{../lista-de-profesores}" class="btn btn-outline-warning">Volver</a>
 						
-				<form class="row g-3" th:action="@{../edicion-categoria}" method="post">
+				<form class="row g-3" th:action="@{../edicion-profesor}" method="post">
 				
 				  <div class="col-md-6">
-				  	<input type="hidden" hidden name="id" th:value="${categoria.id}" class="form-control" >
+				  	<input type="hidden" hidden name="id" th:value="${profesor.id}" class="form-control" >
 				  	
-				    <label for="inputEmail4" class="form-label" th:text="'El nombre a cambiar es: '+${categoria.nombre}"></label>
-				    <input type="text" name="nombreDeCategoria" class="form-control" id="inputEmail4" required>
+				    <label for="inputEmail4" class="form-label" th:text="'El nombre a cambiar es: '+${profesor.nombre}"></label>
+				    <input type="text" name="nombreDeProfesor" class="form-control" id="inputEmail4" required>
 				  </div>
 				  
 				  <div class="col-md-12">

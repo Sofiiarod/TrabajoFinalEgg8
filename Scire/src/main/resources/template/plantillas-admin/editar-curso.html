@@ -12,11 +12,17 @@
 	
 		<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
 	
+	
+		
+			
 		<div class="container-fluid" style="width:50%;">
+			
+			<a th:href="@{../lista-de-cursos}" class="btn btn-outline-warning">Volver</a>
+		
 				<form class="row g-3" th:action="@{../edicion-curso}" method="post">
 				
 				  <div class="col-md-6">
-				  	<input type="text" name="id" th:value="${curso.id}" th:text="${curso.id}" class="form-control" hidden>
+				  	<input type="hidden" name="id" th:value="${curso.id}" class="form-control" >
 				  	
 				    <label for="inputEmail4" class="form-label" th:text="'El nombre a cambiar es: '+${curso.nombre}"></label>
 				    <input type="text" name="nombreDelCurso" class="form-control" id="inputEmail4" required>

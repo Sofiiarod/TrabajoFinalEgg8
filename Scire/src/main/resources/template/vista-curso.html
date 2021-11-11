@@ -5,14 +5,15 @@
 	
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-	
+	<!-- Este título habíamos pensado que también debiese ser dinámico para que aparezca el nombre del curso al que acabas de acceder -->
+    <!-- La etiqueta <title> hace referencia a lo que aparece escrito en la pestaña en el navegador, por si alguno no sabe -->
 	<title>Curso</title>
 	</head>
 <body>
 	<header th:replace="fragments/header :: header-front"></header>
 	
 	<div class="container pt-5">
-        <h1 th:text="@{curso.nombre}" class="text-center"></h1>
+        <h1 th:text="${curso.nombre}" class="text-center"></h1>
     </div>
 
     <div class="container py-3">
@@ -22,11 +23,12 @@
     </div>
     <hr width="60%" class="bg-dark ">
     <div class="container pt-2">
-        <p th:text="@{curso.descripcion}">
+        <p th:text="${curso.descripcion}">
         </p>
     </div>
     <div class="container d-flex justify-content-center pt-2">
-        <a href="#" th:href="@{/cursos/activo}" class="btn btn-dark mb-5">Volver a cursos</a>
+        <!-- ESTA RUTA CREO QUE AHORA CAMBIÓ. PRESTAR ATENCIÓN!!!!!!! -->
+        <a href="#" th:href="@{/cursos}" class="btn btn-dark mb-5">Volver a cursos</a>
     </div>
 	
 	
