@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="UTF-8">
 	
@@ -10,7 +10,7 @@
 	</head>
 <body>
 	<header th:replace="fragments/header :: header-front"></header>
-	<div th:action="@{/cursos/ver/__${id}__">
+	
 	<div class="container pt-5">
         <h1 th:text="@{curso.nombre}" class="text-center"></h1>
     </div>
@@ -31,6 +31,6 @@
 	
 	
 	<div th:replace="fragments/footer :: footer-front"></div>
-	</div>
+	
 </body>
 </html>

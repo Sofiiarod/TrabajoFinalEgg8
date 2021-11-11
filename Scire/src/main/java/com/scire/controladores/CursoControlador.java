@@ -36,8 +36,8 @@ public class CursoControlador {
 
 	
 
-	
-	@GetMapping()
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@GetMapping("/")
 	public String cursosActivos(ModelMap modelo){
 		try {
 			List<Curso> cursosActivos = cursoServicio.buscarCursosPorEstado(true);
@@ -52,10 +52,10 @@ public class CursoControlador {
 				e.getMessage();
 		}
 		
-		return "cursos/index-menu-vertical.html";
+		return "index-menu-vertical.html";
 	}
 	
-	
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@GetMapping("/categorias")
 	public String categoriasActivas(@RequestParam String idCategoria, ModelMap modelo){
 
@@ -73,9 +73,10 @@ public class CursoControlador {
 				e.getMessage();
 		}
 		
-		return "cursos/index-menu-vertical.html";
+		return "index-menu-vertical.html";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@GetMapping("/profesores")
 	public String profesoresActivos(@RequestParam String idProfesor, ModelMap modelo){
 
@@ -93,7 +94,7 @@ public class CursoControlador {
 				e.getMessage();
 		}
 		
-		return "cursos/index-menu-vertical.html";
+		return "index-menu-vertical.html";
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_USER')") 

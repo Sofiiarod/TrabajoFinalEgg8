@@ -105,7 +105,7 @@ public class MainControlador {
 	@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
 	public String loginresolver() {
 				
-		return "inicio.html";
+		return "index-menu-vertical.html";
 	}
 
 	
