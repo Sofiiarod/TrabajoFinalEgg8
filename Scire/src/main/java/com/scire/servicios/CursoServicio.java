@@ -49,7 +49,19 @@ public class CursoServicio {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Profesor profesorID)
 			throws ErrorException {
-		validar(nombre, descripcion, url, categoriaID, profesorID);
+		try{
+			validar(nombre, descripcion, url, categoriaID, profesorID);
+			Curso curso = new Curso();
+			curso.setNombre(nombre);
+			curso.setDescripcion(descripcion);
+			curso.setUrl(url);
+			curso.setEstado(true);
+			curso.setCategoria(categoriaID);
+			curso.setProfesor(profesorID);
+			return cursoRepo.save(curso);
+		} catch (Exception e) {
+			System.out.println("error " + e.getMessage());
+		}
 		Curso curso = new Curso();
 		curso.setNombre(nombre);
 		curso.setDescripcion(descripcion);
@@ -147,7 +159,7 @@ public class CursoServicio {
 		if (nombre.isEmpty() || nombre == null || nombre.contains(" ")) {
 			throw new ErrorException("Debe de indicarle un nombre");
 		}
-		if (descripcion.isEmpty() || descripcion == null || descripcion.contains(" ")) {
+		if (descripcion.trim().isEmpty()) {
 			throw new ErrorException("El Curso necesita una descripcion");
 		}
 		/*if (url.isEmpty() || url == null || url.contains(" ")) {

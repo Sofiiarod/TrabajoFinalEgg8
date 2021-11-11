@@ -43,7 +43,7 @@ public class CursoControlador {
 	
 
 	
-	@GetMapping("/activos")
+	@GetMapping()
 	public String cursosActivos(ModelMap modelo) throws ErrorException {
 		try {
 			List<Curso> cursosActivos = cursoServicio.buscarCursosPorEstado(true);
@@ -57,17 +57,17 @@ public class CursoControlador {
 				e.getMessage();
 		}
 		
-		return "index-menu-vertical.html";
+		return "/cursos/index-menu-vertical.html";
 	}
 
 
 
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
-	@GetMapping("/ver/{id}")
+	@GetMapping("/ver")
 	public String vistaCurso(ModelMap model,@RequestParam String idCurso) throws ErrorException {
      Curso curso =cursoServicio.encontrarPorID(idCurso);//trae activos e inactivos
 		model.addAttribute("curso",curso);
-		return "ver-cursos.html";
+		return "/cursos/vista-curso.html";
 
 	}
 	

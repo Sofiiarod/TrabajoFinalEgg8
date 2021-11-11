@@ -56,7 +56,7 @@ public class UsuarioControlador {
 	 * @param session captura el usuario logueado
 	 * @return
 	 */
-	@PreAuthorize("hasAnyRole('ROLE_USER')") // El Usuario puede editar el perfil si solo si esta registrado
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')") // El Usuario puede editar el perfil si solo si esta registrado
 	@GetMapping("/editar-perfil")
 	public String editarPerfil(HttpSession session, @RequestParam String id, ModelMap model) {
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession"); // aca va a obtener y usar un usuario
@@ -76,7 +76,7 @@ public class UsuarioControlador {
 		return "perfil.html";
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_USER')") // El Usuario puede editar el perfil si solo si esta registrado
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')") // El Usuario puede editar el perfil si solo si esta registrado
 	@PostMapping("/actualizar-perfil")
 	public String actualizar(ModelMap model, HttpSession session,MultipartFile archivo, @RequestParam String id, @RequestParam String nombre,
 			@RequestParam String apellido,@RequestParam String clave,

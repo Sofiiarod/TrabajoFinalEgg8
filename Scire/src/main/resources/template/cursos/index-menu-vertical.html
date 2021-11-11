@@ -49,6 +49,7 @@
 
         <div class="listado-cursos">
             <div th:each="curso : ${cursos}" class="card" style="width: 15rem; height: auto;">
+            	<img src="@{" class="card-img-top tamanio-imagen" alt="...">
                 <img src="/img/codigo-programacion.jpg" class="card-img-top tamanio-imagen" alt="...">
                 <div class="card-body">
                     <h5 th:text="${curso.nombre}" class="card-title"></h5>
