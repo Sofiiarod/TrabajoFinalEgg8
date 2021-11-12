@@ -60,6 +60,14 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 		
+		this.mailBienvenida(entidad);		
+
+		return usuarioRepo.save(entidad);
+	
+	}
+	
+	public void mailBienvenida(Usuario entidad) {
+		
 		String titulo= "Bienvenido a la comunidad Scire";
 		String cuerpo="Hola "+ entidad.getNombre()+ ","+"\n"+"\n"+
 		"Aprende participando,\r\n"
@@ -69,14 +77,11 @@ public class UsuarioServicio implements UserDetailsService {
 		+"Saludos!"+"\n"+
 		"Comunidad Scire";
 		
-
 		notificacionServ.enviar(cuerpo, titulo, entidad.getEmail());
-
-
-
-		return usuarioRepo.save(entidad);
-	
+		
 	}
+	
+	
 	
 	//HAGO LAS VALIDACIONES NECESARIAS PARA CREAR EL USUARIO
 	public void validar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
