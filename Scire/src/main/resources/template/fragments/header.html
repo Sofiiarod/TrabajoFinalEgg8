@@ -29,6 +29,10 @@
 		      	<a href="#" th:href="@{/login}" class="btn btn-outline-dark mx-2">Entrar</a>
 		      	<a href="#" th:href="@{/usuario/registrar}" class="btn btn-outline-dark">Crear cuenta</a>
 		      </div>
+		      <div th:if="${session.usuariosession != null}">
+		      		<a th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Editar Perfil</a>
+		      		<a th:href="@{/logout(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Logout</a>
+		      </div>
 		    </div>
 		  </div>
 		</nav>

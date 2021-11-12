@@ -72,37 +72,8 @@
 		                    </div>
                             <!-- Fin Mensajes emergentes -->
                             <form class="user" th:action="@{/usuario/registrar}" method="POST" enctype="multipart/form-data">
-                            	<p th:if="${error != null}" th:text=${error} style="color:red;"></p>
-                                <!--  
-                                <p th:if="${Error != null}" th:text="${Error}"></p>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="Nombre" name="nombre">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Apellido" name="apellido">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Correo electrónico" name="email">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Contraseña" name="clave">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repetir contraseña" name="clave2">
-                                    </div>
-                                </div>
-                                <a href="#" th:href="@{/usuario/registrar}" class="btn btn-primary btn-user btn-block">
-                                    Registrarme
-                                </a> -->
-                                <p th:if="${Error != null}" th:text="${Error}"></p>
+<!--                             	<p th:if="${error != null}" th:text=${error} style="color:red;"></p> -->
+                                <p th:if="${error != null}" th:text="${error}"></p>
 								<div class="form-group">
 									<label>Nombre</label> <input type="text" class="form-control"
 										name="nombre" placeholder="Ingrese su nombre"> 

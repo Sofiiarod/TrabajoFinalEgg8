@@ -24,7 +24,7 @@ public class UsuarioControlador {
 
 	@Autowired
 	private UsuarioServicio usuarioServicio;
-
+	
 
 	@GetMapping("/registrar")
 	public String registrar() {
@@ -60,7 +60,7 @@ public class UsuarioControlador {
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )") // El Usuario puede editar el perfil si solo si esta registrado
 	@GetMapping("/editar-perfil")
-	public String editarPerfil(HttpSession session, @RequestParam String id, ModelMap model) {
+	public String editarPerfil(HttpSession session,@RequestParam String id, ModelMap model) {
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession"); // aca va a obtener y usar un usuario
 																				// logueado usa logueado como variable
 		if (logueado == null || !logueado.getId().equals(id)) {// si logueado es null significa que en esa session no
@@ -72,8 +72,11 @@ public class UsuarioControlador {
 		try {
 			Usuario usuario = usuarioServicio.buscarPorId(id);
 			model.addAttribute("perfil", usuario);
+			return "perfil.html";
 		} catch (ErrorException e) {
-			model.addAttribute("error", e.getMessage());
+//			model.addAttribute("error", e.getMessage());
+			System.out.println("Error 79: " + e.getMessage() );
+			
 		}
 		return "perfil.html";
 	}
@@ -81,23 +84,24 @@ public class UsuarioControlador {
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )") // El Usuario puede editar el perfil si solo si esta registrado
 	@PostMapping("/actualizar-perfil")
-	public String actualizar(ModelMap model, HttpSession session,MultipartFile archivo, @RequestParam String id, @RequestParam String nombre,
-			@RequestParam String apellido,@RequestParam String clave,
+	public String actualizar(ModelMap model, HttpSession session,MultipartFile archivo,@RequestParam String id,@RequestParam String nombre,@RequestParam String apellido,String email,
+			@RequestParam String clave,
 			@RequestParam String clave2) {
 		
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 		if (logueado == null || !logueado.getId().equals(id)) {
 			return "index.html";
 			}
-		
+		System.out.println("Error");
 		try {
-			Usuario usuario = usuarioServicio.buscarPorId(id);
-               usuarioServicio.modificar(archivo, id, nombre, apellido, clave, clave2);
+			   Usuario usuario = usuarioServicio.buscarPorId(id);
+               usuarioServicio.modificar(archivo, id, nombre, apellido, email, clave, clave2);
                session.setAttribute("usuariosession", usuario); // es para usar el usuario logueado en thymeleaf 
-               return "inicio.html";
+               return "redirect:/cursos";
 		} catch (ErrorException e) {
-			model.addAttribute("error", e.getMessage());
-			return "perfil.html";
+//			model.addAttribute("error", e.getMessage());
+			System.out.println("Error: 103" + e.getMessage());
+			return "../template/perfil.html";
 		}
 
 

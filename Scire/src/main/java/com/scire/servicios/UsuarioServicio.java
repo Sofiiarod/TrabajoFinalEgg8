@@ -92,9 +92,9 @@ public class UsuarioServicio implements UserDetailsService {
 			throw new ErrorException("Debe tener un email valido");
 		}
 
-		if (usuarioRepo.buscarPorEmail(email) != null) {
-			throw new ErrorException("El Email ya esta en uso");
-		}
+//		if (usuarioRepo.buscarPorEmail(email) != null) {
+//			throw new ErrorException("El Email ya esta en uso");
+//		}
 		// la clave no debe ser nula, no debe estar vacia, no debe contener espacios,
 		// debe tener entre 8 y 12 caracteres
 
@@ -166,14 +166,15 @@ public class UsuarioServicio implements UserDetailsService {
 	// MODIFICAR USUARIO
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-	public void modificar(MultipartFile archivo,String id, String nuevonombre, String nuevoapellido, String clave1, String clave2)
+	public void modificar(MultipartFile archivo,String id, String nombre, String apellido,String email, String clave, String clave2)
 			throws ErrorException {
 		try {
-			validar(nuevonombre, nuevoapellido, nuevoapellido, clave1, clave2);
+			validar(nombre, apellido, email, clave, clave2);
 			Usuario entidad = usuarioRepo.getById(id);
-			entidad.setNombre(nuevonombre);
-			entidad.setApellido(nuevoapellido);
-			String encriptada = new BCryptPasswordEncoder().encode(clave1);
+			entidad.setNombre(nombre);
+			entidad.setApellido(apellido);
+			entidad.setEmail(email);
+			String encriptada = new BCryptPasswordEncoder().encode(clave);
 			entidad.setClave(encriptada);
 			String idFoto = null;
 			if(entidad.getFoto() != null) {
@@ -183,6 +184,7 @@ public class UsuarioServicio implements UserDetailsService {
 			entidad.setFoto(foto);
 			usuarioRepo.save(entidad);
 		} catch (Exception e) {
+			System.out.println("Error:" + e.getMessage());
 			throw new ErrorException("No se pudieron modifcar los datos del usuario");
 		}
 

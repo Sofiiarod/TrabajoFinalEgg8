@@ -97,7 +97,7 @@ public class MainControlador {
 			model.addAttribute("logout","Ha salido correctamente");
 		}
 		if (session.getAttribute("usuariosession") != null) {
-			return "inicio.html";
+			return "login.html";
 		}else {
 			return "login.html";
 		}
@@ -111,7 +111,7 @@ public class MainControlador {
 //		return "redirect:/cursos";
 //	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@RequestMapping("/cursos")
 	public String loginUsuario() {
 		return "redirect:/cursos";
