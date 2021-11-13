@@ -18,10 +18,10 @@ p{
 
 h2{
     font-size: 30px;
-    color: white !important;
+    color: white;
 }
 
-a, h2{
+a,h1, h2,h3,h4,h5,h6{
     font-family: 'Lora', serif !important;
     text-decoration: none !important;
 }
@@ -45,11 +45,6 @@ a, h2{
     grid-gap:1em;
 }
 
-.logo{
-    filter:opacity(90%);
-    margin-top: 10px;
-    height: 100%;
-}
 
 .box{
     width: 100%;
@@ -75,14 +70,24 @@ background-color: #e5d4c0;
 
 
 .logo{
+	filter:opacity(90%);
+    margin-top: 10px;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	align-items:center;
     width:300px;
     height: 300px;
     background-color: white;
 }
 
 .logo img{
-    width:300px;
-    height: 300px;
+    width:200px;
+    height: 200px;
+}
+
+.logo h2{
+	color:black;
 }
 
 
@@ -90,7 +95,7 @@ background-color: #e5d4c0;
     height: 152px;
     display: grid;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 
 }
 
