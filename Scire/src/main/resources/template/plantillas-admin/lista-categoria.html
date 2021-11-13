@@ -84,7 +84,7 @@
     </div>
     <br>
     <br>
-    <div class="container-lg">
+    <div class="uk-container uk-container-xsmall">
     <!-- TABLA -->
         <table class="uk-table uk-table-middle uk-table-divider bg-beige uk-text-muted">
             <thead>
@@ -92,7 +92,7 @@
                     <th class="uk-width-medium">ID</th>
                     <th class="uk-width-medium">Nombre</th>
                     <th class="uk-width-small">Editar</th>
-                    <th class="uk-width-small">Eliminar</th>
+                  <!--   <th class="uk-width-small">Eliminar</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -104,8 +104,8 @@
                         <a th:href="@{/admin/editar-categoria/{id}(id=${categoria.id})}" id="btn-editar"  class="btn btn-warning" uk-icon="pencil"></a>
                     </td>
                     <td>
-                        <a th:href="@{/admin/eliminar-categoria/{id}(id=${categoria.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>
-                    </td>
+                    <!-- <a th:href="@{/admin/eliminar-categoria/{id}(id=${categoria.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>
+                    </td>-->
                 </tr>
             </tbody>
         </table>

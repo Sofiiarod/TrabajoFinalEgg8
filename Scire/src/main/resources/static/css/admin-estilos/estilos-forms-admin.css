@@ -1,8 +1,11 @@
-
-    body{
-        background-image: url(/img/admin/scire-background.jpeg);
+	html{
+		background-image: url(/img/admin/scire-background.jpeg);
         background-size: cover;
         background-repeat: no-repeat;
+	}
+	
+	
+    body{
         height:100vh;
     }
 

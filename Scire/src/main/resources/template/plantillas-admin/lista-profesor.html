@@ -94,7 +94,7 @@
                     <th class="uk-width-small">Estado</th>
                     <th class="uk-width-medium">Modificar estado</th>
                     <th class="uk-width-small">Editar</th>
-                    <th class="uk-width-small">Eliminar</th>
+                   <!--   <th class="uk-width-small">Eliminar</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -103,7 +103,7 @@
                     <td th:text="${profesor.nombre}"></td>
                     <td th:text="${profesor.alta}? 'ACTIVO' : 'INACTIVO'" ></td>
                     <td>
-                        <a href="" class="uk-button" >
+                        <a th:href="@{/admin/modificar-estado-profesor/{id}(id=${profesor.id})}" class="uk-button" >
                             <span th:if="${profesor.alta == true}" class=" uk-button btn-success" uk-icon="check"></span>
                             <span th:if="${profesor.alta == false}" class=" uk-button btn-danger" uk-icon="ban"></span>
                         </a>
@@ -111,9 +111,9 @@
                     <td>
                         <a th:href="@{/admin/editar-profesor/{id}(id=${profesor.id})}" id="btn-editar" class="btn btn-warning" uk-icon="pencil"></a>
                     </td>
-                    <td>
+                   <!--   <td>
                         <a th:href="@{/admin/eliminar-profesor/{id}(id=${profesor.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>
-                    </td>
+                    </td>-->
                 </tr>
             </tbody>
         </table>

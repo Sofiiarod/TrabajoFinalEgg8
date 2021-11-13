@@ -378,5 +378,48 @@ public class AdminControlador {
 		return "redirect:/admin/lista-de-profesores";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@GetMapping("/eliminar-curso/{id}")
+	public String eliminarCurso(@PathVariable("id") String id) throws ErrorException {
+		
+		try {
+			cursoServicio.eliminar(id);
+			
+		} catch (ErrorException e) {
+			// TODO: handle exception
+		}
+		
+		return "redirect:/admin/lista-de-cursos";
+	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@GetMapping("/eliminar-profesor/{id}")
+	public String eliminarProfesor(@PathVariable("id") String id) throws ErrorException {
+		
+		try {
+			profesorServicio.eliminar(id);
+						
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "redirect:/admin/lista-de-profesores";
+
+	}
+	
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@GetMapping("/eliminar-categoria/{id}")
+	public String eliminarCategoria(@PathVariable("id") String id) throws ErrorException {
+		
+		try {
+			categoriaServicio.eliminar(id);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "redirect:/admin/lista-de-profesores";
+
+	}
 }
