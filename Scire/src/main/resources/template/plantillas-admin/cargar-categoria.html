@@ -1,33 +1,90 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="/plantillas-admin/base-plantilla :: head">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/admin/favicon-logo.ico">
+    
+    <!-- Compiled and minified CSS -->
+    <link rel = "stylesheet"
+    href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Link Iconos fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Link Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
+    
+    <!-- Link Materialize Framework -->
+    <script type = "text/javascript"
+    src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    
+    <!-- Links Ui Kit -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/css/uikit.min.css" />
+     
+    <script type="text/javascript" src="/js-admin/admin-js.js"></script>
+    <!-- Css FORMS -->
+    <link rel="stylesheet" href="/css/admin-estilos/estilos-forms-admin.css">
+
+
+    <title>Cargar curso</title>
 </head>
 <body>
+<div class="cuerpo">
     
-    <nav th:replace="/plantillas-admin/base-plantilla :: nav"></nav>
+        <div class="flex">
+    	
+        <a th:href="@{/admin/lista-de-categorias}" class="uk-button" uk-icon="icon: chevron-double-left; ratio: 1.5">Volver</a>
+        <h2 >Nueva Categoría</h2>
+        <div class="uk-inline">
+            <button class="uk-button" uk-icon="icon:  chevron-down; ratio:1.5" type="button">Menú</button>
+            <div uk-dropdown>
+                <ul class="uk-nav uk-dropdown-nav">
+                	<li><a th:href="@{/admin/inicio}">INICIO</a></li>
+                    <li class="uk-nav-header">Cargar datos</li>
+                    <li><a th:href="@{/admin/cargar-curso}">Cargar curso</a></li>
+                    <li><a th:href="@{/admin/cargar-profesor}">Cargar profesor/a</a></li>
+                    <li th:class="uk-nav-header">Listas</li>
+                    <li><a th:href="@{/admin/lista-de-cursos}">Cursos</a></li>
+                    <li><a th:href="@{/admin/lista-de-profesores}">Profesores/as</a></li>
+                    <li><a th:href="@{/admin/lista-de-categorias}">Categorías</a></li>
+                    <li th:class="uk-nav-header">Perfil</li>
+                <!-- <li><a th:href="@{/admin/}">Configuración</a></li>
+                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li> -->    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+        <div class="form">
+    
+            <form th:action="@{/admin/agregar-categoria}" method="post">
+                <div class="row">
+                    <div class="input-field col s6">
+                      <input name="nombreDeCategoria" type="text" placeholder="Ingrese el nombre de la categoría..." id="first_name" class="validate uk-input" required>
+                      <label for="first_name">Categoria</label>
+                    </div>
+                </div>    
+                <div class="row button">
+                    <button type="submit" uk-icon="check" class="uk-button green" id="boton">
+                        <span class="black-text">Cargar</span>
+                    </button>
+                </div>
+            </form>    
+        </div>
+</div>
 
-	<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
-	
-	<h1 class="display-1">Agregar categoria</h1>
-	
-	
-	<form class="row gx-3 gy-2 align-items-center" th:action="@{./agregar-categoria}" method="post">
-		  <div class="col-sm-3">
-		    <label class="visually-hidden" for="specificSizeInputName">Ingrese nombre</label>
-		    <input name="nombreDeCategoria" type="text" class="form-control" id="specificSizeInputName" placeholder="Ingrese nombre de la categoria...">
-		  </div>
-		
-		  <div class="col-auto">
-		    <button type="submit" class="btn btn-outline-success">Submit</button>
-		  </div>
-	</form>
 
-
-
-<script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+    <!-- JS Ui Kit -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit-icons.min.js"></script>
+    
 </body>
 </html>

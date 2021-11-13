@@ -1,50 +1,116 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="/plantillas-admin/base-plantilla :: head">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <!-- Compiled and minified CSS -->
+    <link rel = "stylesheet"
+    href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Favicon -->
+    <link rel="shortcut icon" href="img/admin/favicon-logo.ico">
+
+    <!-- Link Iconos fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Link Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
+    
+    <!-- Link Materialize Framework -->
+    <script type = "text/javascript"
+    src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    
+    <!-- Links Ui Kit -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/css/uikit.min.css" />
+     
+    <script type="text/javascript" src="/js-admin/admin-js.js"></script>
+    <!-- Css FORMS -->
+    <link rel="stylesheet" href="/css/admin-estilos/estilos-forms-admin.css">
+
+
+    <title>Cargar curso</title>
 </head>
 <body>
+<div class="cuerpo">
+    <br>
+    <div class="uk-flex uk-flex-around">
+    	
+        <a th:href="@{/admin/lista-de-cursos}" class="uk-button" uk-icon="icon: chevron-double-left; ratio: 1.5">Volver</a>
+        <h2 >Nuevo curso</h2>
+        <div class="uk-inline">
+            <button class="uk-button" uk-icon="icon:  chevron-down; ratio:1.5" type="button">Menú</button>
+            <div uk-dropdown>
+                <ul class="uk-nav uk-dropdown-nav">
+                	<li><a th:href="@{/admin/inicio}">INICIO</a></li>
+                    <li class="uk-nav-header">Cargar datos</li>
+                    <li><a th:href="@{/admin/cargar-profesor}">Cargar profesor/a </a></li>
+                    <li><a th:href="@{/admin/cargar-categoria}">Cargar categoría</a></li>
+                    <li th:class="uk-nav-header">Listas</li>
+                    <li><a th:href="@{/admin/lista-de-cursos}">Cursos</a></li>
+                    <li><a th:href="@{/admin/lista-de-profesores}">Profesores/as</a></li>
+                    <li><a th:href="@{/admin/lista-de-categorias}">Categorías</a></li>
+					<li th:class="uk-nav-header">Perfil</li>
+                <!-- <li><a th:href="@{/admin/}">Configuración</a></li>
+                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li> -->    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
     
-    <nav th:replace="/plantillas-admin/base-plantilla :: nav"></nav>
-
-	<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
-
-<div class="container-fluid" style="width:50%;">
-		<form class="row g-3" th:action="@{/admin/agregar-curso}" method="post">
-	  <div class="col-md-6">
-	    <label for="inputEmail4" class="form-label">Nombre del curso</label>
-	    <input type="text" name="nombreDelCurso" class="form-control" id="inputEmail4" required>
-	  </div>
-	  <div class="col-md-6">
-	    <label for="inputState" class="form-label">Profesores</label>
-	    <select name="idProfesor" id="inputState" class="form-select">
-	      <option name="idProfesor" th:each="profesor : ${profesores}" th:text="${profesor.nombre}" th:value="${profesor.id}" required></option>
-	    </select>
-	  </div>
-	  	  <div class="col-md-12">
-	    <label for="inputState" class="form-label">Categoria</label>
-	    <select name="idCategoria" id="inputState" class="form-select" >
-	      <option name="idCategoria" th:each="categoria : ${categorias}" th:text="${categoria.nombre}" th:value="${categoria.id}" required ></option>
-	    </select>
-	  </div>
-	  <div class="col-md-12">
-	  <label for="floatingTextarea2">Descripcion</label>
-	    <textarea class="form-control" name="descripcion" placeholder="Deje una breve descripcion..." id="floatingTextarea2" style="height: 100px" required></textarea>
-	  
-	  </div>
-	  <div class="col-md-12">
-	    <label for="inputAddress" class="form-label" required>Id de Youtube</label>
-	    <input type="text" name="idDeYoutube" class="form-control" id="inputAddress" placeholder="Ingrese id de youtube">
-	  </div>
-	  <div class="col-md-6">
-	    <button type="submit" class="btn btn-outline-success sticky-sm-top">Cargar curso</button>
-	  </div>
-	</form>
+        <div class="form">
+    
+            <form th:action="@{/admin/agregar-curso}" method="post">
+                <div class="row">
+                    <div class="input-field col s6">
+                      <input placeholder="Ingrese el nombre del curso..." name="nombreDelCurso" id="first_name" type="text" class="validate uk-input" required>
+                      <label for="first_name">Ingrese nombre</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <input id="last_name"  type="text" name="idDeYoutube" class="validate uk-input" required>
+                      <label for="last_name">Ingrese id de Youtube</label>
+                    </div>
+                  </div>
+                <div class="row">
+                    <div class="col s6">
+                        <select name="idProfesor">
+                            <option value="" disabled selected>Seleccione profesor/a</option>
+                            <option th:each="profesor : ${profesores}" th:text="${profesor.nombre}" th:value="${profesor.id}" required>Option 1</option>
+                        </select>
+                    </div>
+                    <div class="col s6">
+                    	
+                        <select name="idCategoria">
+                          <option value="" disabled selected>Seleccione categoría</option>
+                          <option th:each="categoria : ${categorias}" th:text="${categoria.nombre}" th:value="${categoria.id}" required class= "black-text text-darken-2" text="1"></option>
+                        </select>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="textarea1" name="descripcion" class="materialize-textarea uk-textarea" onkeyup="countChars(this)" required></textarea>
+                        <p id="charNum"></p>
+                        <label for="textarea1">Descripción</label>
+                    </div>
+                </div>
+                <div class="row button">
+                    <button type="submit" uk-icon="check" class="uk-button green" id="boton">
+                        <span class="black-text">Cargar</span>
+                    </button>
+                </div>
+            </form>    
+        </div>
 </div>
-
-<script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+    
+    
+    <!-- JS Ui Kit -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit-icons.min.js"></script>
 </body>
 </html>
