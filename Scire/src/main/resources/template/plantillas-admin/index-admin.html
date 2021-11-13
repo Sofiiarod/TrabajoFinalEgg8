@@ -21,13 +21,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
     <div class="barra">
-        <h2>Bienvenido/a: <span>Nombre</span></h2>
+        <h2>Bienvenido/a: <span th:text="${session.usuariosession.nombre}"></span></h2>
     </div>
     <br>
     <br>
     <br>
     <br>
-    <nav clas= "contenedor-menu">
+    <nav class= "contenedor-menu">
         
         <main class="menu">
             <div class="elemento-menu">
