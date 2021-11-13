@@ -31,7 +31,10 @@ public void enviarModificarContraseña(String cuerpo, String titulo, String emai
     SimpleMailMessage mensaje = new SimpleMailMessage();
     String mensajeAnterior = "";
 
-    mensajeAnterior = " Su nueva Contraseña es: " + contraseña;
+    mensajeAnterior = "Hola de nuevo,"+"\n"
+    		        + "Ingresa con esta nueva clave: " + contraseña + "\n"+"\n"
+    		        + "Saludos"+"\n"
+    		        + "Comunidad Scire"+ "\n";
 
     mensaje.setFrom("scireedu@gmail.com");
     mensaje.setTo(email);
