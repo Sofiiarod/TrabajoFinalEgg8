@@ -1,0 +1,82 @@
+	html{
+		background-image: url(/img/admin/scire-background.jpeg);
+        background-size: cover;
+        background-repeat: no-repeat;
+	}
+	
+	
+    body{
+        height:100vh;
+    }
+
+    a, h1, h2, h3, h4, h5, h6{
+        color:white;
+        font-family: 'Lora', serif;
+    }
+
+    p{
+        color:black;
+        font-family: 'Yaldevi', sans-serif;
+    }
+    
+    .uk-button{
+    	color:white;
+    }
+    
+    .uk-button-secondary{
+            color:white;
+            filter:opacity(90%);
+        }
+
+        .uk-table th {
+            color:white;
+            filter:opacity(10%);
+        }
+        
+     
+
+    .cuerpo{
+        height: 100vh;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .flex{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin:10px;
+    }
+    
+    .uk-button:hover{
+        color:#cb94c7;
+    }
+
+     .form{
+         align-self: center;
+         display: flex;
+         width:85%;
+         height:100%;
+         justify-content: space-around;
+         align-items: center;
+     }
+
+     form{
+         width:60%;
+         padding: 15px;
+         background-color: white;
+         border-radius: 5px;
+         filter: opacity(85%);
+     }
+
+     .button{
+        margin-left: 41%;
+     }
+
+     .boton{
+         border: .5px solid white;
+
+     }

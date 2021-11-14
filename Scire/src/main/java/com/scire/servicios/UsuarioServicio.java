@@ -62,21 +62,46 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 
+
 		Foto foto = fotoServicio.guardar(archivo);
 		entidad.setFoto(foto);
-		;
+		
 
-		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+//		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+
+		
+		this.mailBienvenida(entidad);		
+
 
 		return usuarioRepo.save(entidad);
 
 	}
 
-	// HAGO LAS VALIDACIONES NECESARIAS PARA CREAR EL USUARIO
-	public void validar(String nombre, String apellido, String email, String clave, String clave2)
-			throws ErrorException {
 
-		if (!clave.equals(clave2)) {
+
+	
+	public void mailBienvenida(Usuario entidad) {
+		
+		String titulo= "Bienvenido a la comunidad Scire";
+		String cuerpo="Hola "+ entidad.getNombre()+ ","+"\n"+"\n"+
+		"Aprende participando,\r\n"
+		+ "accede a los mejores cursos online."+"\n"
+		+ "Interactúa con los mejores profesionales y descubre un mundo de posibilidades.\r\n"+"\n"
+		+ "Estamos para responderte todas tus dudas."+ "\n"
+		+"Saludos!"+"\n"+
+		"Comunidad Scire";
+		
+		notificacionServ.enviar(cuerpo, titulo, entidad.getEmail());
+		
+	}
+	
+	
+	
+	//HAGO LAS VALIDACIONES NECESARIAS PARA CREAR EL USUARIO
+	public void validar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
+		
+		if(!clave.equals(clave2)) {
+
 			throw new ErrorException("Las claves no coinciden");
 		}
 
@@ -188,35 +213,39 @@ public class UsuarioServicio implements UserDetailsService {
 			throw new ErrorException("No se pudieron modifcar los datos del usuario");
 		}
 
+
 	}
 
-	// MODIFICAR CONTRASENIA
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
-	public void modificarClave(String id, String clave, String claveNueva) throws ErrorException {
-
-		Usuario entidad = usuarioRepo.getById(id);
-
-		// COMPARAMOS LAS CLAVES
-		// https://www.example-code.com/java/bcrypt_verify_password.asp
-		boolean passwordValid = BCrypt.checkpw(clave, entidad.getClave());
-
-		if (passwordValid == true) {
-
-			if (claveNueva == null || claveNueva.isEmpty() || claveNueva.contains("  ") || claveNueva.length() < 8
-					|| claveNueva.length() > 12) {
-				throw new ErrorException("La clave debe tener entre 8 y 12 caracteres");
-			} else {
-
-				String claveEncriptada = new BCryptPasswordEncoder().encode(claveNueva);
-				entidad.setClave(claveEncriptada);
-
-//						  entidad.setClave(new BCryptPasswordEncoder().encode(claveNueva));
-				usuarioRepo.save(entidad);
-			}
-		} else {
-			throw new ErrorException("La clave actual no es la correcta");
+		//MODIFICAR CONTRASENIA
+		@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
+		public void modificarClave(String id, String clave, String claveNueva) throws ErrorException {
+			
+			Usuario entidad = usuarioRepo.getById(id);
+			
+			//COMPARAMOS LAS CLAVES https://www.example-code.com/java/bcrypt_verify_password.asp
+			 boolean passwordValid = BCrypt.checkpw(clave, entidad.getClave());
+			 
+			 if (passwordValid == true) {
+				 
+					if (claveNueva == null || claveNueva.isEmpty() || claveNueva.contains("  ") || claveNueva.length() < 8 || claveNueva.length() > 12) {
+						throw new ErrorException("La clave debe tener entre 8 y 12 caracteres");
+					   }else {
+						   
+						  String claveEncriptada = new BCryptPasswordEncoder().encode(claveNueva);
+						  entidad.setClave(claveEncriptada);
+						   
+						  usuarioRepo.save(entidad);
+					  }	
+			}else {
+			       throw new ErrorException ("La clave actual no es la correcta");
+			      }	
 		}
-	}
+	
+		
+			
+		
+
+	
 
 	@Transactional
 	public void recuperarContrasenia(String mail) throws ErrorException {

@@ -1,5 +1,7 @@
 package com.scire.controladores;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +77,7 @@ public class CategoriaControlador {
 		}
 
 
+
 //	@Autowired
 //	private CategoriaServicio categoriaServicio;
 //	
@@ -135,4 +138,5 @@ public class CategoriaControlador {
 	
 	
 	
+
 

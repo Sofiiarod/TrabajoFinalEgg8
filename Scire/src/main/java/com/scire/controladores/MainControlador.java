@@ -117,10 +117,7 @@ public class MainControlador {
 		return "redirect:/cursos";
 	}
 	
-	/**
-	 * TODO arreglar la redireccion del admin 
-	 * @return
-	 */
+	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@RequestMapping("/admin")
 	public String loginAdmin() {

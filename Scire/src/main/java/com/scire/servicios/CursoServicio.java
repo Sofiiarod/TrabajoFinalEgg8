@@ -32,8 +32,7 @@ public class CursoServicio {
 	@Autowired
 	private ProfesorRepositorio profesorRepo;
 
-//	@Autowired
-//    private UsuarioServicio usuarioService;
+
 
 	/**
 	 * 
