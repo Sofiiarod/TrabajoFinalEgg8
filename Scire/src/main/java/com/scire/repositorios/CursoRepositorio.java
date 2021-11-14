@@ -58,6 +58,10 @@ public interface CursoRepositorio extends JpaRepository<Curso,String> {
 	
 	@Query("SELECT c FROM Curso c WHERE c.estado = true AND c.profesor = :profesor")
 	public List<Curso> buscarCursosActivosPorProfesor(@Param("profesor") Profesor profesor);
-
+	@Query("SET FOREIGN_KEY_CHECKS = 0;")
+	public void desactivarLlave();
+	@Query("SET FOREIGN_KEY_CHECKS = 1;")
+	public void activarLlave();
+	
 	
 }

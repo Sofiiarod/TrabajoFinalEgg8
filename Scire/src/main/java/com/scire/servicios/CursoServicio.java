@@ -86,9 +86,13 @@ public class CursoServicio {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public void eliminar(String id) throws ErrorException {
 		try {
+			Curso curso = cursoRepo.findById(id).get();
+			cursoRepo.desactivarLlave();
 			cursoRepo.deleteById(id);
+			cursoRepo.activarLlave();
+			
 		} catch (Exception e) {
-			throw new ErrorException("error al eliminar el curso puede que no exista");
+			throw new ErrorException("No se pudo eliminar porque no existe");
 		}
 	}
 

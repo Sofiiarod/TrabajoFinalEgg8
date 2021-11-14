@@ -59,10 +59,15 @@ public class CategoriaServicio {
 	// BUSCAR LA CATEGORÍA POR ID Y ELIMINARLA DE LA BASE DE DATOS.
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
 	public void eliminar(String id) throws ErrorException {
-
-		Categoria categoria = buscarPorId(id);
-
-		categoriaRepo.delete(categoria);
+		try {
+			Categoria categoria = buscarPorId(id);
+			categoriaRepo.desactivarLlave();
+			categoriaRepo.delete(categoria);
+			categoriaRepo.activarLlave();
+		} catch (Exception e) {
+			throw new ErrorException("No se pudo eliminar porque no existe");
+		}
+	
 
 	}
 
