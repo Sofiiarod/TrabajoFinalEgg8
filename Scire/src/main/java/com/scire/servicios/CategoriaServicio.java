@@ -61,9 +61,9 @@ public class CategoriaServicio {
 	public void eliminar(String id) throws ErrorException {
 		try {
 			Categoria categoria = buscarPorId(id);
-			categoriaRepo.desactivarLlave();
+//			categoriaRepo.desactivarLlave();
 			categoriaRepo.delete(categoria);
-			categoriaRepo.activarLlave();
+//			categoriaRepo.activarLlave();
 		} catch (Exception e) {
 			throw new ErrorException("No se pudo eliminar porque no existe");
 		}

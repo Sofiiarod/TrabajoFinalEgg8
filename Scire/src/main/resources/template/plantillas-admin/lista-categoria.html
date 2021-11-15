@@ -76,8 +76,8 @@
                     <li><a th:href="@{./lista-de-cursos}">Cursos</a></li>
                     <li><a th:href="@{./lista-de-profesores}">Profesores</a></li>
                     <li th:class="uk-nav-header">Perfil</li>
-                <!-- <li><a th:href="@{/admin/}">Configuración</a></li>
-                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li> -->
+	                <li><a th:href="@{/admin/}">Configuración</a></li>
+                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -92,7 +92,7 @@
                     <th class="uk-width-medium">ID</th>
                     <th class="uk-width-medium">Nombre</th>
                     <th class="uk-width-small">Editar</th>
-                  <!--   <th class="uk-width-small">Eliminar</th> -->
+                    <th class="uk-width-small">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -104,8 +104,8 @@
                         <a th:href="@{/admin/editar-categoria/{id}(id=${categoria.id})}" id="btn-editar"  class="btn btn-warning" uk-icon="pencil"></a>
                     </td>
                     <td>
-                    <!-- <a th:href="@{/admin/eliminar-categoria/{id}(id=${categoria.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>
-                    </td>-->
+                   <a th:href="@{/admin/eliminar-categoria/{id}(id=${categoria.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>
+                    </td> 
                 </tr>
             </tbody>
         </table>

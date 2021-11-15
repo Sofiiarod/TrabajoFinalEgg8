@@ -86,9 +86,9 @@ public class CursoServicio {
 	public void eliminar(String id) throws ErrorException {
 		try {
 			Curso curso = cursoRepo.findById(id).get();
-			cursoRepo.desactivarLlave();
+//			cursoRepo.desactivarLlave();
 			cursoRepo.deleteById(id);
-			cursoRepo.activarLlave();
+//			cursoRepo.activarLlave();
 			
 		} catch (Exception e) {
 			throw new ErrorException("No se pudo eliminar porque no existe");

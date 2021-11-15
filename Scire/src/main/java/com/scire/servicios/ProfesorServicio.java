@@ -60,9 +60,9 @@ public class ProfesorServicio {
 	public void eliminar(String id) throws ErrorException {
 		try {
 			Profesor profesor = buscarPorId(id);
-			profesorRepo.desactivarLlave();
+//			profesorRepo.desactivarLlave();
 			profesorRepo.delete(profesor);
-			profesorRepo.activarLlave();
+//			profesorRepo.activarLlave();
 		} catch (Exception e ) {
 			throw new ErrorException("No se pudo eliminar porque no existe");
 		}
