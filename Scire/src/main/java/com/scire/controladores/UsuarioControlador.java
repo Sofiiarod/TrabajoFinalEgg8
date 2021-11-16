@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
@@ -23,7 +24,7 @@ public class UsuarioControlador {
 
 	@Autowired
 	private UsuarioServicio usuarioServicio;
-
+	
 
 	@GetMapping("/registrar")
 	public String registrar() {
@@ -31,25 +32,23 @@ public class UsuarioControlador {
 	}
 
 	@PostMapping("/registrar")
-	public String registrar(ModelMap model, @RequestParam String nombre, @RequestParam String apellido,
+	public String registrar(ModelMap model,MultipartFile archivo, @RequestParam String nombre, @RequestParam String apellido,
 			@RequestParam String email, @RequestParam String clave, @RequestParam String clave2) throws ErrorException {
 		try {
-			usuarioServicio.guardar(nombre, apellido, email, clave, clave2);
-			model.put("exito", "Se ha registrado con éxito");
-		} catch (Exception e) {
+			if ( archivo == null) {
+				usuarioServicio.guardar(null, nombre, apellido, email, clave, clave2);
+			}
+			usuarioServicio.guardar(archivo, nombre, apellido, email, clave, clave2);
+			model.put("exito", "Se ha registrado con exito");
+		} catch (ErrorException e) {
 			model.put("error", e.getMessage());
 
 			return "registrarse.html";
 
 
 		}
-//		System.out.println("Nombre: " + nombre);
-//		System.out.println("Apellido: " + apellido);
-//		System.out.println("Email: " + email);
-//		System.out.println("Clave: " + clave);
-//		System.out.println("Clave2: " + clave2);
-
-
+		
+		model.put("exito", "Se ha registrado con exito");
 		return "redirect:/login";
 
 
@@ -60,9 +59,11 @@ public class UsuarioControlador {
 	 * @param session captura el usuario logueado
 	 * @return
 	 */
+
+
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )") // El Usuario puede editar el perfil si solo si esta registrado
 	@GetMapping("/editar-perfil")
-	public String editarPerfil(HttpSession session, @RequestParam String id, ModelMap model) {
+	public String editarPerfil(HttpSession session,@RequestParam String id, ModelMap model) {
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession"); // aca va a obtener y usar un usuario
 																				// logueado usa logueado como variable
 		if (logueado == null || !logueado.getId().equals(id)) {// si logueado es null significa que en esa session no
@@ -74,31 +75,36 @@ public class UsuarioControlador {
 		try {
 			Usuario usuario = usuarioServicio.buscarPorId(id);
 			model.addAttribute("perfil", usuario);
+			return "perfil.html";
 		} catch (ErrorException e) {
-			model.addAttribute("error", e.getMessage());
+//			model.addAttribute("error", e.getMessage());
+			System.out.println("Error 79: " + e.getMessage() );
+			
 		}
 		return "perfil.html";
 	}
 
+
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )") // El Usuario puede editar el perfil si solo si esta registrado
 	@PostMapping("/actualizar-perfil")
-	public String actualizar(ModelMap model, HttpSession session, @RequestParam String id, @RequestParam String nombre,
-			@RequestParam String apellido,@RequestParam String clave,
+	public String actualizar(ModelMap model, HttpSession session,MultipartFile archivo,@RequestParam String id,@RequestParam String nombre,@RequestParam String apellido,String email,
+			@RequestParam String clave,
 			@RequestParam String clave2) {
 		
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 		if (logueado == null || !logueado.getId().equals(id)) {
 			return "index.html";
 			}
-		
+		System.out.println("Error");
 		try {
-			Usuario usuario = usuarioServicio.buscarPorId(id);
-               usuarioServicio.modificar(id, nombre, apellido, clave, clave2);
+			   Usuario usuario = usuarioServicio.buscarPorId(id);
+               usuarioServicio.modificar(archivo, id, nombre, apellido, email, clave, clave2);
                session.setAttribute("usuariosession", usuario); // es para usar el usuario logueado en thymeleaf 
-               return "inicio.html";
+               return "redirect:/cursos";
 		} catch (ErrorException e) {
-			model.addAttribute("error", e.getMessage());
-			return "perfil.html";
+//			model.addAttribute("error", e.getMessage());
+			System.out.println("Error: 103" + e.getMessage());
+			return "../template/perfil.html";
 		}
 
 

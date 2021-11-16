@@ -19,10 +19,9 @@ public interface CursoRepositorio extends JpaRepository<Curso,String> {
 
 //	@Query("SELECT a from Curso a WHERE c.estado=1 AND a.nombre LIKE :nombre")
 //	public List<Curso> buscarPorNombreActivos(@Param("nombre") String nombre);
-	
+//	
 	@Query("SELECT a from Curso a WHERE a.nombre LIKE :nombre")
 	public List<Curso> buscarPorNombre(@Param("nombre") String nombre);
-//	
 //	@Query("SELECT a from Curso a WHERE a.estado=1")
 //	public List<Curso> buscarActivos();
 //	
@@ -39,7 +38,11 @@ public interface CursoRepositorio extends JpaRepository<Curso,String> {
 //	public List<Curso> buscarCursosDelUsuario(@Param("id_usuario") String id_usuario);
 
 
-	
+
+
+
+
+
 	public List<Curso> findByEstado(Boolean estado);
 	
 	public Optional<Curso> findByNombre(String nombre);
@@ -55,6 +58,10 @@ public interface CursoRepositorio extends JpaRepository<Curso,String> {
 	
 	@Query("SELECT c FROM Curso c WHERE c.estado = true AND c.profesor = :profesor")
 	public List<Curso> buscarCursosActivosPorProfesor(@Param("profesor") Profesor profesor);
-
+//	@Query("SET FOREIGN_KEY_CHECKS = 0")
+//	public void desactivarLlave();
+//	@Query("SET FOREIGN_KEY_CHECKS = 1")
+//	public void activarLlave();
+	
 	
 }

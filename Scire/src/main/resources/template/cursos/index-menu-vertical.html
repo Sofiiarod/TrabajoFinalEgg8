@@ -49,6 +49,9 @@
 
         <div class="listado-cursos">
             <div th:each="curso : ${cursos}" class="card" style="width: 15rem; height: auto;">
+
+<!--             	<img src="@{" class="card-img-top tamanio-imagen" alt="..."> -->
+
             
                 <img th:src="@{https://img.youtube.com/vi/__${curso.url}__/0.jpg}" class="card-img-top tamanio-imagen" alt="imagen del curso">
                 <div class="card-body">
