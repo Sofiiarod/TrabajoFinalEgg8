@@ -102,7 +102,7 @@ public class UsuarioServicio implements UserDetailsService {
 			throw new ErrorException("Debe tener un email valido");
 		}
 
-		if (usuarioRepo.buscarPorEmail (email) != null) {
+		if (usuarioRepo.buscarPorEmail(email) != null ) {
 			throw new ErrorException("El Email ya esta en uso");
 		}	
 		//la clave no debe ser nula, no debe estar vacia, no debe contener espacios, debe tener entre 8 y 12 caracteres
