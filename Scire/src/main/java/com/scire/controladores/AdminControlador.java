@@ -16,7 +16,6 @@ import com.scire.entidades.Categoria;
 import com.scire.entidades.Curso;
 import com.scire.entidades.Profesor;
 import com.scire.errores.ErrorException;
-import com.scire.repositorios.CursoRepositorio;
 import com.scire.servicios.CategoriaServicio;
 import com.scire.servicios.CursoServicio;
 import com.scire.servicios.ProfesorServicio;

@@ -109,7 +109,6 @@ public class UsuarioControlador {
 	}
 	@GetMapping("/editar-foto")
 	public String editarFoto(HttpSession session,@RequestParam String id, ModelMap model, MultipartFile archivo) {
-		String idRedirect = "";
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 		if (logueado == null || !logueado.getId().equals(id)) {
 			return "redirect:/";
@@ -117,7 +116,6 @@ public class UsuarioControlador {
 		try {
 			Usuario usuario = usuarioServicio.buscarPorId(id);
 			model.addAttribute("perfil", usuario);
-			idRedirect = "?id=".concat(usuario.getId());
 			return "editar-foto.html";
 		} catch (ErrorException e) {
 			System.out.println("Error 121: " + e.getMessage() );
