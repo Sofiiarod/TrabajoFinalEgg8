@@ -123,8 +123,13 @@ public class UsuarioServicio implements UserDetailsService {
 		}
 
 
+<<<<<<< HEAD
 		if (usuarioRepo.buscarPorEmail(email) != null) {
 			throw new ErrorException("El Email ya esta en uso");
+=======
+	if (!usuarioRepo.findByEmail(email).isEmpty()) {
+		throw new ErrorException("El Email ya esta en uso");
+>>>>>>> 4b11185e1170f50ddb0fa14b6f4432603c995130
 		}
 
 		// la clave no debe ser nula, no debe estar vacia, no debe contener espacios,
