@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Scire - Entrar</title>
-
+    <title>Scire - Restablecer contraseña</title>
+   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
@@ -23,17 +23,14 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
 
-
     <style>
-        .bg-login-image {
-        background: url(https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=455&q=80);
-        /*background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");*/
-        background-position: center;
-        background-size: cover;
+        .bg-password-image{
+            background:url(https://images.unsplash.com/photo-1564410267841-915d8e4d71ea?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80);
+            background-position:center;
+            background-size:cover
         }
-
         body{
-            background-color: #e5d4c0;
+            background-color: #e5d4c0;;
         }
 
         h1, a {
@@ -44,12 +41,12 @@
         }
     </style>
 
+
 </head>
 
 <body>
 
     <div class="container">
-
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -60,52 +57,43 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4">SCIRE</h1>
-                                        <p>¡Bienvenido de nuevo!</p>
+                                        <h1 class="h4 text-gray-900 mb-2">¿Olvidaste tu contraseña?</h1>
+                                        <p class="mb-4">Lo entendemos, pasan cosas. <br> Simplemente ingrese su dirección de correo electrónico a continuación y le enviaremos un enlace para restablecer su contraseña.</p>
                                     </div>
-                                     <form class="col-12" th:action="@{/logincheck}" method="POST">
-					
-					                    <div class="form-group" id="user-group">
-					                        <input type="text" class="form-control" placeholder="Email de usuario" name="email"/>
-					                    </div>
-					                    <div class="form-group" id="contrasena-group">
-					                        <input type="password" class="form-control" placeholder="Contrasena" name="clave"/>
-					                    </div>
-					                    <button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
-					                </form>
-                                    <!--  
-                                    <form class="user" th:action="@{/logincheck}" method="POST">
+                                    <!-- Inicio Mensajes emergentes -->
+		                            <div th:if="${exito}!=null" class="card text-white bg-success mb-3">
+					                   <div class="card-body">
+			                                <h5 class="card-title">Exito</h5>
+			                                <p class="card-text" th:text="${exito}"></p>
+		                               </div>
+				                    </div>
+				                    <div th:if="${error}!=null" class="card text-white bg-danger mb-3">
+					                  <div class="card-body">
+			                            <h5 class="card-title">Error</h5>
+			                            <p class="card-text" th:text="${error}"></p>
+					                  </div>
+				                    </div>
+		                            <!-- Fin Mensajes emergentes -->
+                                    <form class="user" th:action="@{/usuario/recuperar}" method="POST">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Correo electrónico" name="email">
+                                                placeholder="Ingrese su correo electrónico" name="email">
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Contraseña" name="clave">
-                                        </div>
-                                        <!-- 
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Recordar mi nombre de usuario</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <a href="#" th:href="@{/}" class="btn btn-primary btn-user btn-block">
-                                            Entrar
-                                        </a>
-                                    </form> -->
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Restablacer contraseña
+                                        </button>
+                                    </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="#" th:href="@{/usuario/recuperar}">¿Olvidaste tu contraseña?</a>
+                                        <a class="small" href="#" th:href="@{/usuario/registrar}">Crear una cuenta</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="#" th:href="@{/usuario/registrar}">Crear cuenta</a>
+                                        <a class="small" href="#" th:href="@{/login}">¿Ya tienes una cuenta? Entrar</a>
                                     </div>
                                 </div>
                             </div>
