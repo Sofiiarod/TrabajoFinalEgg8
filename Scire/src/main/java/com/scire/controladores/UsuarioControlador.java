@@ -77,7 +77,6 @@ public class UsuarioControlador {
 			model.addAttribute("perfil", usuario);
 			return "perfil.html";
 		} catch (ErrorException e) {
-//			model.addAttribute("error", e.getMessage());
 			System.out.println("Error 79: " + e.getMessage() );
 			
 		}
@@ -87,9 +86,8 @@ public class UsuarioControlador {
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )") // El Usuario puede editar el perfil si solo si esta registrado
 	@PostMapping("/actualizar-perfil")
-	public String actualizar(ModelMap model, HttpSession session,MultipartFile archivo,@RequestParam String id,@RequestParam String nombre,@RequestParam String apellido,String email,
-			@RequestParam String clave,
-			@RequestParam String clave2) {
+	public String actualizar(ModelMap model, HttpSession session,@RequestParam String id,@RequestParam String nombre,@RequestParam String apellido,String email
+			) {
 		
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 		if (logueado == null || !logueado.getId().equals(id)) {
@@ -98,7 +96,7 @@ public class UsuarioControlador {
 		System.out.println("Error");
 		try {
 			   Usuario usuario = usuarioServicio.buscarPorId(id);
-               usuarioServicio.modificar(archivo, id, nombre, apellido, email, clave, clave2);
+               usuarioServicio.modificarDatos(id, nombre, apellido, email);
                session.setAttribute("usuariosession", usuario); // es para usar el usuario logueado en thymeleaf 
                return "redirect:/cursos";
 		} catch (ErrorException e) {
@@ -108,6 +106,42 @@ public class UsuarioControlador {
 		}
 
 
+	}
+	@GetMapping("/editar-foto")
+	public String editarFoto(HttpSession session,@RequestParam String id, ModelMap model, MultipartFile archivo) {
+		String idRedirect = "";
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+		if (logueado == null || !logueado.getId().equals(id)) {
+			return "redirect:/";
+		}
+		try {
+			Usuario usuario = usuarioServicio.buscarPorId(id);
+			model.addAttribute("perfil", usuario);
+			idRedirect = "?id=".concat(usuario.getId());
+			return "editar-foto.html";
+		} catch (ErrorException e) {
+			System.out.println("Error 121: " + e.getMessage() );
+		}
+		return "editar-foto.html";
+	}
+	@PostMapping("/guardar-foto")
+	public String guardarFoto(ModelMap model, HttpSession session,@RequestParam String id,MultipartFile archivo) {
+		String idRedirect = "";
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+		if (logueado == null || !logueado.getId().equals(id)) {
+			return "redirect:/";
+			}
+		System.out.println("Error");
+		try {
+			   Usuario usuario = usuarioServicio.buscarPorId(id);
+               usuarioServicio.modificarFoto(archivo, id);
+               session.setAttribute("usuariosession", usuario); 
+               idRedirect = "?id=".concat(usuario.getId());
+               return "redirect:/usuario/editar-foto".concat(idRedirect);
+		} catch (ErrorException e) {
+			System.out.println("Error: 138" + e.getMessage());
+			return "../template/perfil.html";
+		}
 	}
 
 	

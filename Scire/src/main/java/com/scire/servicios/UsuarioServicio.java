@@ -46,7 +46,7 @@ public class UsuarioServicio implements UserDetailsService {
 	public Usuario guardar(MultipartFile archivo, String nombre, String apellido, String email, String clave,
 			String clave2) throws ErrorException {
 
-		validar(nombre, apellido, email, clave, clave2);
+		validarCompleto(nombre, apellido, email, clave, clave2);
 
 		Usuario entidad = new Usuario();
 
@@ -103,31 +103,15 @@ public class UsuarioServicio implements UserDetailsService {
 	
 	
 	//HAGO LAS VALIDACIONES NECESARIAS PARA CREAR EL USUARIO
-	public void validar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
+	public void validarCompleto(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 		
 		if(!clave.equals(clave2)) {
 
 			throw new ErrorException("Las claves no coinciden");
 		}
 
-		if (nombre == null || nombre.isEmpty() || nombre.contains("  ")) {
-			throw new ErrorException("Debe tener un nombre valido");
-		}
-
-		if (apellido == null || apellido.isEmpty() || apellido.contains("  ")) {
-			throw new ErrorException("Debe tener un apellido valido");
-		}
-
-		if (email == null || email.isEmpty() || email.contains("  ")) {
-			throw new ErrorException("Debe tener un email valido");
-		}
-
-//		if (usuarioRepo.buscarPorEmail(email) != null) {
-//			throw new ErrorException("El Email ya esta en uso");
-//		}
-		// la clave no debe ser nula, no debe estar vacia, no debe contener espacios,
-		// debe tener entre 8 y 12 caracteres
-
+		validarBasico(nombre,apellido,email);
+		
 		if (clave == null || clave.length() < 8) {
 			throw new ErrorException("Debe tener una clave valida");
 		}
@@ -196,22 +180,41 @@ public class UsuarioServicio implements UserDetailsService {
 	// MODIFICAR USUARIO
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-	public void modificar(MultipartFile archivo,String id, String nombre, String apellido,String email, String clave, String clave2)
+	public void modificarFoto(MultipartFile archivo, String id) throws ErrorException {
+		Usuario entidad = usuarioRepo.getById(id);
+		String idFoto = null;
+		if(entidad.getFoto() != null) {
+			idFoto = entidad.getFoto().getId();
+		}
+		Foto foto = fotoServicio.actualizar(idFoto, archivo);
+		entidad.setFoto(foto);
+		usuarioRepo.save(entidad);
+	}
+	
+	public void validarBasico(String nombre,String apellido, String email) throws ErrorException {
+		if (nombre == null || nombre.trim().isEmpty()) {
+			throw new ErrorException ("El nombre no puede ser nulo");
+		}
+		if (apellido == null || apellido.trim().isEmpty()) {
+			throw new ErrorException ("El apellido no puede ser nulo");
+		}
+		if (email == null || email.trim().isEmpty()) {
+			throw new ErrorException ("El email no puede ser nulo");
+		}
+	}
+	
+	
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+	public void modificarDatos(String id, String nombre, String apellido,String email)
 			throws ErrorException {
 		try {
-			validar(nombre, apellido, email, clave, clave2);
+			validarBasico(nombre, apellido, email);
 			Usuario entidad = usuarioRepo.getById(id);
 			entidad.setNombre(nombre);
 			entidad.setApellido(apellido);
 			entidad.setEmail(email);
-			String encriptada = new BCryptPasswordEncoder().encode(clave);
-			entidad.setClave(encriptada);
-			String idFoto = null;
-			if(entidad.getFoto() != null) {
-				idFoto = entidad.getFoto().getId();
-			}
-			Foto foto = fotoServicio.actualizar(idFoto, archivo);
-			entidad.setFoto(foto);
+//			String encriptada = new BCryptPasswordEncoder().encode(clave);
+//			entidad.setClave(encriptada);
 			usuarioRepo.save(entidad);
 		} catch (Exception e) {
 			System.out.println("Error:" + e.getMessage());

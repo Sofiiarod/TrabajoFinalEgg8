@@ -46,30 +46,38 @@
 }
 
 img {
-	margin-left:10%;
-	margin-top: 20%; background-size : center;
+	margin-left: 10%;
+	margin-top: 20%;
+	background-size: center;
 	width: 90%;
 	height: 50%;
-/* 	background-size: center; */
+	/* 	background-size: center; */
+}
+form{
+	align-items: center;
+	align-content: center;
+}
+.form-control-plaintext {
+	padding: 5px;
+	border: 2px solid lightgray;
+	border-radius: 5px;
 }
 
-.form-control-plaintext{
-	padding:5px;
-	border:2px solid lightgray;
-	border-radius:5px;
+.col-form-label {
+	padding: 2px;
+	text-align: center;
+	font-size: 15px;
 }
-.col-form-label{
-	padding:2px;
-	text-align:center;
-	font-size:15px;
+
+.estilolabel2 {
+	padding-top: 5px;
 }
-.estilolabel2{
-	padding-top:5px;
+
+.estilolabel {
+	padding-top: 7px;
+	/* 	padding-bottom:10px; */
 }
-.estilolabel{
-	padding-top:7px;
-/* 	padding-bottom:10px; */
-}
+
 body {
 	background-color: #e5d4c0;
 }
@@ -77,9 +85,11 @@ body {
 h1, a {
 	font-family: 'Lora', serif;
 }
-label{
+
+label {
 	font-family: inherit;
 }
+
 p {
 	font-family: 'Yaldevi', sans-serif;
 }
@@ -90,15 +100,12 @@ p {
 
 <body>
 
-	<div class="container">
+	<div class="container" >
 		<div class="card o-hidden border-0 shadow-lg my-5">
 			<div class="card-body p-0">
 				<!-- Nested Row within Card Body -->
 				<div class="row">
-					<div class="col-lg-5 d-none d-lg-block bg-register-image">
-						<img th:if="${perfil.foto != null}"  class="rounded-circle"
-							th:src="${'/foto/usuario?id=' + perfil.id}" alt="">
-					</div>
+
 					<div class="col-lg-7">
 						<div class="p-5">
 							<div class="text-center">
@@ -121,24 +128,31 @@ p {
 								</div>
 							</div>
 							<!-- Fin Mensajes emergentes -->
-							<form class="user" th:action="@{/usuario/actualizar-perfil}"
+							<center><form class="user" th:action="@{/usuario/actualizar-perfil}"
 								method="POST" enctype="multipart/form-data">
 
 								<div class="form-group">
 									<input type="hidden" name="id" th:value="${perfil.id}">
+									<div class="col-lg-5 d-none d-lg-block bg-register-image">
+										<img th:if="${perfil.foto != null}" class="rounded-circle"
+											th:src="${'/foto/usuario?id=' + perfil.id}" alt="">
+									</div>
 									<div class="mb-3 row">
-										<label for="foto" class="col-sm-2 col-form-label estilolabel font-weight-bold
+										<label for="foto"
+											class="col-sm-2 col-form-label estilolabel font-weight-bold
 										">Foto</label>
 										<div class="col-sm-10">
-											<input type="file" class="form-control-plaintext border border-white"
-												id="foto" name="archivo" th:value="${perfil.foto}">
+											<input type="file"
+												class="form-control-plaintext border border-white" id="foto"
+												name="archivo" th:value="${perfil.foto}">
 										</div>
 									</div>
 								</div>
-								<button type="submit" class="btn btn-primary btn-user btn-block">Actualizar perfil</button>
+								<button type="submit" class="btn btn-primary btn-user btn-block">Actualizar
+									perfil</button>
 								<a href="/" class="btn btn-success btn-user btn-block">Volver</a>
 
-							</form>
+							</form></center>
 							<hr>
 							<div class="text-center">
 								<a class="small" href="#" th:href="@{/usuario/recuperar}">¿Olvidaste
