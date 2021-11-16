@@ -62,9 +62,14 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 
-
-		Foto foto = fotoServicio.guardar(archivo);
-		entidad.setFoto(foto);
+		if( archivo == null ) {
+			Foto foto = fotoServicio.guardar(null);
+			entidad.setFoto(foto);
+		}else {
+			Foto foto = fotoServicio.guardar(archivo);
+			entidad.setFoto(foto);
+		}
+		
 		
 
 //		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());

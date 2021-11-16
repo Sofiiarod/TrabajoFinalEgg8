@@ -98,7 +98,6 @@ p {
 					<div class="col-lg-5 d-none d-lg-block bg-register-image">
 						<img th:if="${perfil.foto != null}"  class="rounded-circle"
 							th:src="${'/foto/usuario?id=' + perfil.id}" alt="">
-						<img th:if="${perfil.foto == null}" class="rounded-circle" th:src="/img/OIP.jpeg" alt="">
 					</div>
 					<div class="col-lg-7">
 						<div class="p-5">
@@ -128,44 +127,11 @@ p {
 								<div class="form-group">
 									<input type="hidden" name="id" th:value="${perfil.id}">
 									<div class="mb-3 row">
-										<label for="nombre" class="col-sm-2 col-form-label estilolabel2 font-weight-bold
-										">Nombre</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control-plaintext"
-												id="nombre" name="nombre" th:value="${perfil.nombre}">
-										</div>
-									</div>
-									<div class="mb-3 row">
-										<label for="apellido" class="col-sm-2 col-form-label estilolabel font-weight-bold
-										">Apellido</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control-plaintext"
-												id="nombre" name="apellido" th:value="${perfil.apellido}">
-										</div>
-									</div>
-									<input type="hidden" class="form-control" name="email" th:value="${perfil.email}">
-									<div class="mb-3 row">
 										<label for="foto" class="col-sm-2 col-form-label estilolabel font-weight-bold
 										">Foto</label>
 										<div class="col-sm-10">
 											<input type="file" class="form-control-plaintext border border-white"
-												id="foto" name="archivo">
-										</div>
-									</div>
-									<div class="mb-3 row">
-										<label for="clave" class="col-sm-2 col-form-label font-weight-bold
-										">Clave</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control-plaintext"
-												id="clave" name="clave" th:value="${clave}">
-										</div>
-									</div>
-									<div class="mb-3 row">
-										<label for="clave2" class="col-sm-2 col-form-label font-weight-bold 
-										">Repetir clave</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control-plaintext"
-												id="clave2" name="clave2">
+												id="foto" name="archivo" th:value="${perfil.foto}">
 										</div>
 									</div>
 								</div>

@@ -419,7 +419,7 @@ public class AdminControlador {
 			// TODO: handle exception
 		}
 		
-		return "redirect:/admin/lista-de-profesores";
+		return "redirect:/admin/lista-de-categorias";
 
 	}
 }
