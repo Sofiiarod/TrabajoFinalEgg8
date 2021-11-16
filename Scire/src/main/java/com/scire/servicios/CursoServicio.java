@@ -1,6 +1,7 @@
 package com.scire.servicios;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -84,10 +85,8 @@ public class CursoServicio {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public void eliminar(String id) throws ErrorException {
 		try {
-			Curso curso = cursoRepo.findById(id).get();
-//			cursoRepo.desactivarLlave();
+		//	Curso curso = cursoRepo.findById(id).get();
 			cursoRepo.deleteById(id);
-//			cursoRepo.activarLlave();
 			
 		} catch (Exception e) {
 			throw new ErrorException("No se pudo eliminar porque no existe");
