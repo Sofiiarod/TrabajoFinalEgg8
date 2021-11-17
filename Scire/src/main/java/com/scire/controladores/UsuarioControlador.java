@@ -35,6 +35,9 @@ public class UsuarioControlador {
 	public String registrar(ModelMap model,MultipartFile archivo, @RequestParam String nombre, @RequestParam String apellido,
 			@RequestParam String email, @RequestParam String clave, @RequestParam String clave2) throws ErrorException {
 		try {
+			if ( archivo == null) {
+				usuarioServicio.guardar(null, nombre, apellido, email, clave, clave2);
+			}
 			usuarioServicio.guardar(archivo, nombre, apellido, email, clave, clave2);
 			model.put("exito", "Se ha registrado con exito");
 		} catch (ErrorException e) {

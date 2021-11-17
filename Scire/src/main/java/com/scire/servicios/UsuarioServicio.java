@@ -62,9 +62,14 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 
-
-		Foto foto = fotoServicio.guardar(archivo);
-		entidad.setFoto(foto);
+		if( archivo == null ) {
+			Foto foto = fotoServicio.guardar(null);
+			entidad.setFoto(foto);
+		}else {
+			Foto foto = fotoServicio.guardar(archivo);
+			entidad.setFoto(foto);
+		}
+		
 		
 
 //		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
@@ -117,9 +122,12 @@ public class UsuarioServicio implements UserDetailsService {
 			throw new ErrorException("Debe tener un email valido");
 		}
 
-//		if (usuarioRepo.buscarPorEmail(email) != null) {
-//			throw new ErrorException("El Email ya esta en uso");
-//		}
+
+
+	if (!usuarioRepo.findByEmail(email).isEmpty()) {
+		throw new ErrorException("El Email ya esta en uso");
+		}
+
 		// la clave no debe ser nula, no debe estar vacia, no debe contener espacios,
 		// debe tener entre 8 y 12 caracteres
 

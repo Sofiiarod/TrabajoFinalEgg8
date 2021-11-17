@@ -3,9 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
+ a{
+	text-decoration: none;
+}
+
 h1, h2, h3, h4, a{
     font-family: 'Lora', serif;
-    font-weight: bold;
+    text-decoration: none;
+   
 }
 
 p{
@@ -82,4 +87,5 @@ p{
         grid-gap:30px;
         padding: 35px 0px;
     }
+    
 }
