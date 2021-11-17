@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="ISO-8859-1">
-<title>Listado de Profesores</title>
+<title>Listado de Categorias</title>
 <link rel="stylesheet" href="/static/css/estilo.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,7 +14,7 @@
 	<hr>
 	<br>
 	<div class="container m-5">
-		<h1>LISTA DE PROFESORES</h1>
+		<h1>LISTA DE CATEGORIAS</h1>
 		<div th:if="${exito}!=null" class="card text-white bg-success mb-3">
 			<div class="card-body">
 				<h5 class="card-title">Exito</h5>
@@ -32,19 +32,20 @@
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Nombre</th>
-					<th scope="col">Activo</th>
+<!-- 					<th scope="col">Activo</th> -->
 					<th scope="col"><center>Actualizar</center></th>
 				</tr>
 			</thead>
-			<tbody th:each="profesor : ${misProfesores}">
+			<tbody th:each="categoria : ${misCategorias}">
 				<tr>
-					<th scope="row" th:text="${profesor.id}"></th>
-					<td th:text="${profesor.nombre}"></td>
-					<td th:if="${profesor.alta}">SI</td>
-					<td th:unless="${profesor.alta}">NO</td>
-					<td> <a th:href="@{/profesores/daralta/{id}     (id=${profesor.id}) }" class="btn btn-success">Cambiar Activo</a> </td>
-					<td> <a th:href="@{/profesores/editar/{id}     (id=${profesor.id}) }" class="btn btn-warning">Editar</a> </td>
-					<td> <a th:href="@{/profesores/eliminar/{id}     (id=${profesor.id}) }" class="btn btn-danger">Eliminar</a> </td>
+					<th scope="row" th:text="${categoria.id}"></th>
+					<td th:text="${categoria.nombre}"></td>
+<!-- 					<td th:if="${profesor.alta}">SI</td> -->
+<!-- 					<td th:unless="${profesor.alta}">NO</td> -->
+<!-- 					<td> <a th:href="@{/profesores/darbaja/{id}     (id=${profesor.id}) }" class="btn btn-primary">Dar baja</a> </td> -->
+<!-- 					<td> <a th:href="@{/profesores/daralta/{id}     (id=${profesor.id}) }" class="btn btn-success">Dar alta</a> </td> -->
+					<td> <a th:href="@{/categorias/editar/{id}     (id=${categoria.id}) }" class="btn btn-warning">Editar</a> </td>
+					<td> <a th:href="@{/categorias/eliminar/{id}     (id=${categoria.id}) }" class="btn btn-danger">Eliminar</a> </td>
 				</tr>
 
 			</tbody>
@@ -54,6 +55,7 @@
 			<div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto">
 					<a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
+					</p>
 				</div>
 			</div>
 		</section>
