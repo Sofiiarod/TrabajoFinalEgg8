@@ -144,14 +144,14 @@ p {
 										</div>
 									</div>
 									<input type="hidden" class="form-control" name="email" th:value="${perfil.email}">
-									<div class="mb-3 row">
-										<label for="foto" class="col-sm-2 col-form-label estilolabel font-weight-bold
-										">Foto</label>
-										<div class="col-sm-10">
-											<input type="file" class="form-control-plaintext border border-white"
-												id="foto" name="archivo">
-										</div>
-									</div>
+<!-- 									<div class="mb-3 row"> -->
+<!-- 										<label for="foto" class="col-sm-2 col-form-label estilolabel font-weight-bold -->
+<!-- 										">Foto</label> -->
+<!-- 										<div class="col-sm-10"> -->
+<!-- 											<input type="file" class="form-control-plaintext border border-white" -->
+<!-- 												id="foto" name="archivo"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
 									<div class="mb-3 row">
 										<label for="clave" class="col-sm-2 col-form-label font-weight-bold
 										">Clave</label>
@@ -170,10 +170,13 @@ p {
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary btn-user btn-block">Actualizar perfil</button>
-								<a href="/" class="btn btn-success btn-user btn-block">Volver</a>
+								<a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}" class="btn btn-success btn-user btn-block">Volver</a>
 
 							</form>
 							<hr>
+							<div class="text-center">
+								<a th:href="@{/usuario/editar-foto(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Editar Foto</a>
+							</div>
 							<div class="text-center">
 								<a class="small" href="#" th:href="@{/usuario/recuperar}">¿Olvidaste
 									tu contraseña?</a>
