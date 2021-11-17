@@ -41,7 +41,7 @@
     <ul id="slide-out" class="sidenav sidenav-fixed">
         <li>
             <div class="user-view">
-                <a th:href="@{/cursos}" class="uk-align-right"><i class="small material-icons">arrow_back</i></a>
+                <a th:href="@{/}" class="uk-align-right"><i class="small material-icons">arrow_back</i></a>
                 <div class="background">
                     
                     <img src="/img/img-perfil/hexagonos.jpeg">
@@ -57,6 +57,7 @@
                 <span class="white-text email" th:text="${perfil.email}"></span>
           </div>
         </li>
+        <li><a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}">Perfil público</a></li>
         <li><a th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}">Editar perfil</a></li>
         <li><a th:href="@{/usuario/editar-foto(id=__${session.usuariosession.id}__)}">Modificar foto</a></li>
         <li><a th:href="@{/usuario/modificar-contraseña(id=__${session.usuariosession.id}__)}">Editar contraseña</a></li>
@@ -75,10 +76,24 @@
            </div>
             <div class=" uk-flex-middle uk-overlay uk-overlay-default" uk-grid>
                 <div class="uk-width-2-3@m">
-                    <h3>Nombre: <span th:text="${perfil.nombre}"></span></h3>
-                    <h3>Apellido: <span th:text="${perfil.apellido}"></span></h3>
-                    <h3>Fecha de creación: <span th:text="${perfil.fechaCreado}"></span></h3>
-                    <h3>Email: <span th:text="${perfil.email}"></span></h3>
+                    <form th:action="@{}">
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <label for="">Ingrese su contraseña anterior</label>
+                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                                <input class="uk-input" id="contraseña" type="text">
+
+                                <label for="">Ingrese su contraseña nueva</label>
+                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                                <input class="uk-input" id="contraseña" type="password">
+
+                                <label for="">Vuelva a ingresar su constreña nueva</label>
+                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                                <input class="uk-input" id="contraseña" type="password">
+
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="uk-width-1-3@m uk-flex-first">
                     <img th:if="${perfil.foto == null}" style="border-radius: 50%;" src="/img/admin/Logo-scire-sin-fondo.png" alt="foto de perfil">

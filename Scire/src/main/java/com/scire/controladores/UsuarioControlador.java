@@ -134,6 +134,29 @@ public class UsuarioControlador {
 
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@GetMapping("/modificar-contraseña")
+	public String modificarContraseña(ModelMap model, HttpSession session,@RequestParam String id) {
+		
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+		if (logueado == null || !logueado.getId().equals(id)) {
+			return "index.html";
+			}
+		System.out.println("Error");
+		try {
+			   Usuario usuario = usuarioServicio.buscarPorId(id);
+               
+               session.setAttribute("usuariosession", usuario); // es para usar el usuario logueado en thymeleaf 
+               return "redirect:/cursos";
+		} catch (ErrorException e) {
+//			model.addAttribute("error", e.getMessage());
+			System.out.println("Error: 103" + e.getMessage());
+			return "../template/perfil.html";
+		}
+
+
+	}
+
 	
 	@GetMapping("/recuperar")
 	public String recuperacion() {
