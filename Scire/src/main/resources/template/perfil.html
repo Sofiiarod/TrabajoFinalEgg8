@@ -170,7 +170,7 @@ p {
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary btn-user btn-block">Actualizar perfil</button>
-								<a href="/" class="btn btn-success btn-user btn-block">Volver</a>
+								<a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}" class="btn btn-success btn-user btn-block">Volver</a>
 
 							</form>
 							<hr>
