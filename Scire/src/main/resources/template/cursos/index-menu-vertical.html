@@ -67,7 +67,7 @@
 	 <!--MAIN SECION TARJETAS CURSOS-->
 <div>
         <main class="listado-cursos">
-            <div th:each="curso : ${cursos}" class="card" style="width: 14.5rem;"> 
+            <div th:each="curso : ${cursos}" class="card" style="width: 13.5rem;"> 
             <img th:src="@{https://img.youtube.com/vi/__${curso.url}__/0.jpg}" class="card-img-top tamanio-imagen" alt="imagen del curso">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <h5 th:text="${curso.nombre}" class="card-title"></h5>
