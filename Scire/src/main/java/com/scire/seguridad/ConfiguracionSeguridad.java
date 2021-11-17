@@ -37,9 +37,15 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 				.loginPage("/login").loginProcessingUrl("/logincheck") // va a ir a el th:action y procesar si los datos estan correctos lo vamos a usar el form login
 				.usernameParameter("email") // lo vamos a enviar como name en el input es una validacion
 				.passwordParameter("clave")
-				.defaultSuccessUrl("/loginsuccess")//aca definimos a que url va a ingresar si el usuario se logueo correctamente
+				.defaultSuccessUrl("/") //aca definimos a que url va a ingresar si el usuario se logueo correctamente
 				.failureUrl("/login?error=error")
-				.permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and().csrf()
+				.permitAll().and()
+				
+				.rememberMe()
+				.key("myUniqueKey")		
+				.rememberMeCookieName("websparrow-login-remember-me")
+				.tokenValiditySeconds(10000000)
+				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and().csrf()
 				.disable();
 	}
 

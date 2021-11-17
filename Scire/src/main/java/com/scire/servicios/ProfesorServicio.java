@@ -58,10 +58,15 @@ public class ProfesorServicio {
 	// BUSCAR EL CREADOR POR ID Y ELIMINARLO DE LA BASE DE DATOS.
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
 	public void eliminar(String id) throws ErrorException {
-
-		Profesor profesor = buscarPorId(id);
-
-		profesorRepo.delete(profesor);
+		try {
+			Profesor profesor = buscarPorId(id);
+//			profesorRepo.desactivarLlave();
+			profesorRepo.delete(profesor);
+//			profesorRepo.activarLlave();
+		} catch (Exception e ) {
+			throw new ErrorException("No se pudo eliminar porque no existe");
+		}
+		
 
 	}
 	
@@ -69,11 +74,11 @@ public class ProfesorServicio {
 	
 	//BUSCAR EL CREADOR POR ID Y DARLO DE ALTA.
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-	public void alta(String id, Boolean alta) throws ErrorException {
+	public void alta(String id) throws ErrorException {
 		
 		Profesor profesor = buscarPorId(id);
 		
-		profesor.setAlta(true);
+		profesor.setAlta(!profesor.getAlta());
 		
 		profesorRepo.save(profesor);
 		
@@ -82,17 +87,17 @@ public class ProfesorServicio {
 	
 	
 	//BUSCAR EL CREADOR POR ID Y DARLO DE BAJA.
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-	public void baja(String id, Boolean alta) throws ErrorException {
-		
-		Profesor profesor = buscarPorId(id);
-		
-		profesor.setAlta(false);
-		
-		profesorRepo.save(profesor);
-		
-		
-	}
+//	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+//	public void baja(String id) throws ErrorException {
+//		
+//		Profesor profesor = buscarPorId(id);
+//		
+//		profesor.setAlta(false);
+//		
+//		profesorRepo.save(profesor);
+//		
+//		
+//	}
 
 	// BUSCAR LA ENTIDAD POR ID.
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })

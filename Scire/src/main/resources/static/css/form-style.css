@@ -8,7 +8,7 @@
 
 body{
     /* background: url(../img/img.jpg); */
-    background: #5e5e5e;
+    background: #848484;
     -webkit-background-size: cover;
     background-size: cover;
     background-attachment: fixed;
@@ -25,7 +25,7 @@ body{
 }
 
 .contenedor .form{
-    background: rgba(0,0,0,.6);
+    background: #5e5e5e;
     width: 90%;
     max-width: 650px;
     margin: auto;
@@ -44,7 +44,7 @@ body{
 }
 
 .contenedor .form .form-input, .form-textarea{
-    background: rgba(0,0,0,.7);
+    background: rgba(0, 0, 0, 0.356);
     border: none;
     outline: none;
     border-bottom: 2px solid #fecc62;
@@ -88,7 +88,7 @@ select{
     outline: 0;
     box-shadow: none;
     border: 0!important;
-    background: rgba(0,0,0,.6);
+    background: rgba(0, 0, 0, 0.356);
     background-image: none;
     flex:1;
     padding: 0 .5em;
@@ -108,7 +108,6 @@ select{
     width: 20em;
     height: 2.7em;
     line-height: 3;
-    background: rgb(32, 30, 30);
     overflow: hidden;
     border-radius: .25em;
     border-bottom: 2px solid #fecc62;
@@ -132,3 +131,5 @@ select{
 }
 
 
+/* marron #a59d86
+gris #848484 */

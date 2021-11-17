@@ -13,9 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.scire.entidades.Curso;
 import com.scire.entidades.Profesor;
+
+//import com.scire.entidades.Usuario;
 import com.scire.errores.ErrorException;
+//import com.scire.repositorios.UsuarioRepositorio;
 import com.scire.servicios.CursoServicio;
 import com.scire.servicios.ProfesorServicio;
+//import com.scire.servicios.UsuarioServicio;
+
 
 
 
@@ -66,7 +71,7 @@ public class MainControlador {
 			e.getMessage();
 		}
 
-		
+
 
 	return "index.html";
 	
@@ -92,16 +97,31 @@ public class MainControlador {
 			model.addAttribute("logout","Ha salido correctamente");
 		}
 		if (session.getAttribute("usuariosession") != null) {
-			return "inicio.html";
+			return "login.html";
 		}else {
 			return "login.html";
 		}
 	}
-	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
-	@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
-	public String loginresolver() {
-				
-		return "inicio.html";
+
+	
+//	@PreAuthorize("hasAnyRole('ROLE_USER')") //Autoriza al usuario entrar si solo si esta autenticado
+//	@GetMapping("/loginsuccess") // es lo mismo que inicio en configSeguridad podemos poner asi  como /inicio -> FIUMBA
+//	public String loginresolver() {
+//				
+//		return "redirect:/cursos";
+//	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@RequestMapping("/cursos")
+	public String loginUsuario() {
+		return "redirect:/cursos";
+	}
+	
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@RequestMapping("/admin")
+	public String loginAdmin() {
+		return "redirect:/admin/inicio";
 	}
 
 	
@@ -109,7 +129,3 @@ public class MainControlador {
 	
 	
 	
-
-	
-
-
