@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<<<<<<< HEAD
 <head th:replace="/plantillas-admin/base-plantilla :: head">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,5 +90,142 @@
     
     
     	 <script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+=======
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Fav icon -->
+    <link rel="shortcut icon" href="/img/admin/favicon-logo.ico">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Js Ui Kit -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/css/uikit.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
+    <!-- JS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <title>Cursos</title>
+    <style>
+		
+		html{
+			background-color:black;
+		}
+		
+		body{
+		background-color:black;
+		}
+		
+        a,h1,h2,h3,h4,h5,h6{
+            font-family: 'Lora', serif;
+             color:white;
+        }
+
+
+        p{
+            font-family: 'Yaldevi', sans-serif !important;
+        }
+
+        .uk-button{
+            color:white;
+        }
+        
+        .uk-button:hover{
+        	color:#cb94c7;
+        }
+
+        .uk-table th {
+            color:white;
+            
+        }
+        
+        .btn-editar{
+        	color:black !important;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <div class="uk-flex uk-flex-around">
+        <a th:href="@{/admin/inicio}" class="uk-button" uk-icon="icon: chevron-double-left; ratio: 1.5">Inicio</a>
+        <h2 >CURSOS</h2>
+        <div class="uk-inline">
+            <button class="uk-button" uk-icon="icon:  chevron-down; ratio:1.5" type="button">Menú</button>
+            <div uk-dropdown>
+            <!-- MENU -->
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li class="uk-nav-header">Cargar datos</li>
+                    <li ><a th:href="@{./cargar-curso}">Cargar curso</a></li>
+                    <li><a th:href="@{./cargar-profesor}">Cargar profesor/a </a></li>
+                    <li><a th:href="@{./cargar-categoria}">Cargar categoría</a></li>
+                    <li class="uk-nav-header">Listas</li>
+                    <li><a th:href="@{./lista-de-profesores}">Profesores/as</a></li>
+                    <li><a th:href="@{./lista-de-categorias}">Categorías</a></li>
+                    <li th:class="uk-nav-header">Perfil</li>
+                <!-- <li><a th:href="@{/admin/}">Configuración</a></li>
+                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container-lg">
+    <!-- TABLA -->
+        <table  class="uk-table uk-table-middle uk-table-divider bg-beige uk-text-muted">
+            <thead>
+                <tr>
+                    <th class="uk-width-medium">Nombre</th>
+                    <th class="uk-width-medium">Descripcion</th>
+                    <th class="uk-width-small">Video</th>
+                    <th class="uk-width-small">Estado</th>
+                    <th class="uk-width-medium">Modificar estado</th>
+                    <!--<th class="uk-width-small">Inscripciones</th>-->
+                    <th class="uk-width-small">Cateogoria</th>
+                    <th class="uk-width-small">Profesor/a</th>
+                    <th class="uk-width-small">Editar</th>
+                 <!--     <th class="uk-width-small">Eliminar</th> -->
+                </tr>
+            </thead>
+            <tbody>
+            <!-- Datos TABLA -->
+                <tr th:each="curso : ${cursos}">
+                    <td th:text="${curso.nombre}"></td>
+                    <td th:text="${curso.descripcion}"></td>
+                    <td><a th:href="@{https://www.youtube.com/watch?v=__${curso.url}__}" class="uk-button uk-button-secondary" uk-icon="youtube"></a></td>
+                    <td th:text="${curso.estado}? 'ACTIVO' : 'INACTIVO'" ></td>
+                    <td>
+                        <a th:href="@{/admin/modificar-estado/{id}(id=${curso.id})}" class="uk-button" >
+                            <span th:if="${curso.estado == true}" uk-icon="check" class=" uk-button btn-success"></span>
+                            <span th:if="${curso.estado == false}" uk-icon="ban" class=" uk-button btn-danger"></span>
+                        </a>
+                    </td>
+                    <td th:text="${curso.categoria.nombre}"></td>
+                    <td th:text="${curso.profesor.nombre}"></td>
+                    <td>
+                        <a th:href="@{/admin/editar-curso/{id}(id=${curso.id})}" id="boton-editar"  class="btn btn-warning " uk-icon="pencil"></a>
+                    </td>
+                   <!--  <td>
+                        <a th:href="@{/admin/eliminar-curso/{id}(id=${curso.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+    <!-- JS Ui Kit -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit-icons.min.js"></script>
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
 </body>
 </html>

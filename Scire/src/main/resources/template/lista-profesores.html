@@ -15,6 +15,18 @@
 	<br>
 	<div class="container m-5">
 		<h1>LISTA DE PROFESORES</h1>
+		<div th:if="${exito}!=null" class="card text-white bg-success mb-3">
+			<div class="card-body">
+				<h5 class="card-title">Exito</h5>
+				<p class="card-text" th:text="${exito}"></p>
+			</div>
+		</div>
+		<div th:if="${error}!=null" class="card text-white bg-danger mb-3">
+			<div class="card-body">
+				<h5 class="card-title">Error</h5>
+				<p class="card-text" th:text="${error}"></p>
+			</div>
+		</div>
 		<center><table class="table table-dark"></center>
 			<thead>
 				<tr>
@@ -30,10 +42,9 @@
 					<td th:text="${profesor.nombre}"></td>
 					<td th:if="${profesor.alta}">SI</td>
 					<td th:unless="${profesor.alta}">NO</td>
-<!-- 					<td> <a th:href="@{/autores/darbaja/{id}     (id=${autor.id}) }" class="btn btn-primary">Dar baja</a> </td> -->
-<!-- 					<td> <a th:href="@{/autores/daralta/{id}     (id=${autor.id}) }" class="btn btn-success">Dar alta</a> </td> -->
-<!-- 					<td> <a th:href="@{/autores/editar/{id}     (id=${autor.id}) }" class="btn btn-warning">Editar</a> </td> -->
-<!-- 					<td> <a th:href="@{/autores/eliminar/{id}     (id=${autor.id}) }" class="btn btn-danger">Eliminar</a> </td> -->
+					<td> <a th:href="@{/profesores/daralta/{id}     (id=${profesor.id}) }" class="btn btn-success">Cambiar Activo</a> </td>
+					<td> <a th:href="@{/profesores/editar/{id}     (id=${profesor.id}) }" class="btn btn-warning">Editar</a> </td>
+					<td> <a th:href="@{/profesores/eliminar/{id}     (id=${profesor.id}) }" class="btn btn-danger">Eliminar</a> </td>
 				</tr>
 
 			</tbody>
@@ -43,7 +54,6 @@
 			<div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto">
 					<a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
-					</p>
 				</div>
 			</div>
 		</section>

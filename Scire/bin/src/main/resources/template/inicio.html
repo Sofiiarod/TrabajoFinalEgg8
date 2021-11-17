@@ -1,11 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="ISO-8859-1">
-<title>Probando 123</title>
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Inicio</title>
 
-<h2 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido}" >Bienvenido</h2>
+    <!--estilo css-->
+    <link rel="stylesheet" href="/css/estilo.css">
+    <!--google fonts, iconos-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body class="body">
+
+    <section class="seccion-cursos-usuario">
+        <div class="contenedor-menu">
+            <a href="#" class="btn-menu a cambio-color">SCIRE<i class="icono fas fa-bars"></i></a>
+            <ul class="menu-scire">
+                <li><a href="/" class="a cambio-color"><i class="icono izquierda fas fa-home"></i>Inicio</a></li>
+                <li><a href="/cursos" class="a cambio-color"><i class="icono izquierda fab fa-youtube"></i>Todos los cursos</a></li>
+                <li class="activado"><a href="#" class="a cambio-color"><i class="icono izquierda fas fa-stream"></i>Categorías<i class="icono derecha fas fa-chevron-down"></i></a>
+                    <ul>
+                        <li th:each="categoria : ${categorias}"><a th:text="${categoria.nombre}" th:href="@{/cursos/categorias(idCategoria=${categoria.id})}" class="a cambio-color"></a></li>
+                    </ul>
+                        
+                </li>
+                <li class="activado"><a href="#" class="a cambio-color"><i
+                            class="icono izquierda fas fa-chalkboard-teacher"></i>Profesores/as<i
+                            class="icono derecha fas fa-chevron-down"></i></a>
+                    <ul>
+                        <li th:each="profesor : ${profesores}"><a th:text="${profesor.nombre}" th:href="@{/cursos/profesores(idProfesor=${profesor.id})}" class="a cambio-color"></a></li>
+                    </ul>   
+                </li>
+                <li><a href="#" class="a cambio-color"><i class="icono izquierda fas fa-envelope"></i>Contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="listado-cursos">
+            <div th:each="curso : ${cursos}" class="card" style="width: 15rem; height: auto;">
+                <img src="/img/codigo-programacion.jpg" class="card-img-top tamanio-imagen" alt="...">
+                <div class="card-body">
+                    <h5 th:text="${curso.nombre}" class="card-title"></h5>
+                     <p th:text="${curso.categoria.nombre}" class="card-text"></p>
+                    <p th:text="${curso.descripcion}" class="card-text"></p>
+                    <a href="#" class="btn btn-secondary">Ver más</a>
+                </div>
+           </div>
+            
+        
+            
+         
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+    <script src="/js/jquery.js"></script>
+
+    <script src="/js/main.js"></script>
 </body>
+<!-- <body> -->
+
+
+<!-- <!-- <h2 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido + ' ' + session.usuariosession.rol}" >Bienvenido</h2> --> -->
+<!-- <a class="nav-link" href="/logout" class="btn btn-success" >Salir</a> -->
+<!-- <!-- 	<header th:replace="fragments/header :: header-front"></header> --> -->
+
+<!-- </body> -->
 </html>

@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>Scire - Registrarse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
@@ -44,7 +45,7 @@
 </head>
 
 <body>
-
+ <header th:replace="fragments/header :: header-front"></header>
     <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
@@ -71,37 +72,8 @@
 			                  </div>
 		                    </div>
                             <!-- Fin Mensajes emergentes -->
-                            <form class="user" th:action="@{/usuario/registrar}" method="POST">
-                                <!--  
-                                <p th:if="${Error != null}" th:text="${Error}"></p>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="Nombre" name="nombre">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Apellido" name="apellido">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Correo electrónico" name="email">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Contraseña" name="clave">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repetir contraseña" name="clave2">
-                                    </div>
-                                </div>
-                                <a href="#" th:href="@{/usuario/registrar}" class="btn btn-primary btn-user btn-block">
-                                    Registrarme
-                                </a> -->
-                                <p th:if="${Error != null}" th:text="${Error}"></p>
+                            <form class="user" th:action="@{/usuario/registrar}" method="POST" enctype="multipart/form-data">
+
 								<div class="form-group">
 									<label>Nombre</label> <input type="text" class="form-control"
 										name="nombre" placeholder="Ingrese su nombre"> 
@@ -110,6 +82,8 @@
 											placeholder="Ingrese su apellido"> 
 									<label>Email</label> <input type="email" class="form-control" name="email"
 											placeholder="Ingrese su Email">
+									<label>Foto</label> <input type="file" class="form-control" name="archivo"
+											>
 									<div class="form-group" id="contrasena-group">
 										<label>Clave</label> <input type="password" class="form-control" 
 										   name="clave" placeholder="Ingrese su clave">

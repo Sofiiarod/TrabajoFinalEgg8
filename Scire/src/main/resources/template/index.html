@@ -2,6 +2,8 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
@@ -11,7 +13,7 @@
     <!-- CSS EMI -->
     <link rel="stylesheet" href="/css/emi.css">
     
-    <!-- CSS BARBI -->
+    <!-- CSS footer -->
     <link rel="stylesheet" href="/css/footer-style.css">
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
     <!-- Fuentes de Google -->
@@ -20,25 +22,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
     <!-- Iconos -->
     <script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
-    <!-- ESTA ES LA VERSION DE Bootstrap QUE ANDA!!!!!!!!!!!!! -->
+    <!-- ESTA ES LA VERSION DE Bootstrap QUE ANDA! -->
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <!-- Link normalizacion -->
-    <link rel ="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">    
+    <link rel ="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">  
+    <style>
+     a{
+		text-decoration: none;
+	}  </style>
 </head>
 
 <body>
-	<!-- **EMPIEZA** SECCIÓN HEADER NAVBAR (EMI) -->
+	<!-- **EMPIEZA** SECCIÓN HEADER NAVBAR  -->
 	<header th:replace="fragments/header :: header-front"></header>
 	
-	<!-- **TERMINA** SECCIÓN HEADER NAVBAR (EMI) -->
+	<!-- **TERMINA** SECCIÓN HEADER NAVBAR  -->
 	
-	<!-- **EMPIEZA** SECCION HERO, DONDE ESTÁ LA IMAGEN (EMI) -->
+	<!-- **EMPIEZA** SECCION HERO, DONDE ESTÁ LA IMAGEN  -->
 	<!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>Aprender hoy,<br>para liderar el mañana</h1>
       <p class="lead text-white mt-3">Somos un equipo de talentosos desarrolladores <br> que modelan el mundo de hoy para ofrecerte <br> la <strong>mejor capacitación</strong></p>
-      <a class="btn-get-started" href="courses.html">Comienza ahora</a>
+      
+    <div th:if="${session.usuariosession == null}">
+     			<a class="btn-get-started" href="#" th:href="@{/login}">Comienza ahora</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}">
+		      		<a class="btn-get-started" href="#" th:href="@{/cursos}">Comienza ahora</a>
+		      </div>  
+     
     </div>
   </section><!-- End Hero -->
 	<!-- **TERMINA** SECCION HERO, DONDE ESTÁ LA IMAGEN (EMI) -->
@@ -279,22 +292,29 @@
                 		<img 
                 		th:src="${plantilla1}" 
                 		alt="imagen del curso">
-                		
-                <p th:text="${curso1.descripcion}"></p>
+                	
+                
+                
+                <div th:if="${session.usuariosession == null}" class="boton">
+     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver mas</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}" class="boton" >
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver mas</a>
+		      </div>  
+     
+    			</div>
               
-                <div class="boton">
-                    <a  href="#" class="btn btn-dark">Ver mas</a>
-                </div>
-              </div>
               
               <div class="row elementos text-end">
                   <h3  th:text="${curso2.nombre}"></h3>
                   <img  
                 		th:src="${plantilla2}" 
                 		alt="imagen del curso">
-                  <p  th:text="${curso2.descripcion}"></p>
+                  
                   <div class="boton">
-                      <a  href="#" class="btn btn-dark">Ver mas</a>
+                  
+                      <a th:if="sessi"  href="#" class="btn btn-dark mt-2">Ver mas</a>
+                      
                   </div>
               </div>
                       
@@ -303,21 +323,34 @@
 				  <img  
                 		th:src="${plantilla3}" 
                 		alt="imagen del curso">
-                  <p  th:text="${curso3.descripcion}"></p>
-                <div class="boton">
-                    <a  href="#" class="btn btn-dark">Ver mas</a>
-                </div>
-                </div>
+                  
+                
+		       <div th:if="${session.usuariosession == null}" class="boton">
+     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver mas</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}" class="boton" >
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver mas</a>
+		      </div>  
+     
+    			</div> 
+     
+    			
+                
                 
                 <div class="row elementos text-end">
                   <h3 th:text="${curso4.nombre}"></h3>
                   <img  
                 		th:src="${plantilla4}" 
                 		alt="imagen del curso">
-                  <p th:text="${curso4.descripcion}"></p>
-                  <div class="boton">
-                      <a  href="#" class="btn btn-dark">Ver mas</a>
-                  </div>
+                  
+                   <div th:if="${session.usuariosession == null}" class="boton">
+     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver mas</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}" class="boton" >
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver mas</a>
+		      </div>  
+     
+    			</div>
                   
                 </div>
             </div> 
@@ -412,6 +445,62 @@
     <!-- **TERMINA** SECCION FOOTER (BARBI) -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+<!-- </body> -->
 
+<!-- <<<<<<< HEAD -->
+<!--     <link rel="stylesheet" type="text/css" href="css/index.css" th:href="@{css/index.css}"> -->
+<!-- </head> -->
+<!-- 	 <div class="modal-dialog text-center"> -->
+<!--         <div class="col-sm-8 main-section"> -->
+<!--             <div class="modal-content"> -->
+<!--                 <div> -->
+<!-- <!--                class="col-12 user-img"     <img src="img/user.jpg" th:src="@{img/user.jpg}"/> --> -->
+<!--                 </div> -->
+
+<!--  	<body>	 -->
+
+<!--  		<h1> HOLA MUNDO</h1> -->
+<!--  		</br> -->
+<!--  		</br> -->
+<!--  		<a th:href="@{/login}" class="btn btn-success">Iniciar sesión</a> -->
+ 		
+<!--  		</br> -->
+ 		
+ 				
+<!--  		<a th:href="@{/usuario/registro}" class="btn btn-danger">Registrarse</a> -->
+ 		
+<!--  		</br> -->
+ 		
+<!--  		<a th:href="@{/profesores/lista}" class="btn btn-primary">Listado de profesores</a> -->
+ 		
+<!--  		</br> -->
+ 		
+ 		
+ 					
+<!--  		<a th:href="@{/profesores/registro}" class="btn btn-primary">Registrar profesor</a> -->
+<!--  		</br> -->
+ 		
+ 		
+<!--  		<a th:href="@{/categorias/lista}" class="btn btn-primary">Listado de categorias</a> -->
+ 		
+<!--  		</br> -->
+ 		
+ 		
+ 					
+<!--  		<a th:href="@{/categorias/registro}" class="btn btn-primary">Registrar categoria</a> -->
+<!--  		</br> -->
+ 		
+ 		
+<!--  		<a th:href="@{/cursos/lista}" class="btn btn-primary">Listado de cursos</a> -->
+ 		
+<!--  		</br> -->
+ 		
+ 					
+<!--  		<a th:href="@{/cursos/registro}" class="btn btn-primary">Registrar curso</a> -->
+<!-- 	 </div> -->
+<!-- 	 </div> -->
+<!-- 	 </div> -->
+<!-- 	</body> -->
+<!-- ======= -->
+<!-- >>>>>>> b5c1689c565c4f672f4c3db136102cbf0f5459ac -->
 </html>

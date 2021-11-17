@@ -1,0 +1,123 @@
+body{
+    
+    height:100vh;
+    background-image: url(/img/admin/scire-background.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+p{
+    font-size: 25px;
+    font-family: 'Yaldevi', sans-serif !important;
+}
+
+h2{
+    font-size: 30px;
+    color: white;
+}
+
+a,h1, h2,h3,h4,h5,h6{
+    font-family: 'Lora', serif !important;
+    text-decoration: none !important;
+}
+
+.contenedor-menu{
+    height:auto;
+    display:flex;
+    justify-content: space-around;
+}
+
+.menu{
+    
+    display:grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    grid-gap:1em;
+    
+}
+
+.elemento-menu{
+    display:grid;
+    grid-gap:1em;
+}
+
+
+.box{
+    width: 100%;
+    height: 152px;
+    filter:opacity(90%);
+}
+
+.box1{
+background-color: #506D58;
+}
+
+.box2{
+background-color: #613E7A;
+}
+
+.box3{
+background-color: #e5d4c0;
+}
+
+.box4{
+   background-color: #a59d86;
+}
+
+
+.logo{
+	filter:opacity(90%);
+    margin-top: 10px;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	align-items:center;
+    width:300px;
+    height: 300px;
+    background-color: white;
+}
+
+.logo img{
+    width:200px;
+    height: 200px;
+}
+
+.logo h2{
+	color:black;
+}
+
+
+.contenido-box{
+    height: 152px;
+    display: grid;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.enlace{
+    width:100%;
+    height: 152px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color:black;
+}
+
+
+
+.box :hover{
+    cursor: pointer;
+    filter:opacity(80%);
+}
+
+
+.logo :hover{
+    filter:opacity(70%);
+}
