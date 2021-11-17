@@ -50,7 +50,31 @@ public class UsuarioControlador {
 
 
 	}
-
+	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@GetMapping("/perfil")
+	public String ingresarPerfil(HttpSession session,@RequestParam String id, ModelMap model) {
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession"); 
+	
+			if (logueado == null || !logueado.getId().equals(id)) {
+			
+				return "index.html"; 
+			}
+			
+			try {
+				
+				Usuario usuario = usuarioServicio.buscarPorId(id);
+				model.addAttribute("perfil", usuario);
+				return "/perfil/index-perfil";
+				
+			} catch (ErrorException e) {
+				
+				//model.addAttribute("error", e.getMessage());
+				System.out.println("Error 79: " + e.getMessage() );
+			
+			}
+		return "/perfil/index-perfil";
+	}
 	/**
 	 * 
 	 * @param session captura el usuario logueado

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ScireApplication<Scire>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.scire.ScireApplication",
+            "projectName": "Scire",
+            "args": ""
+        }
+    ]
+}
