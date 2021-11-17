@@ -3,14 +3,6 @@
 
 <head>
 
-<!-- 	<meta charset="UTF-8"> -->
-<!--     <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<!--     <meta name="description" content=""> -->
-<!--     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"> -->
-<!--     <meta name="generator" content="Hugo 0.79.0"> -->
-<!--     <title>Inicio</title> -->
-<!--       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
-<!--     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +13,7 @@
     <!-- CSS EMI -->
     <link rel="stylesheet" href="/css/emi.css">
     
-    <!-- CSS BARBI -->
+    <!-- CSS footer -->
     <link rel="stylesheet" href="/css/footer-style.css">
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
     <!-- Fuentes de Google -->
@@ -30,25 +22,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
     <!-- Iconos -->
     <script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
-    <!-- ESTA ES LA VERSION DE Bootstrap QUE ANDA!!!!!!!!!!!!! -->
+    <!-- ESTA ES LA VERSION DE Bootstrap QUE ANDA! -->
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <!-- Link normalizacion -->
-    <link rel ="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">    
+    <link rel ="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">  
+    <style>
+     a{
+		text-decoration: none;
+	}  </style>
 </head>
 
 <body>
-	<!-- **EMPIEZA** SECCIÓN HEADER NAVBAR (EMI) -->
+	<!-- **EMPIEZA** SECCIÓN HEADER NAVBAR  -->
 	<header th:replace="fragments/header :: header-front"></header>
 	
-	<!-- **TERMINA** SECCIÓN HEADER NAVBAR (EMI) -->
+	<!-- **TERMINA** SECCIÓN HEADER NAVBAR  -->
 	
-	<!-- **EMPIEZA** SECCION HERO, DONDE ESTÁ LA IMAGEN (EMI) -->
+	<!-- **EMPIEZA** SECCION HERO, DONDE ESTÁ LA IMAGEN  -->
 	<!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>Aprender hoy,<br>para liderar el mañana</h1>
       <p class="lead text-white mt-3">Somos un equipo de talentosos desarrolladores <br> que modelan el mundo de hoy para ofrecerte <br> la <strong>mejor capacitación</strong></p>
-      <a class="btn-get-started" href="courses.html">Comienza ahora</a>
+      
+    <div th:if="${session.usuariosession == null}">
+     			<a class="btn-get-started" href="#" th:href="@{/login}">Comienza ahora</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}">
+		      		<a class="btn-get-started" href="#" th:href="@{/cursos}">Comienza ahora</a>
+		      </div>  
+     
     </div>
   </section><!-- End Hero -->
 	<!-- **TERMINA** SECCION HERO, DONDE ESTÁ LA IMAGEN (EMI) -->

@@ -21,6 +21,7 @@ import com.scire.servicios.ProfesorServicio;
 
 
 @Controller
+@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 @RequestMapping("/cursos")
 public class CursoControlador {
 	

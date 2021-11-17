@@ -123,6 +123,7 @@ public class UsuarioServicio implements UserDetailsService {
 		}
 
 
+
 	if (!usuarioRepo.findByEmail(email).isEmpty()) {
 		throw new ErrorException("El Email ya esta en uso");
 		}
