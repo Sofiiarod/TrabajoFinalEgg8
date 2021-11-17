@@ -147,6 +147,27 @@ public class CursoControlador {
 		return "cursos/index-menu-vertical.html";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@GetMapping("/misCursos")
+	public String misCursos(@RequestParam String idUsuario, ModelMap modelo){
+
+		try {
+						
+			List<Curso> cursosDeUsuario = cursoServicio.buscarCursosActivosPorUsuario(idUsuario);
+			modelo.addAttribute("cursos", cursosDeUsuario);
+			List<Categoria> listaCategoriasActivas = categoriaServicio.listarTodos();
+			modelo.addAttribute("categorias", listaCategoriasActivas);
+			List<Profesor> listaProfesoresActivos = profesorServicio.mostrarTodos();
+			modelo.addAttribute("profesores", listaProfesoresActivos);
+				
+		
+		} catch (ErrorException e) {
+				e.getMessage();
+		}
+		
+		return "cursos/index-menu-vertical.html";
+	}
+	
 	
 	
 	
