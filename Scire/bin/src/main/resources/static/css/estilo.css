@@ -7,10 +7,10 @@
 }
 
 .body {
-    background-color: #848484;
-    /*font-family: 'Lora', serif;*/
+    background-color: #b3b3b3;
     line-height: 18px;
 }
+
 
 h1,h2,h3,h4,a {
     font-family: 'Lora', serif;
@@ -26,7 +26,43 @@ p {
 .a {
     text-decoration: none;
 }
-    
+
+
+/*ESTILO MAQUETADO CONTENEDOR GENERAL*/
+header{
+    width: 100%;
+}
+
+.footer{
+    width: 100%;
+}
+
+.seccion-cursos-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+
+/*DISPLAY SECCION CURSOS*/
+.listado-cursos{
+	
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    flex-basis: 0;
+    flex-grow:999;
+    min-width: 60%;
+    margin: 30px;
+    margin-left: 15px;
+}
+
+
+/*ESTILOS SIDEBAR CONTENEDOR MENU*/
+.seccion-cursos-usuario .contenedor-menu{
+    flex-basis: 20rem;
+    flex-grow:1;
+}
 
 .cambio-color{
     text-decoration: none;
@@ -37,127 +73,87 @@ p {
     color: lightgrey;
 }
 
-
-.btn-menu {
-    display: block;
-    padding: 20px;
-    background: #3b4652;
-    color:#fff;
-}
-
-.btn-menu .icono {
-    float: right;
-}
-
 .contenedor-menu {
-    width: 20%; /*si lo pongo en un aside, deberia ser del 100%*/
+    width: 20%; 
     min-width: 300px;
-    display: inline-block;
-    /*margin: 20px;*/
-    /*margin-right: 20px;*/
-   /*no pongo font family nu line-height*/
-
+    margin: 30px;
+    margin-right: 15px;
+    display: inline-table;
+    line-height: 18px;
 }
 
-.menu-scire {
+.contenedor-menu .menu-scire {
     width: 100%;
-    list-style: none;
+    background: #e9e9e9; /*con esto se acomoda lo de bootstrap*/
+    padding: 0em;
+    margin-bottom: 0rem;
 }
 
+.contenedor-menu ul {
+    list-style: none;
+    padding: 0rem;
+}
 
-.menu-scire li a {
-    
+.contenedor-menu .menu-scire li a{ 
+    background: #e9e9e9;
     display: block;
     padding: 15px 20px;
-    background: #e9e9e9;
 }
 
-.menu-scire li a:hover {
+.contenedor-menu .menu-scire li a:hover {
     background-color: #a59d86;
     color:white; 
 }
 
-.menu-scire li .icono {
+.contenedor-menu .menu-scire li .icono {
     font-size: 12px;
     line-height: 18px;
 }
 
-.menu-scire li .icono.izquierda {
+.contenedor-menu .menu-scire li .icono.izquierda {
     float:  left;
     margin-right: 10px;
 }
 
-.menu-scire li .icono.derecha {
+.contenedor-menu .menu-scire li .icono.derecha {
     float: right;
     margin-right: 10px;
 }
 
-.menu-scire ul {
-   display: none;
-   list-style: none;
+.contenedor-menu .menu-scire ul {
+    display: none;
+    list-style: none;
+ }
+
+.contenedor-menu .menu-scire ul li a {
+    background: #c6c6c6;
 }
 
-.menu-scire ul li a {
-    background: #919191;
-
+.contenedor-menu .menu-scire li.activado > a {
+    background:#a59d86;
+    color: white;
 }
 
-.menu-scire li.activado > a {
-    background:#fecc62;
-    color: #5e5e5e;
-}
-
-@media screen and (max-width: 300px) {
+/*RESPONSIVIDAD*/
+@media screen and (min-width:200px) and (max-width: 530px)  {
     
-    body{
-        padding-top: 80px;
-    }
-
     .contenedor-menu {
-        margin: 0;
+        margin: 0px;
         width: 100%;
-        position: fixed;
-        top: 0;
+        top: 0px;
         z-index: 1000;
-    } 
-
-   /* .contenedor-menu{
-        display: none;
     }
-    .btn-menu {
-        display: block;
-    } */
 
-   
-}
-
-
-/*Estilos de Cards*/
-
-.seccion-cursos-usuario {
-
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 20px;
-    margin: 50px;
- 
-     /*flexbox*/
-   /*display: flex;
-   margin: 50px;
-   gap: 20px;*/
-   
-}
-
-.listado-cursos{
+   .contenedor-menu .menu-scire {
+        display:block;
+    }
     
+    .listado-cursos{
+    	display:flex;
+    	flex-direction:row;
+    	flex-wrap: wrap;
+    	justify-content: center;
+    	
+    }
     
-    /*flexbox*/
-    /*width:70%;
-    display: flex;*/
-
-    /*Grid*/
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
 }
-

@@ -41,6 +41,7 @@ header{
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    justify-content: space-evenly;
 }
 
 
@@ -137,6 +138,10 @@ header{
 /*RESPONSIVIDAD*/
 @media screen and (min-width:200px) and (max-width: 530px)  {
     
+    .div-aside {
+		width:100%;
+	}
+    
     .contenedor-menu {
         margin: 0px;
         width: 100%;
@@ -146,6 +151,7 @@ header{
 
    .contenedor-menu .menu-scire {
         display:block;
+        width: 100%;
     }
     
     .listado-cursos{
@@ -158,7 +164,9 @@ header{
     .colornombre{
 	color: #613E7A;
 	font-weight: bold;
+
 }
 
     
 }
+

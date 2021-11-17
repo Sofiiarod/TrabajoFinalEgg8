@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="ISO-8859-1">
-<title>Registro de Profesor</title>
+<meta charset="UTF-8">
+<title>Registro de Categoría</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -43,12 +43,12 @@
 		<div class="modal-dialog text-center">
 			<div class="col-sm-8 main-section">
 				<div class="modal-content">
-					<h1>Crear Profesor</h1>
-					<form th:action="@{/profesores/registrar}" method="POST">
+					<h1>Crear Categoría</h1>
+					<form th:action="@{../categorias/registrar}" method="POST">
 						<p th:if="${Error != null}" th:text="${Error}"></p>
 						<div class="form-group">
 							<label>Nombre</label> <input type="text" class="form-control"
-								name="nombre" placeholder="Nombre del creador">
+								name="nombre" placeholder="Nombre de la categoria">
 						</div>
 
 						<button type="submit" class="btn btn-primary">Registrar</button>
