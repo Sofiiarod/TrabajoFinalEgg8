@@ -188,7 +188,7 @@ public class UsuarioServicio implements UserDetailsService {
 	// MODIFICAR USUARIO
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-	public void modificarFoto(MultipartFile archivo, String id) throws ErrorException {
+	public void modificarFoto(String id, MultipartFile archivo) throws ErrorException {
 		Usuario entidad = usuarioRepo.getById(id);
 		String idFoto = null;
 		if(entidad.getFoto() != null) {
@@ -221,8 +221,6 @@ public class UsuarioServicio implements UserDetailsService {
 			entidad.setNombre(nombre);
 			entidad.setApellido(apellido);
 			entidad.setEmail(email);
-//			String encriptada = new BCryptPasswordEncoder().encode(clave);
-//			entidad.setClave(encriptada);
 			usuarioRepo.save(entidad);
 		} catch (Exception e) {
 			System.out.println("Error:" + e.getMessage());
