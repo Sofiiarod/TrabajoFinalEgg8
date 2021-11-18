@@ -26,7 +26,8 @@
 		      	<a href="#" th:href="@{/usuario/registrar}" class="btn btn-outline-dark">Crear cuenta</a>
 		      </div>
 		      <div th:if="${session.usuariosession != null}">
-		      		<a th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Editar Perfil</a>
+		      		<a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Perfil</a>
+					<!--<a th:if="${perfil.rol == 'ADMIN'}" th:href="@{/admin/inicio}" class="btn btn-outline-dark">Admin</a>-->
 		      		<a th:href="@{/logout(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Logout</a>
 		      </div>
 		    </div>

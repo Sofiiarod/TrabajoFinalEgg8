@@ -77,8 +77,8 @@
                     <li><a th:href="@{./lista-de-cursos}">Cursos</a></li>
                     <li><a th:href="@{./lista-de-categorias}">Categorías</a></li>
                     <li th:class="uk-nav-header">Perfil</li>
-                <!-- <li><a th:href="@{/admin/}">Configuración</a></li>
-                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li> -->
+                    <li><a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}">Configuración</a></li>
+                    <li><a th:href="@{/logout}">Cerrar Sesión</a></li> 
                 </ul>
             </div>
         </div>

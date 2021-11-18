@@ -1,0 +1,79 @@
+html{
+    background-image: url(/img/img-perfil/hexagonos.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+header, main, footer {
+    padding-left: 300px;
+}
+
+a,h1,h2,h3,h4,h5,h6{
+    font-family: 'Lora', serif;
+}
+a{
+    font-weight: bold !important;
+}
+
+h1{
+    color:white;
+}
+
+p, span{
+    font-family: 'Yaldevi', sans-serif;
+}
+
+.row .col.s9{
+    margin-left: 150px;
+}
+/*.sidenav , .sidenav-fixed{
+    filter: opacity(80%);
+}*/
+
+.uk-link, a {
+    color:white;
+}
+
+input{
+    color:black;
+}
+
+.uk-link, a :hover{
+    color:white;
+}
+
+.uk-overlay-default{
+    padding:20px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.img-perfil{
+    border-radius: 5px;
+}
+
+.img-menu{
+    width:auto;
+    height: auto;
+    border-radius: 75%;
+}
+
+.img-redonda{
+    width:100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px double grey;
+    
+}
+
+.form-separacion{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+}

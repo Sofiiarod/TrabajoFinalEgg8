@@ -87,7 +87,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 <div class="box">
                     <div class="contenido-box  box4">
                     <!-- PERFIL -->
-                        <a href="">
+                        <a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}">
                             <div class="enlace">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
