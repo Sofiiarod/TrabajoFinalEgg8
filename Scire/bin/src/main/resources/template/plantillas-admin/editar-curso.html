@@ -1,5 +1,67 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<<<<<<< HEAD
+<head th:replace="/plantillas-admin/base-plantilla :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+	<body>
+	    
+	    <nav th:replace="/plantillas-admin/base-plantilla :: nav"></nav>
+	
+		<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
+	
+	
+		
+			
+		<div class="container-fluid" style="width:50%;">
+			
+			<a th:href="@{../lista-de-cursos}" class="btn btn-outline-warning">Volver</a>
+		
+				<form class="row g-3" th:action="@{../edicion-curso}" method="post">
+				
+				  <div class="col-md-6">
+				  	<input type="hidden" name="id" th:value="${curso.id}" class="form-control" >
+				  	
+				    <label for="inputEmail4" class="form-label" th:text="'El nombre a cambiar es: '+${curso.nombre}"></label>
+				    <input type="text" name="nombreDelCurso" class="form-control" id="inputEmail4" required>
+				  </div>
+				  
+				  <div class="col-md-6">
+				    <label for="inputState" class="form-label" th:text="' Profesor/a al que pertenecia: '+${curso.profesor.nombre}"></label>
+				    <select name="idProfesor" id="inputState" class="form-select">
+				      <option th:each="profesor : ${profesores}" th:text="${profesor.nombre}" th:value="${profesor.id}" required></option>
+				    </select>
+				  </div>
+				  
+			  	  <div class="col-md-12">
+			    	<label for="inputState" class="form-label" th:text="'Categoria a la que pertenecia: '+${curso.categoria.nombre}"></label>
+			    	<select name="idCategoria" id="inputState" class="form-select" >
+			      		<option  th:each="categoria : ${categorias}" th:text="${categoria.nombre}" th:value="${categoria.id}" required ></option>
+			    	</select>
+			  	  </div>
+			  	  
+				  <div class="col-md-12">
+					  <label for="floatingTextarea2">Descripcion</label>
+					    <textarea class="form-control" name="descripcion" th:text="${curso.descripcion}" placeholder="Deje una breve descripcion..." id="floatingTextarea2" style="height: 100px" required></textarea>
+					  
+				  </div>
+				  
+				  <div class="col-md-12">
+				    <label for="inputAddress" class="form-label" th:text="'Antiguo id de Youtube: '+${curso.url}"></label>
+				    <input type="text" name="idDeYoutube"  class="form-control" id="inputAddress" th:placeholder="${curso.url}">
+				  </div>
+				  <div class="col-md-6">
+				    <button type="submit" class="btn btn-outline-danger sticky-sm-top">Editar curso</button>
+				  </div>
+			</form>
+		</div>
+	
+		<script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+	</body>
+=======
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -116,4 +178,5 @@
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit-icons.min.js"></script>
 </body>
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
 </html>

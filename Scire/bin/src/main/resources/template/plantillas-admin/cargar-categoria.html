@@ -1,5 +1,36 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<<<<<<< HEAD
+<head th:replace="/plantillas-admin/base-plantilla :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <nav th:replace="/plantillas-admin/base-plantilla :: nav"></nav>
+
+	<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
+	
+	<h1 class="display-1">Agregar categoria</h1>
+	
+	
+	<form class="row gx-3 gy-2 align-items-center" th:action="@{./agregar-categoria}" method="post">
+		  <div class="col-sm-3">
+		    <label class="visually-hidden" for="specificSizeInputName">Ingrese nombre</label>
+		    <input name="nombreDeCategoria" type="text" class="form-control" id="specificSizeInputName" placeholder="Ingrese nombre de la categoria...">
+		  </div>
+		
+		  <div class="col-auto">
+		    <button type="submit" class="btn btn-outline-success">Submit</button>
+		  </div>
+	</form>
+
+
+
+<script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+=======
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -86,5 +117,6 @@
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit-icons.min.js"></script>
     
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
 </body>
 </html>

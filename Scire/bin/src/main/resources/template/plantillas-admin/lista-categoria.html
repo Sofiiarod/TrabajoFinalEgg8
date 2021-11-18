@@ -1,5 +1,48 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<<<<<<< HEAD
+<head th:replace="/plantillas-admin/base-plantilla :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <nav th:replace="/plantillas-admin/base-plantilla :: nav"></nav>
+
+	<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
+
+                <table class="table table-bordered table-hover" >
+                    
+                    <thead>
+                    <tr>
+                        
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Editar</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody >
+                    <tr th:each="categoria : ${categorias}">
+                        
+                        <th th:text="${categoria.id}" scope="row"></th>
+                        <td th:text="${categoria.nombre}"></td>
+                        <td>
+                        	<a class="btn btn-warning" 
+                        	th:href="@{./editar-categoria/{id}(id=${categoria.id})}" 
+                        	>Editar</a>
+                        </td>
+                        
+                    </tr>
+                    </tbody>
+                </table>
+                
+    
+    
+    <script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+=======
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -76,8 +119,8 @@
                     <li><a th:href="@{./lista-de-cursos}">Cursos</a></li>
                     <li><a th:href="@{./lista-de-profesores}">Profesores</a></li>
                     <li th:class="uk-nav-header">Perfil</li>
-                <!-- <li><a th:href="@{/admin/}">Configuración</a></li>
-                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li> -->
+	                <li><a th:href="@{/admin/}">Configuración</a></li>
+                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -92,7 +135,7 @@
                     <th class="uk-width-medium">ID</th>
                     <th class="uk-width-medium">Nombre</th>
                     <th class="uk-width-small">Editar</th>
-                  <!--   <th class="uk-width-small">Eliminar</th> -->
+                    <th class="uk-width-small">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -104,8 +147,8 @@
                         <a th:href="@{/admin/editar-categoria/{id}(id=${categoria.id})}" id="btn-editar"  class="btn btn-warning" uk-icon="pencil"></a>
                     </td>
                     <td>
-                    <!-- <a th:href="@{/admin/eliminar-categoria/{id}(id=${categoria.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>
-                    </td>-->
+                   <a th:href="@{/admin/eliminar-categoria/{id}(id=${categoria.id})}" class="uk-button uk-button-danger" uk-icon="close">Eliminar</a>
+                    </td> 
                 </tr>
             </tbody>
         </table>
@@ -120,5 +163,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit-icons.min.js"></script>
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
 </body>
 </html>

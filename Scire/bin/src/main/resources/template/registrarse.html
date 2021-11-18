@@ -71,6 +71,7 @@
 			                  </div>
 		                    </div>
                             <!-- Fin Mensajes emergentes -->
+<<<<<<< HEAD
                             <form class="user" th:action="@{/usuario/registrar}" method="POST">
                                 <!--  
                                 <p th:if="${Error != null}" th:text="${Error}"></p>
@@ -102,6 +103,11 @@
                                     Registrarme
                                 </a> -->
                                 <p th:if="${Error != null}" th:text="${Error}"></p>
+=======
+                            <form class="user" th:action="@{/usuario/registrar}" method="POST" enctype="multipart/form-data">
+<!--                             	<p th:if="${error != null}" th:text=${error} style="color:red;"></p> -->
+                                <p th:if="${error != null}" th:text="${error}"></p>
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
 								<div class="form-group">
 									<label>Nombre</label> <input type="text" class="form-control"
 										name="nombre" placeholder="Ingrese su nombre"> 
@@ -110,6 +116,11 @@
 											placeholder="Ingrese su apellido"> 
 									<label>Email</label> <input type="email" class="form-control" name="email"
 											placeholder="Ingrese su Email">
+<<<<<<< HEAD
+=======
+									<label>Foto</label> <input type="file" class="form-control" name="archivo"
+											>
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
 									<div class="form-group" id="contrasena-group">
 										<label>Clave</label> <input type="password" class="form-control" 
 										   name="clave" placeholder="Ingrese su clave">

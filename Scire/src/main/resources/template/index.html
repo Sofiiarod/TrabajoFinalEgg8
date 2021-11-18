@@ -292,22 +292,29 @@
                 		<img 
                 		th:src="${plantilla1}" 
                 		alt="imagen del curso">
-                		
-                <p th:text="${curso1.descripcion}"></p>
+                	
+                
+                
+                <div th:if="${session.usuariosession == null}" class="boton">
+     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver mas</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}" class="boton" >
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver mas</a>
+		      </div>  
+     
+    			</div>
               
-                <div class="boton">
-                    <a  href="#" class="btn btn-dark">Ver mas</a>
-                </div>
-              </div>
               
               <div class="row elementos text-end">
                   <h3  th:text="${curso2.nombre}"></h3>
                   <img  
                 		th:src="${plantilla2}" 
                 		alt="imagen del curso">
-                  <p  th:text="${curso2.descripcion}"></p>
+                  
                   <div class="boton">
-                      <a  href="#" class="btn btn-dark">Ver mas</a>
+                  
+                      <a th:if="sessi"  href="#" class="btn btn-dark mt-2">Ver mas</a>
+                      
                   </div>
               </div>
                       
@@ -316,21 +323,34 @@
 				  <img  
                 		th:src="${plantilla3}" 
                 		alt="imagen del curso">
-                  <p  th:text="${curso3.descripcion}"></p>
-                <div class="boton">
-                    <a  href="#" class="btn btn-dark">Ver mas</a>
-                </div>
-                </div>
+                  
+                
+		       <div th:if="${session.usuariosession == null}" class="boton">
+     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver mas</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}" class="boton" >
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver mas</a>
+		      </div>  
+     
+    			</div> 
+     
+    			
+                
                 
                 <div class="row elementos text-end">
                   <h3 th:text="${curso4.nombre}"></h3>
                   <img  
                 		th:src="${plantilla4}" 
                 		alt="imagen del curso">
-                  <p th:text="${curso4.descripcion}"></p>
-                  <div class="boton">
-                      <a  href="#" class="btn btn-dark">Ver mas</a>
-                  </div>
+                  
+                   <div th:if="${session.usuariosession == null}" class="boton">
+     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver mas</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}" class="boton" >
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver mas</a>
+		      </div>  
+     
+    			</div>
                   
                 </div>
             </div> 

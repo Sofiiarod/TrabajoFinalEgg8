@@ -7,11 +7,19 @@
 }
 
 .body {
+<<<<<<< HEAD
     background-color: #848484;
     /*font-family: 'Lora', serif;*/
     line-height: 18px;
 }
 
+=======
+    background-color: #b3b3b3;
+    line-height: 18px;
+}
+
+
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
 h1,h2,h3,h4,a {
     font-family: 'Lora', serif;
     font-weight: bold;
@@ -26,7 +34,47 @@ p {
 .a {
     text-decoration: none;
 }
+<<<<<<< HEAD
     
+=======
+
+
+/*ESTILO MAQUETADO CONTENEDOR GENERAL*/
+header{
+    width: 100%;
+}
+
+.footer{
+    width: 100%;
+}
+
+.seccion-cursos-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+
+/*DISPLAY SECCION CURSOS*/
+.listado-cursos{
+	
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    flex-basis: 0;
+    flex-grow:999;
+    min-width: 60%;
+    margin: 30px;
+    margin-left: 15px;
+}
+
+
+/*ESTILOS SIDEBAR CONTENEDOR MENU*/
+.seccion-cursos-usuario .contenedor-menu{
+    flex-basis: 20rem;
+    flex-grow:1;
+}
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
 
 .cambio-color{
     text-decoration: none;
@@ -37,6 +85,7 @@ p {
     color: lightgrey;
 }
 
+<<<<<<< HEAD
 
 .btn-menu {
     display: block;
@@ -73,25 +122,68 @@ p {
 }
 
 .menu-scire li a:hover {
+=======
+.contenedor-menu {
+    width: 20%; 
+    min-width: 300px;
+    margin: 30px;
+    margin-right: 15px;
+    display: inline-table;
+    line-height: 18px;
+}
+
+.contenedor-menu .menu-scire {
+    width: 100%;
+    background: #e9e9e9; /*con esto se acomoda lo de bootstrap*/
+    padding: 0em;
+    margin-bottom: 0rem;
+}
+
+.contenedor-menu ul {
+    list-style: none;
+    padding: 0rem;
+}
+
+.contenedor-menu .menu-scire li a{ 
+    background: #e9e9e9;
+    display: block;
+    padding: 15px 20px;
+}
+
+.contenedor-menu .menu-scire li a:hover {
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
     background-color: #a59d86;
     color:white; 
 }
 
+<<<<<<< HEAD
 .menu-scire li .icono {
+=======
+.contenedor-menu .menu-scire li .icono {
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
     font-size: 12px;
     line-height: 18px;
 }
 
+<<<<<<< HEAD
 .menu-scire li .icono.izquierda {
+=======
+.contenedor-menu .menu-scire li .icono.izquierda {
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
     float:  left;
     margin-right: 10px;
 }
 
+<<<<<<< HEAD
 .menu-scire li .icono.derecha {
+=======
+.contenedor-menu .menu-scire li .icono.derecha {
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
     float: right;
     margin-right: 10px;
 }
 
+<<<<<<< HEAD
 .menu-scire ul {
    display: none;
    list-style: none;
@@ -161,3 +253,42 @@ p {
     gap: 20px;
 }
 
+=======
+.contenedor-menu .menu-scire ul {
+    display: none;
+    list-style: none;
+ }
+
+.contenedor-menu .menu-scire ul li a {
+    background: #c6c6c6;
+}
+
+.contenedor-menu .menu-scire li.activado > a {
+    background:#a59d86;
+    color: white;
+}
+
+/*RESPONSIVIDAD*/
+@media screen and (min-width:200px) and (max-width: 530px)  {
+    
+    .contenedor-menu {
+        margin: 0px;
+        width: 100%;
+        top: 0px;
+        z-index: 1000;
+    }
+
+   .contenedor-menu .menu-scire {
+        display:block;
+    }
+    
+    .listado-cursos{
+    	display:flex;
+    	flex-direction:row;
+    	flex-wrap: wrap;
+    	justify-content: center;
+    	
+    }
+    
+}
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
