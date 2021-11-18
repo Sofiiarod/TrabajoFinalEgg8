@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.scire.entidades.Profesor;
 import com.scire.errores.ErrorException;
-import com.scire.servicios.CursoServicio;
 import com.scire.servicios.ProfesorServicio;
 
 
@@ -28,8 +27,7 @@ public class ProfesorControlador {
 	
 	@Autowired
 	private ProfesorServicio profesorServicio;
-	@Autowired
-	private CursoServicio cursoServicio;
+
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/lista")
