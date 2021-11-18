@@ -58,13 +58,18 @@
                         	<li th:each="profesor : ${profesores}"><a th:text="${profesor.nombre}" th:href="@{/cursos/profesores(idProfesor=${profesor.id})}" class="a cambio-color"></a></li>
                     	</ul>   
                 	</li>
-                <li><a href="#" class="a cambio-color"><i class="icono izquierda fas fa-envelope"></i>Contacto</a></li>
+                	
+                <li><a th:href="@{/cursos/misCursos(idUsuario=${session.usuariosession.id})}" href="#" class="a cambio-color"><i class="icono izquierda fab fa-youtube"></i>Mis cursos</a ></li>
+        		<li><a href="#" class="a cambio-color"><i class="icono izquierda fas fa-envelope"></i>Contacto</a></li>
             </ul>
         </aside>
   </div>
 
 
 	 <!--MAIN SECION TARJETAS CURSOS-->
+	<div> 
+		<p th:if="${cursos==null}">No posee cursos</p> 
+	</div>
 <div>
         <main class="listado-cursos">
             <div th:each="curso : ${cursos}" class="card" style="width: 13.5rem;"> 
