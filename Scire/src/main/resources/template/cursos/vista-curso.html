@@ -9,20 +9,48 @@
     <!-- La etiqueta <title> hace referencia a lo que aparece escrito en la pestaña en el navegador, por si alguno no sabe -->
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 	<title>Curso</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+	<!--estilo css footer-->
+    <link rel="stylesheet" href="/css/footer-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
+	<style>
+	.colornombre{
+	color: #613E7A;
+	font-weight: bold;
+	}
+	 a{
+		text-decoration: none;
+	}
+
+	</style>
+	
 	</head>
 <body>
 	<header th:replace="fragments/header :: header-front"></header>
 	
 	<div class="container pt-5">
+
+
         <h1 th:text="${curso.nombre}" class="text-center"></h1>
     </div>
 
     <div class="container py-3">
-            <div class="ratio ratio-21x9">
-                <iframe th:src="@{https://www.youtube.com/embed/} + ${curso.url}" title="YouTube video" allowfullscreen width="100%" height="500px"></iframe>
+    
+     <form th:action="@{/cursos/agregaralista/{idCurso}(idCurso=${curso.id})}"  method="post" class="d-none" id="listaForm">     
+    	<input type="text" th:value="${session.usuariosession.id}" name="idUsuario">
+     </form >
+     
+     <button type="submit" form="listaForm">agregar lista</button >
+            
+           <div class="ratio ratio-21x9">
+                 <iframe th:src="@{https://www.youtube.com/embed/} + ${curso.url}" title="YouTube video" allowfullscreen width="100%" height="500px"></iframe>
             </div>
     </div>
     <hr width="60%" class="bg-dark ">
+    
     <div class="container pt-2">
         <p th:text="${curso.descripcion}">
         </p>

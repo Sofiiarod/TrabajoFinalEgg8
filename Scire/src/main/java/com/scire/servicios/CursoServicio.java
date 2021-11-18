@@ -32,8 +32,7 @@ public class CursoServicio {
 	@Autowired
 	private ProfesorRepositorio profesorRepo;
 
-//	@Autowired
-//    private UsuarioServicio usuarioService;
+
 
 	/**
 	 * 
@@ -50,6 +49,7 @@ public class CursoServicio {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Profesor profesorID)
 			throws ErrorException {
+
 
 		try {
 			validar(nombre, descripcion, url, categoriaID, profesorID);
@@ -85,9 +85,13 @@ public class CursoServicio {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class, Exception.class })
 	public void eliminar(String id) throws ErrorException {
 		try {
+			Curso curso = cursoRepo.findById(id).get();
+//			cursoRepo.desactivarLlave();
 			cursoRepo.deleteById(id);
+//			cursoRepo.activarLlave();
+			
 		} catch (Exception e) {
-			throw new ErrorException("error al eliminar el curso puede que no exista");
+			throw new ErrorException("No se pudo eliminar porque no existe");
 		}
 	}
 
@@ -154,7 +158,8 @@ public class CursoServicio {
 		if (nombre.trim().isEmpty() || nombre == null) {
 			throw new ErrorException("Debe de indicarle un nombre");
 		}
-		if (descripcion.trim().isEmpty()|| descripcion == null) {
+
+		if (descripcion.trim().isEmpty()) {
 			throw new ErrorException("El Curso necesita una descripcion");
 		}
 		/*if (url.isEmpty() || url == null || url.contains(" ")) {

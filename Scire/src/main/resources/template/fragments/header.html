@@ -5,29 +5,29 @@
 	<header th:fragment="header-front">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <div class="container-fluid">
-		    <a class="navbar-brand font-weight-bold mx-5" href="#">SCIRE</a>
+		    <a class="navbar-brand font-weight-bold mx-5" href="#" th:href="@{/}">SCIRE</a>
 		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		     <span class="navbar-toggler-icon"></span>
 		    </button>
 		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 		        <li class="nav-item mx-2">
-		          <a class="nav-link" href="#">Cursos</a>
+		          <a class="nav-link" href="#" th:href="@{/cursos}">Cursos</a>
 		        </li>
+		        
 		        <li class="nav-item active mx-2">
-		          <a class="nav-link" href="#">Categorías</a>
+		          <a class="nav-link" href="#nosotros" >Nosotros</a>
 		        </li>
-		        <li class="nav-item active mx-2">
-		          <a class="nav-link" href="#">Nosotros</a>
-		        </li>
-		        <li class="nav-item active mx-2">
-		          <a class="nav-link" href="#">FAQ</a>
-		        </li>
+		       
 		      </ul>
-		      <span th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}"></span>
+		      <span th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}" class="px-3 colornombre"></span>
 		      <div th:if="${session.usuariosession == null}">
 		      	<a href="#" th:href="@{/login}" class="btn btn-outline-dark mx-2">Entrar</a>
 		      	<a href="#" th:href="@{/usuario/registrar}" class="btn btn-outline-dark">Crear cuenta</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}">
+		      		<a th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Editar Perfil</a>
+		      		<a th:href="@{/logout(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Logout</a>
 		      </div>
 		    </div>
 		  </div>

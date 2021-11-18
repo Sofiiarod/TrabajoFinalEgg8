@@ -17,6 +17,7 @@ import com.scire.entidades.Usuario;
 public interface CursoRepositorio extends JpaRepository<Curso,String> {
 
 
+
 /*
 	@Query("SELECT a from Curso a WHERE c.estado=1 AND a.nombre LIKE :nombre")
 	public List<Curso> buscarPorNombreActivos(@Param("nombre") String nombre);
@@ -42,6 +43,7 @@ public interface CursoRepositorio extends JpaRepository<Curso,String> {
 
 */
 	
+
 	public List<Curso> findByEstado(Boolean estado);
 	
 	public Optional<Curso> findByNombre(String nombre);
@@ -57,6 +59,10 @@ public interface CursoRepositorio extends JpaRepository<Curso,String> {
 	
 	@Query("SELECT c FROM Curso c WHERE c.estado = true AND c.profesor = :profesor")
 	public List<Curso> buscarCursosActivosPorProfesor(@Param("profesor") Profesor profesor);
-
+//	@Query("SET FOREIGN_KEY_CHECKS = 0")
+//	public void desactivarLlave();
+//	@Query("SET FOREIGN_KEY_CHECKS = 1")
+//	public void activarLlave();
+	
 	
 }

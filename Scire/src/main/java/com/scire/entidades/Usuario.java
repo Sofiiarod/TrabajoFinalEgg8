@@ -8,6 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,6 +29,9 @@ public class Usuario {
 	private String apellido;
 
 	private String email;
+	
+	@OneToOne
+	private Foto foto;
 	
 	@Enumerated(EnumType.STRING)
 	private Rol rol;
@@ -77,6 +81,15 @@ public class Usuario {
 		this.clave = clave;
 		this.fechaCreado = fechaCreado;
 		this.alta = alta;
+	}
+
+	
+	public Foto getFoto() {
+		return foto;
+	}
+
+	public void setFoto(Foto foto) {
+		this.foto = foto;
 	}
 
 	public String getId() {
