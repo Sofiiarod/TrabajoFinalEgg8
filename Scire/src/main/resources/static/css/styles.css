@@ -5,7 +5,7 @@
 
 /*ID cursos*/
 .main{
-    background-image: url(/img/escritorio.jpg);
+    /*background-image: url(/img/escritorio.jpg);*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,6 +16,7 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #e9e9eb;
     
 }
 
@@ -59,6 +60,7 @@ p{
     text-align: center;
     letter-spacing: -0.015em;
     color: #000000;
+    
 
 }
 
@@ -74,7 +76,7 @@ p{
 }
 
 .card:hover{
-    background-color: #5e5e5e;
+    background-color: #613E7A;
 }
 
 .cambio-color{
@@ -83,7 +85,7 @@ p{
 }
 
 .cambio-color:hover{
-    color: lightgrey;
+    color: #f8f9fa;
 }
 
 .profesores_contenedor{
@@ -93,6 +95,7 @@ p{
     text-align: center;
     letter-spacing: -0.015em;
     color: #000000;
+    
 }
 
 .profesores_texto{
@@ -110,5 +113,9 @@ p{
 .colornombre{
 	color: #613E7A;
 	font-weight: bold;
+}
+
+.seccion-profesores{
+	background-color: #e9e9eb;
 }
 

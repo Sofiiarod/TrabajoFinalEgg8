@@ -136,7 +136,7 @@ header{
 }
 
 /*RESPONSIVIDAD*/
-@media screen and (min-width:200px) and (max-width: 530px)  {
+@media screen and (min-width:200px) and (max-width: 768px)  {
     
     .div-aside {
 		width:100%;
