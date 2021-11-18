@@ -93,8 +93,8 @@
 
                 </form>
                 <div class="uk-width-1-3@m uk-flex-first">
-                   <img th:if="${perfil.foto == null}" style="border-radius: 50%;" src="/img/img-perfil/img-usuario-estandar.jpg" alt="foto de perfil">
-                   <img th:if="${perfil.foto != null}" th:src="${'/foto/usuario?id='+ perfil.id}" alt="foto de perfil">
+                   <img th:if="${perfil.foto == null}" style="border-radius: 5px;" src="/img/img-perfil/img-usuario-estandar.jpg" alt="foto de perfil">
+                   <img th:if="${perfil.foto != null}" style="border-radius: 7px;" th:src="${'/foto/usuario?id='+ perfil.id}" alt="foto de perfil">
                 </div>
             </div>
        </div>
