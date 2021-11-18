@@ -76,10 +76,13 @@ public class CursoControlador {
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/ver")
-	public String vistaCurso(ModelMap model,@RequestParam String idCurso) throws ErrorException {
-     Curso curso =cursoServicio.encontrarPorID(idCurso);//trae activos e inactivos
+	public String vistaCurso(ModelMap model,@RequestParam String idCurso, HttpSession session) throws ErrorException {
+    
+		Curso curso = cursoServicio.encontrarPorID(idCurso);
 		model.addAttribute("curso",curso);
-
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+		Boolean valor = cursoServicio.evaluaInscripcion(logueado.getId(), idCurso);
+		model.addAttribute("inscripto", valor);
 		return "cursos/vista-curso.html";
 
 	}
@@ -177,12 +180,19 @@ public class CursoControlador {
 	
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@PostMapping("/agregaralista/{idCurso}")
-	public String AgregarALista(@RequestParam("idUsuario") String idUsuario, @PathVariable("idCurso") String idCurso, ModelMap modelo){
+	public String AgregarALista(@RequestParam("idUsuario") String idUsuario, @PathVariable("idCurso") String idCurso, ModelMap modelo) throws ErrorException{
 
 			
 			cursoServicio.inscripcion(idUsuario, idCurso);	
 			return "redirect:/cursos/ver?idCurso=".concat(idCurso);
+	}
 	
-		
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@PostMapping("/sacardemilista/{idCurso}")
+	public String SacardeLista(@RequestParam("idUsuario") String idUsuario, @PathVariable("idCurso") String idCurso, ModelMap modelo) throws ErrorException{
+
+			
+			cursoServicio.desinscripcion(idUsuario, idCurso);	
+			return "redirect:/cursos/ver?idCurso=".concat(idCurso);
 	}
 }

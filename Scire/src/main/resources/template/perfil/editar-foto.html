@@ -118,8 +118,8 @@
         alt="scire logo"
         uk-img
       />
-      <br />
-      <br />
+      <br/>
+      <li th:if="${#strings.toString(perfil.rol) == 'ADMIN'}"><a th:href="@{/admin/inicio}">Administrador</a></li>
       <br />
       <br />
       <li><a th:href="@{/logout}">Cerrar sesión</a></li>
@@ -129,7 +129,7 @@
     >
     <main class="">
        <div class="uk-container uk-container-large ">
-           <div clcontaineass="uk-r uk-container-large">
+           <div class="uk-r uk-container-large">
                <h1>Bienvenido a tu perfil: <span th:text="${perfil.nombre}"></span></h1>
            </div>
             <div class=" uk-flex-middle uk-overlay uk-overlay-default" uk-grid>
