@@ -22,11 +22,11 @@
     <style>
 		
 		html{
-			background-color:black;
+			background-color:rgb(31, 31, 31);
 		}
 		
 		body{
-		background-color:black;
+		background-color:rgb(31, 31, 31);
 		}
 		
         a,h1,h2,h3,h4,h5,h6{
@@ -104,12 +104,12 @@
                     <td th:text="${profesor.alta}? 'ACTIVO' : 'INACTIVO'" ></td>
                     <td>
                         <a th:href="@{/admin/modificar-estado-profesor/{id}(id=${profesor.id})}" class="uk-button" >
-                            <span th:if="${profesor.alta == true}" class=" uk-button btn-success" uk-icon="check"></span>
-                            <span th:if="${profesor.alta == false}" class=" uk-button btn-danger" uk-icon="ban"></span>
+                            <span th:if="${profesor.alta == true}" class=" uk-button btn-success" uk-icon="icon:check;ratio: 1.2"></span>
+                            <span th:if="${profesor.alta == false}" class=" uk-button btn-danger" uk-icon="icon:ban;ratio: 1.2"></span>
                         </a>
                     </td>
                     <td>
-                        <a th:href="@{/admin/editar-profesor/{id}(id=${profesor.id})}" id="btn-editar" class="btn btn-warning" uk-icon="pencil"></a>
+                        <a th:href="@{/admin/editar-profesor/{id}(id=${profesor.id})}" id="btn-editar" class="uk-button btn-warning" uk-icon="icon:pencil;ratio: 1.2"></a>
                     </td>
                    <!--   <td>
                         <a th:href="@{/admin/eliminar-profesor/{id}(id=${profesor.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>
