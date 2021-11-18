@@ -32,8 +32,6 @@ public class CursoServicio {
 	@Autowired
 	private ProfesorRepositorio profesorRepo;
 
-
-
 	/**
 	 * 
 	 * @param nombre
@@ -50,7 +48,6 @@ public class CursoServicio {
 	public Curso guardar(String nombre, String descripcion, String url, Categoria categoriaID, Profesor profesorID)
 			throws ErrorException {
 
-
 		try {
 			validar(nombre, descripcion, url, categoriaID, profesorID);
 			Curso curso = new Curso();
@@ -62,7 +59,7 @@ public class CursoServicio {
 			curso.setProfesor(profesorID);
 			return cursoRepo.save(curso);
 		} catch (Exception e) {
-			System.out.println("ERROR "+ e.getMessage());
+			System.out.println("ERROR " + e.getMessage());
 			return null;
 		}
 	}
@@ -89,7 +86,7 @@ public class CursoServicio {
 //			cursoRepo.desactivarLlave();
 			cursoRepo.deleteById(id);
 //			cursoRepo.activarLlave();
-			
+
 		} catch (Exception e) {
 			throw new ErrorException("No se pudo eliminar porque no existe");
 		}
@@ -124,34 +121,34 @@ public class CursoServicio {
 			throw new ErrorException("No existe un libro con ese ID");
 		}
 	}
-	
-	public String urlDelVideo(String id) throws ErrorException{
+
+	public String urlDelVideo(String id) throws ErrorException {
 		Curso curso = encontrarPorID(id);
-		
-		String url =curso.getUrl();
-		String urlVideo= "https://www.youtube.com/embed/"+url;
-		
+
+		String url = curso.getUrl();
+		String urlVideo = "https://www.youtube.com/embed/" + url;
+
 		return urlVideo;
 	}
-	
+
 	/**
 	 * 
 	 * @param id
 	 * @return url de la imagen para poder ingresarla en la vista
 	 * @throws ErrorException
 	 */
-	public String urlImagen(String id) throws ErrorException{
+	public String urlImagen(String id) throws ErrorException {
 		Curso curso = encontrarPorID(id);
-		
+
 		String url = curso.getUrl();
 		String urlImg = "https://img.youtube.com/vi/".concat(url).concat("/maxresdefault.jpg");
-		
+
 		return urlImg;
 	}
 
 	/**
 	 * --------------------------- validaciones
-	 */	
+	 */
 	public void validar(String nombre, String descripcion, String url, Categoria categoria, Profesor profesor)
 			throws ErrorException {
 
@@ -162,9 +159,10 @@ public class CursoServicio {
 		if (descripcion.trim().isEmpty()) {
 			throw new ErrorException("El Curso necesita una descripcion");
 		}
-		/*if (url.isEmpty() || url == null || url.contains(" ")) {
-			throw new ErrorException("falta la url");
-		}*/
+		/*
+		 * if (url.isEmpty() || url == null || url.contains(" ")) { throw new
+		 * ErrorException("falta la url"); }
+		 */
 		if (categoria == null) {
 			throw new ErrorException("Debe de indicarle una categoria");
 		}
@@ -179,8 +177,8 @@ public class CursoServicio {
 		return cursoRepo.findAll();
 	}
 
-//INSCRIPCION (FALTA LA VALIDACION)!!!!!--!!!!!
-	public void inscripcion(String id_usuario, String id_curso) {
+//INSCRIPCION
+	public void inscripcion(String id_usuario, String id_curso) throws ErrorException {
 		Curso curso = cursoRepo.getById(id_curso);
 		Usuario usuario = usuarioRepo.getById(id_usuario);
 		curso.getUsuarios().add(usuario);
@@ -196,6 +194,20 @@ public class CursoServicio {
 		cursoRepo.save(curso);
 	}
 
+	//PARA SABER SI EL USUARIO ESTA INSCRIPTO
+	public boolean evaluaInscripcion(String id_usuario, String id_curso) {
+		Curso curso = cursoRepo.getById(id_curso);
+		Usuario usuario = usuarioRepo.getById(id_usuario);
+		List<Usuario> usuarios = curso.getUsuarios();
+		
+		for (Usuario usu: usuarios) {
+			  if (usu==usuario) {
+			    return true;
+			  }
+			}
+		return false;
+	}
+	
 //BUSCA CURSOS POR ESTADO
 	public List<Curso> buscarCursosPorEstado(Boolean estado) throws ErrorException {
 		List<Curso> listaCursos = cursoRepo.findByEstado(estado);
@@ -209,7 +221,6 @@ public class CursoServicio {
 			}
 		}
 	}
-	
 
 //BUSCAR POR NOMBRE	
 	public Optional<Curso> buscarCursosPorNombre(String nombre) throws ErrorException {
@@ -234,18 +245,18 @@ public class CursoServicio {
 			throw new ErrorException("No hay cursos para esta categoria");
 		}
 	}
-	
-	//BUSCAR CURSOS ACTIVOS POR CATEGORIA
-		public List<Curso> buscarCursosActivosPorCategoria(String id_categoria) throws ErrorException {
-			Categoria categoria = categoriaRepo.getById(id_categoria);
-			List<Curso> listaCursos = cursoRepo.buscarCursosActivosPorCategoria(categoria);
 
-			if (!listaCursos.isEmpty()) {
-				return listaCursos;
-			} else {
-				throw new ErrorException("No hay cursos para esta categoria");
-			}
+	// BUSCAR CURSOS ACTIVOS POR CATEGORIA
+	public List<Curso> buscarCursosActivosPorCategoria(String id_categoria) throws ErrorException {
+		Categoria categoria = categoriaRepo.getById(id_categoria);
+		List<Curso> listaCursos = cursoRepo.buscarCursosActivosPorCategoria(categoria);
+
+		if (!listaCursos.isEmpty()) {
+			return listaCursos;
+		} else {
+			throw new ErrorException("No hay cursos para esta categoria");
 		}
+	}
 
 //BUSCAR POR PROFESOR	
 	public List<Curso> buscarCursosPorProfesor(String id_profesor) throws ErrorException {
@@ -258,18 +269,18 @@ public class CursoServicio {
 			throw new ErrorException("No hay cursos para este profesor");
 		}
 	}
-	
-	//BUSCAR CURSOS ACTIVOS POR PROFESOR	
-		public List<Curso> buscarCursosActivosPorProfesor(String id_profesor) throws ErrorException {
-			Profesor profesor = profesorRepo.getById(id_profesor);
-			List<Curso> listaCursos = cursoRepo.buscarCursosActivosPorProfesor(profesor);
 
-			if (!listaCursos.isEmpty()) {
-				return listaCursos;
-			} else {
-				throw new ErrorException("No hay cursos activos para este profesor");
-			}
+	// BUSCAR CURSOS ACTIVOS POR PROFESOR
+	public List<Curso> buscarCursosActivosPorProfesor(String id_profesor) throws ErrorException {
+		Profesor profesor = profesorRepo.getById(id_profesor);
+		List<Curso> listaCursos = cursoRepo.buscarCursosActivosPorProfesor(profesor);
+
+		if (!listaCursos.isEmpty()) {
+			return listaCursos;
+		} else {
+			throw new ErrorException("No hay cursos activos para este profesor");
 		}
+	}
 
 //BUSCAR CURSOS DE UN USUARIO
 //	public List<Curso> buscarCursosPorUsuario(String id_usuario) throws ErrorException {
@@ -283,25 +294,25 @@ public class CursoServicio {
 //		}
 //	}
 //	
-	//BUSCAR CURSOS ACTIVOS DE UN USUARIO
-		public List<Curso> buscarCursosActivosPorUsuario(String id_usuario) throws ErrorException {
-			Usuario usuario = usuarioRepo.getById(id_usuario);	
-			List<Curso> listaCursos = cursoRepo.findByUsuarios(usuario);
-			List<Curso> listaCursosActivos = new ArrayList<Curso>();
-			
-			for (Curso curso : listaCursos) {
-				
-				if (curso.getEstado()) {
-					listaCursosActivos.add(curso);
-					System.out.println(curso);
-				}
-			}
+	// BUSCAR CURSOS ACTIVOS DE UN USUARIO
+	public List<Curso> buscarCursosActivosPorUsuario(String id_usuario) throws ErrorException {
+		Usuario usuario = usuarioRepo.getById(id_usuario);
+		List<Curso> listaCursos = cursoRepo.findByUsuarios(usuario);
+		List<Curso> listaCursosActivos = new ArrayList<Curso>();
 
-			if (!listaCursosActivos.isEmpty()) {
-				return listaCursosActivos;
-			} else {
-				throw new ErrorException("No hay cursos activos para este usuario");
+		for (Curso curso : listaCursos) {
+
+			if (curso.getEstado()) {
+				listaCursosActivos.add(curso);
+				System.out.println(curso);
 			}
 		}
+
+		if (!listaCursosActivos.isEmpty()) {
+			return listaCursosActivos;
+		} else {
+			throw new ErrorException("No hay cursos activos para este usuario");
+		}
+	}
 
 }
