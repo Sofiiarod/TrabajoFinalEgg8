@@ -222,6 +222,62 @@ public class UsuarioControlador {
 
 	}
 
+
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@GetMapping("/modificar-contraseña")
+	public String modificarContraseña(ModelMap model, HttpSession session,@RequestParam String id) {
+		
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+		if (logueado == null || !logueado.getId().equals(id)) {
+			return "index.html";
+			}
+
+		
+		try {
+			   Usuario usuario = usuarioServicio.buscarPorId(id);
+			   model.addAttribute("perfil", usuario);
+               return "perfil/modificar-contraseña";
+		} catch (ErrorException e) {
+			System.out.println("Error: 191" + e.getMessage());
+			return "perfil/perfil.html";
+		}
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@PostMapping("/editar-contraseña")
+	public String guardarContraseñaModificada(ModelMap model,HttpSession session,
+	  @RequestParam String id,
+	  @RequestParam("antiguaClave") String clave,
+	  @RequestParam("claveNueva1") String claveNueva1,
+	  @RequestParam("claveNueva2") String claveNueva2){
+
+		String idRedirect = "";
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+		if (logueado == null || !logueado.getId().equals(id)) {
+			return "redirect:/";
+		}
+
+		try {
+			
+			if(usuarioServicio.compararClavesNuevas(claveNueva1, claveNueva2)){
+				Usuario usuario = usuarioServicio.buscarPorId(id);
+				usuarioServicio.modificarClave(id, clave, claveNueva1);
+				session.setAttribute("usuariosession", usuario);
+				idRedirect = "?id=".concat(usuario.getId());
+				return "redirect:/usuario/perfil".concat(idRedirect);
+			}
+			
+		} catch (ErrorException e) {
+			System.out.println("Error: 138" + e.getMessage());
+			idRedirect = "?id=".concat(id);
+			return "redirec:/usuario/perfil".concat(idRedirect);
+		}
+
+		return "redirec:/usuario/perfil?id=".concat(id);
+	}
+
+	
+
 	@GetMapping("/recuperar")
 	public String recuperacion() {
 

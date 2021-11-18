@@ -14,6 +14,9 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.2/css/materialize.min.css">
 
+    <!-- Fav icon -->
+    <link rel="shortcut icon" href="/img/admin/favicon-logo.ico">
+
     <!--Let browser know website is optimized for mobile-->
      <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     
@@ -59,10 +62,6 @@
         <li><a th:href="@{/usuario/editar-foto(id=__${session.usuariosession.id}__)}">Modificar foto</a></li>
         <li><a th:href="@{/usuario/modificar-contraseña(id=__${session.usuariosession.id}__)}">Editar contraseña</a></li>
         <img class="uk-align-center" data-src="/img/admin/Logo-scire-sin-fondo.png" width="80" height="80" alt="scire logo" uk-img>
-        <br>
-        <br>
-        <br>
-        <br>
         <li><a th:href="@{/logout}">Cerrar sesión</a></li>
       </ul>
       <a href="" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -76,25 +75,24 @@
                <h1>Bienvenido a tu perfil: <span th:text="${perfil.nombre}"></span></h1>
            </div>
             <div class=" uk-flex-middle uk-overlay uk-overlay-default" uk-grid>
-                <form th:action="@{/usuario/actualizar-perfil}" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="id" th:value="${perfil.id}">
-                    <div class="form-group">
-                        <b><label>Nombre</label></b>
-                        <input type="text" class="form-control validate"
-                        name="nombre" th:value="${perfil.nombre}" required> 
-                        <b><label>Apellido</label></b>
-                        <input type="text" class="form-control" name="apellido"
-                        th:value="${perfil.apellido}" required> 
-                        <label></label> 
-                        <input type="hidden" class="form-control validate" name="email"
-						th:value="${perfil.email}" >
-                    </div>
-                    <button type="submit" class="btn blue-grey darken-3">Guardar cambios</button>
+                <div class="uk-width-2-3@m" style="overflow: hidden;">
+                    <form th:action="@{/usuario/editar-contraseña(id=__${session.usuariosession.id}__)}" method="post">
+                        
+                                <label for=""><b>Ingrese su contraseña anterior</b></label>
+                                <input name="antiguaClave" class="uk-input validate" id="contraseña" type="text" required>
 
-                </form>
+                                <label for=""><b>Ingrese su contraseña nueva</b></label>
+                                <input name="claveNueva1" class="uk-input validate" id="contraseña" type="password" required>
+
+                                <label for=""><b>Vuelva a ingresar su constreña nueva</b></label>
+                                <input name="claveNueva2" class="uk-input validate" id="contraseña" type="password" required>
+
+                                <button type="submit" class="btn blue-grey darken-3" >Guardar cambios</button>
+                    </form>
+                </div>
                 <div class="uk-width-1-3@m uk-flex-first">
-                   <img th:if="${perfil.foto == null}" style="border-radius: 5px;" src="/img/img-perfil/img-usuario-estandar.jpg" alt="foto de perfil">
-                   <img th:if="${perfil.foto != null}" style="border-radius: 7px;" th:src="${'/foto/usuario?id='+ perfil.id}" alt="foto de perfil">
+                    <img th:if="${perfil.foto == null}" style="border-radius: 50%;" src="/img/admin/Logo-scire-sin-fondo.png" alt="foto de perfil">
+                    <img th:if="${perfil.foto != null}" th:src="${'/foto/usuario?id='+ perfil.id}" alt="foto de perfil">
                 </div>
             </div>
        </div>
