@@ -92,7 +92,6 @@
                     <th class="uk-width-medium">ID</th>
                     <th class="uk-width-medium">Nombre</th>
                     <th class="uk-width-small">Editar</th>
-                    <th class="uk-width-small">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,9 +102,6 @@
                     <td>
                         <a th:href="@{/admin/editar-categoria/{id}(id=${categoria.id})}" id="btn-editar"  class="btn btn-warning" uk-icon="pencil"></a>
                     </td>
-                    <td>
-                   <a th:href="@{/admin/eliminar-categoria/{id}(id=${categoria.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>
-                    </td> 
                 </tr>
             </tbody>
         </table>
