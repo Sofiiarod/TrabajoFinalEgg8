@@ -327,10 +327,10 @@
                 
                 
                 <div th:if="${session.usuariosession == null}" class="boton">
-     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver mas</a>
+     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver más</a>
 		      </div>
 		      <div th:if="${session.usuariosession != null}" class="boton" >
-		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver mas</a>
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver más</a>
 		      </div>  
      
     			</div>
@@ -342,11 +342,12 @@
                 		th:src="${plantilla2}" 
                 		alt="imagen del curso">
                   
-                  <div class="boton">
-                  
-                      <a th:if="sessi"  href="#" class="btn btn-dark mt-2">Ver mas</a>
-                      
-                  </div>
+                  <div th:if="${session.usuariosession == null}" class="boton">
+     					<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver más</a>
+		      		</div>
+		      		<div th:if="${session.usuariosession != null}" class="boton" >
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver más</a>
+		      		</div> 
               </div>
                       
                 <div class="row elementos">
@@ -357,10 +358,10 @@
                   
                 
 		       <div th:if="${session.usuariosession == null}" class="boton">
-     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver mas</a>
+     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver más</a>
 		      </div>
 		      <div th:if="${session.usuariosession != null}" class="boton" >
-		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver mas</a>
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver más</a>
 		      </div>  
      
     			</div> 
@@ -375,10 +376,10 @@
                 		alt="imagen del curso">
                   
                    <div th:if="${session.usuariosession == null}" class="boton">
-     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver mas</a>
+     			<a class="btn btn-dark mt-2" href="#" th:href="@{/login}">Ver más</a>
 		      </div>
 		      <div th:if="${session.usuariosession != null}" class="boton" >
-		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver mas</a>
+		      		<a class="btn btn-dark mt-2" href="#" th:href="@{/cursos}">Ver más</a>
 		      </div>  
      
     			</div>
