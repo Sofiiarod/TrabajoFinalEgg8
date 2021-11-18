@@ -80,16 +80,16 @@
                     <input type="hidden" name="id" th:value="${perfil.id}">
                     <div class="form-group">
                         <b><label>Nombre</label></b>
-                        <input type="text" class="form-control"
-                        name="nombre" th:value="${perfil.nombre}"> 
+                        <input type="text" class="form-control validate"
+                        name="nombre" th:value="${perfil.nombre}" required> 
                         <b><label>Apellido</label></b>
                         <input type="text" class="form-control" name="apellido"
-                        th:value="${perfil.apellido}"> 
+                        th:value="${perfil.apellido}" required> 
                         <label></label> 
-                        <input type="hidden" class="form-control" name="email"
-						th:value="${perfil.email}">
+                        <input type="hidden" class="form-control validate" name="email"
+						th:value="${perfil.email}" >
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">Guardar cambios</button>
+                    <button type="submit" class="btn blue-grey darken-3">Guardar cambios</button>
 
                 </form>
                 <div class="uk-width-1-3@m uk-flex-first">

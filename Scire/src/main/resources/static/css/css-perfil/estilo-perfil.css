@@ -66,6 +66,12 @@ input{
     
 }
 
+.form-separacion{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 @media only screen and (max-width : 992px) {
     header, main, footer {
       padding-left: 0;

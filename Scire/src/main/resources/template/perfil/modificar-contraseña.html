@@ -75,24 +75,19 @@
                <h1>Bienvenido a tu perfil: <span th:text="${perfil.nombre}"></span></h1>
            </div>
             <div class=" uk-flex-middle uk-overlay uk-overlay-default" uk-grid>
-                <div class="uk-width-2-3@m">
-                    <form th:action="@{}">
-                        <div class="uk-margin">
-                            <div class="uk-inline">
-                                <label for="">Ingrese su contraseña anterior</label>
-                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                                <input class="uk-input" id="contraseña" type="text">
+                <div class="uk-width-2-3@m" style="overflow: hidden;">
+                    <form th:action="@{/usuario/editar-contraseña(id=__${session.usuariosession.id}__)}" method="post">
+                        
+                                <label for=""><b>Ingrese su contraseña anterior</b></label>
+                                <input name="antiguaClave" class="uk-input validate" id="contraseña" type="text" required>
 
-                                <label for="">Ingrese su contraseña nueva</label>
-                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                                <input class="uk-input" id="contraseña" type="password">
+                                <label for=""><b>Ingrese su contraseña nueva</b></label>
+                                <input name="claveNueva1" class="uk-input validate" id="contraseña" type="password" required>
 
-                                <label for="">Vuelva a ingresar su constreña nueva</label>
-                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                                <input class="uk-input" id="contraseña" type="password">
+                                <label for=""><b>Vuelva a ingresar su constreña nueva</b></label>
+                                <input name="claveNueva2" class="uk-input validate" id="contraseña" type="password" required>
 
-                            </div>
-                        </div>
+                                <button type="submit" class="btn blue-grey darken-3" >Guardar cambios</button>
                     </form>
                 </div>
                 <div class="uk-width-1-3@m uk-flex-first">

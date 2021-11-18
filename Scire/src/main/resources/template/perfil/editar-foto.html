@@ -79,32 +79,26 @@
                <h1>Bienvenido a tu perfil: <span th:text="${perfil.nombre}"></span></h1>
            </div>
             <div class=" uk-flex-middle uk-overlay uk-overlay-default" uk-grid>
-				<form th:action="@{/usuario/guardar-foto}" method="POST" enctype="multipart/form-data">
-					<input type="hidden" name="id" th:value="${perfil.id}">
-				
-					<div class="uk-margin" uk-margin>
-						<div uk-form-custom="target: true">
-							<!--<input type="file">
-							<input class="uk-input uk-form-success uk-form-width-medium" type="text" placeholder="Select file" disabled>-->
-							<div class="file-field input-field">
-								<div class="btn">
-								  <span>File</span>
-								  <input type="file" name="archivo">
-								</div>
-								<div class="file-path-wrapper">
-								  <input class="file-path validate" type="text" nmae="archivo">
-								</div>
-							</div>
-						  
-						</div>
-						<button class="uk-button uk-button-default">Guardar</button>
-					</div>
-					
-				</form>
-				<div class="uk-width-1-3@m uk-flex-first">
-					<img th:if="${perfil.foto == null}" style="border-radius: 50%;" src="/img/admin/Logo-scire-sin-fondo.png" alt="foto de perfil">
-					<img th:if="${perfil.foto != null}" th:src="${'/foto/usuario?id='+ perfil.id}" alt="foto de perfil">
-				</div>
+              <form th:action="@{/usuario/guardar-foto}" method="POST" enctype="multipart/form-data">
+                <div class="form-separacion">
+                  <input type="hidden" name="id" th:value="${perfil.id}">
+                      <h3>Ingrese su foto nueva</h3>
+                      <div class="file-field input-field">
+                        <div class="btn  blue-grey">
+                          <span><i class="small material-icons">file_upload</i></span>
+                          <input type="file" name="archivo">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text" nmae="archivo">
+                        </div>
+                      </div>
+                      <button class="btn  blue-grey darken-3">Guardar</button>
+                </div>
+              </form>
+              <div class="uk-width-1-3@m uk-flex-first">
+                <img th:if="${perfil.foto == null}" style="border-radius: 50%;" src="/img/admin/Logo-scire-sin-fondo.png" alt="foto de perfil">
+                <img th:if="${perfil.foto != null}" th:src="${'/foto/usuario?id='+ perfil.id}" alt="foto de perfil">
+              </div>
             </div>
        </div>
     </main>

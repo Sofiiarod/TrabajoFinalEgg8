@@ -254,6 +254,18 @@ public class UsuarioServicio implements UserDetailsService {
 			       throw new ErrorException ("La clave actual no es la correcta");
 			      }	
 		}
+
+		public Boolean compararClavesNuevas(String clave1, String clave2) throws ErrorException{
+			if(clave1.trim().isEmpty()|| clave1==null){
+				throw new ErrorException("La clave ingresada no puede ser nula");
+			}
+
+			if(clave2.trim().isEmpty() || clave2 == null){
+				throw new ErrorException ("la clave ingresada no puede ser nula");
+			}
+
+			return clave1.equals(clave2);
+		}
 	
 		
 			
