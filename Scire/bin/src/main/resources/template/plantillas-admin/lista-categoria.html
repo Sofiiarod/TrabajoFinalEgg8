@@ -1,5 +1,48 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<<<<<<< HEAD
+<head th:replace="/plantillas-admin/base-plantilla :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <nav th:replace="/plantillas-admin/base-plantilla :: nav"></nav>
+
+	<div th:replace="/plantillas-admin/base-plantilla :: separacion"></div>
+
+                <table class="table table-bordered table-hover" >
+                    
+                    <thead>
+                    <tr>
+                        
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Editar</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody >
+                    <tr th:each="categoria : ${categorias}">
+                        
+                        <th th:text="${categoria.id}" scope="row"></th>
+                        <td th:text="${categoria.nombre}"></td>
+                        <td>
+                        	<a class="btn btn-warning" 
+                        	th:href="@{./editar-categoria/{id}(id=${categoria.id})}" 
+                        	>Editar</a>
+                        </td>
+                        
+                    </tr>
+                    </tbody>
+                </table>
+                
+    
+    
+    <script th:replace="/plantillas-admin/base-plantilla :: script"></script>
+=======
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -120,5 +163,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.1/dist/js/uikit-icons.min.js"></script>
+>>>>>>> 371db108eb6dd563f74a4faa0f069c72fcf95b38
 </body>
 </html>

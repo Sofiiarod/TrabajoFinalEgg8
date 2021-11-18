@@ -32,64 +32,59 @@
 
 <body class="body">
 
-	<!--CONTENEDOR DE LA PAGINA COMPLETA "SECCION-CURSOS-USUARIO"-->
+<!--CONTENEDOR DE LA PAGINA COMPLETA "SECCION-CURSOS-USUARIO"-->
+   
+<div class="seccion-cursos-usuario">
 
-	<div class="seccion-cursos-usuario">
+<!--FRAGMENTO HEADER EMI-->
 
-		<!--FRAGMENTO HEADER EMI-->
-
-		<header th:replace="/fragments/header :: header-front"></header>
-
-		<!--MENU LATERAL-->
-		<div class="div-aside">
-			<aside class="contenedor-menu">
-				<ul class="menu-scire">
-					<li><a href="/" class="a cambio-color"><i class="icono izquierda fas fa-home"></i>Inicio</a></li>
-					<li><a href="/cursos" class="a cambio-color"><i class="icono izquierda fab fa-youtube"></i>Todos los
-							cursos</a></li>
-					<li class="activado"><a href="#" class="a cambio-color"><i
-								class="icono izquierda fas fa-stream"></i>Categorías<i
-								class="icono derecha fas fa-chevron-down"></i></a>
-						<ul>
-							<li th:each="categoria : ${categorias}"><a th:text="${categoria.nombre}"
-									th:href="@{/cursos/categorias(idCategoria=${categoria.id})}"
-									class="a cambio-color"></a></li>
-						</ul>
-					</li>
-					<li class="activado"><a href="#" class="a cambio-color"><i
-								class="icono izquierda fas fa-chalkboard-teacher"></i>Profesores/as<i
-								class="icono derecha fas fa-chevron-down"></i></a>
-						<ul>
-							<li th:each="profesor : ${profesores}"><a th:text="${profesor.nombre}"
-									th:href="@{/cursos/profesores(idProfesor=${profesor.id})}"
-									class="a cambio-color"></a></li>
-						</ul>
-					</li>
-					<li><a href="#" class="a cambio-color"><i class="icono izquierda fas fa-envelope"></i>Contacto</a>
-					</li>
-				</ul>
-			</aside>
-		</div>
+<header th:replace="/fragments/header :: header-front"></header>
+    
+    <!--MENU LATERAL-->
+  <div class="div-aside">
+        <aside class="contenedor-menu"> 
+            <ul class="menu-scire">
+                <li><a href="/" class="a cambio-color"><i class="icono izquierda fas fa-home"></i>Inicio</a></li>
+                <li><a href="/cursos" class="a cambio-color"><i class="icono izquierda fab fa-youtube"></i>Todos los cursos</a></li>
+                <li class="activado"><a href="#" class="a cambio-color"><i class="icono izquierda fas fa-stream"></i>Categorías<i class="icono derecha fas fa-chevron-down"></i></a>
+                    <ul>
+                        <li th:each="categoria : ${categorias}"><a th:text="${categoria.nombre}" th:href="@{/cursos/categorias(idCategoria=${categoria.id})}" class="a cambio-color"></a></li>
+                   </ul>     
+                </li>
+                	<li class="activado"><a href="#" class="a cambio-color"><i
+                            	class="icono izquierda fas fa-chalkboard-teacher"></i>Profesores/as<i
+                            	class="icono derecha fas fa-chevron-down"></i></a>
+                    	<ul>
+                        	<li th:each="profesor : ${profesores}"><a th:text="${profesor.nombre}" th:href="@{/cursos/profesores(idProfesor=${profesor.id})}" class="a cambio-color"></a></li>
+                    	</ul>   
+                	</li>
+                	
+                <li><a th:href="@{/cursos/misCursos(idUsuario=${session.usuariosession.id})}" href="#" class="a cambio-color"><i class="icono izquierda fab fa-youtube"></i>Mis cursos</a ></li>
+        		<li><a href="#" class="a cambio-color"><i class="icono izquierda fas fa-envelope"></i>Contacto</a></li>
+            </ul>
+        </aside>
+  </div>
 
 
-		<!--MAIN SECION TARJETAS CURSOS-->
-		<div>
-			<main class="listado-cursos">
-				<div th:each="curso : ${cursos}" class="card" style="width: 14.5rem;">
-					<img th:src="@{https://img.youtube.com/vi/__${curso.url}__/0.jpg}"
-						class="card-img-top tamanio-imagen" alt="imagen del curso">
-					<div class="card-body d-flex flex-column justify-content-between">
-						<h5 th:text="${curso.nombre}" class="card-title"></h5>
-						<p th:text="${curso.categoria.nombre}" class="card-text"></p>
-						<p th:text="${curso.descripcion}" class="card-text"></p>
-						<a th:href="@{/cursos/ver(idCurso=${curso.id})}" class="btn btn-secondary">Ver más</a>
-					</div>
-				</div>
-			</main>
-		</div>
-
+	 <!--MAIN SECION TARJETAS CURSOS-->
+	<div> 
+		<p th:if="${cursos==null}">No posee cursos</p> 
 	</div>
-	<!--Cierra seccion-cursos-usuario (abarca toda la página excepto el footer)-->
+<div>
+        <main class="listado-cursos">
+            <div th:each="curso : ${cursos}" class="card" style="width: 14.5rem;"> 
+            <img th:src="@{https://img.youtube.com/vi/__${curso.url}__/0.jpg}" class="card-img-top tamanio-imagen" alt="imagen del curso">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 th:text="${curso.nombre}" class="card-title"></h5>
+                     <p th:text="${curso.categoria.nombre}" class="card-text"></p>
+                    <p th:text="${curso.descripcion}" class="card-text"></p>
+                  <a th:href="@{/cursos/ver(idCurso=${curso.id})}" class="btn btn-secondary">Ver más</a>
+                </div>
+           </div>
+        </main>
+</div> 
+        
+</div> <!--Cierra seccion-cursos-usuario (abarca toda la página excepto el footer)-->
 
 	<!--FRAGMENTO FOOTER BARBY-->
 	<footer th:replace="/fragments/footer :: footer-front"></footer>
