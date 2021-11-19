@@ -19,11 +19,11 @@
     <style>
 		
 		html{
-			background-color:black;
+			background-color:rgb(31, 31, 31);
 		}
 		
 		body{
-		background-color:black;
+		background-color:rgb(31, 31, 31);
 		}
 		
         a,h1,h2,h3,h4,h5,h6{
@@ -75,8 +75,8 @@
                     <li><a th:href="@{./lista-de-profesores}">Profesores/as</a></li>
                     <li><a th:href="@{./lista-de-categorias}">Categorías</a></li>
                     <li th:class="uk-nav-header">Perfil</li>
-                <!-- <li><a th:href="@{/admin/}">Configuración</a></li>
-                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li> -->
+                    <li><a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}">Configuración</a></li>
+                    <li><a th:href="@{/logout}">Cerrar Sesión</a></li> 
                 </ul>
             </div>
         </div>
@@ -105,18 +105,18 @@
                 <tr th:each="curso : ${cursos}">
                     <td th:text="${curso.nombre}"></td>
                     <td th:text="${curso.descripcion}"></td>
-                    <td><a th:href="@{https://www.youtube.com/watch?v=__${curso.url}__}" class="uk-button uk-button-secondary" uk-icon="youtube"></a></td>
+                    <td><a th:href="@{https://www.youtube.com/watch?v=__${curso.url}__}" class="uk-button" uk-icon="icon: youtube; ratio: 2"></a></td>
                     <td th:text="${curso.estado}? 'ACTIVO' : 'INACTIVO'" ></td>
                     <td>
                         <a th:href="@{/admin/modificar-estado/{id}(id=${curso.id})}" class="uk-button" >
-                            <span th:if="${curso.estado == true}" uk-icon="check" class=" uk-button btn-success"></span>
-                            <span th:if="${curso.estado == false}" uk-icon="ban" class=" uk-button btn-danger"></span>
+                            <span th:if="${curso.estado == true}" uk-icon="icon:check;ratio: 1.2" class="uk-button btn-success"></span>
+                            <span th:if="${curso.estado == false}" uk-icon="icon:ban;ratio: 1.2" class=" uk-button btn-danger"></span>
                         </a>
                     </td>
                     <td th:text="${curso.categoria.nombre}"></td>
                     <td th:text="${curso.profesor.nombre}"></td>
                     <td>
-                        <a th:href="@{/admin/editar-curso/{id}(id=${curso.id})}" id="boton-editar"  class="btn btn-warning " uk-icon="pencil"></a>
+                        <a th:href="@{/admin/editar-curso/{id}(id=${curso.id})}" id="boton-editar"  class="uk-button btn-warning" uk-icon="icon:pencil;ratio: 1.2"></a>
                     </td>
                    <!--  <td>
                         <a th:href="@{/admin/eliminar-curso/{id}(id=${curso.id})}" class="uk-button uk-button-danger" uk-icon="close"></a>

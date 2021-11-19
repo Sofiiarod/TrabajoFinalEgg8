@@ -21,11 +21,11 @@
     <style>
 		
 		html{
-			background-color:black;
+			background-color:rgb(31, 31, 31);
 		}
 		
 		body{
-		background-color:black;
+		background-color:rgb(31, 31, 31);
 		}
 		
         a,h1,h2,h3,h4,h5,h6{
@@ -76,8 +76,8 @@
                     <li><a th:href="@{./lista-de-cursos}">Cursos</a></li>
                     <li><a th:href="@{./lista-de-profesores}">Profesores</a></li>
                     <li th:class="uk-nav-header">Perfil</li>
-	                <li><a th:href="@{/admin/}">Configuración</a></li>
-                    <li><a th:href="@{/admin/}">Cerrar Sesión</a></li>
+	                <li><a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}">Configuración</a></li>
+                    <li><a th:href="@{/logout}">Cerrar Sesión</a></li> 
                 </ul>
             </div>
         </div>
@@ -92,7 +92,6 @@
                     <th class="uk-width-medium">ID</th>
                     <th class="uk-width-medium">Nombre</th>
                     <th class="uk-width-small">Editar</th>
-                    <th class="uk-width-small">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -101,12 +100,9 @@
                     <td th:text="${categoria.id}"></td>
                     <td th:text="${categoria.nombre}"></td>
                     <td>
-                        <a th:href="@{/admin/editar-categoria/{id}(id=${categoria.id})}" id="btn-editar"  class="btn btn-warning" uk-icon="pencil"></a>
+                        <a th:href="@{/admin/editar-categoria/{id}(id=${categoria.id})}" id="btn-editar"  class="uk-button btn-warning" uk-icon="icon:pencil;ratio: 1.2"></a>
                     </td>
-                    <td>
-                   <a th:href="@{/admin/eliminar-categoria/{id}(id=${categoria.id})}" class="uk-button uk-button-danger" uk-icon="close">Eliminar</a>
-                    </td> 
-                </tr>
+                    </tr>
             </tbody>
         </table>
     </div>

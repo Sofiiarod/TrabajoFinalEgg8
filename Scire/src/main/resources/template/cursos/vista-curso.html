@@ -34,16 +34,27 @@
 
 
         <h1 th:text="${curso.nombre}" class="text-center"></h1>
+
     </div>
 
     <div class="container py-3">
     
+    <!-- BOTON AGREGAR A LISTA!!!!!!! -->
+    <div th:if="${inscripto == false}">
      <form th:action="@{/cursos/agregaralista/{idCurso}(idCurso=${curso.id})}"  method="post" class="d-none" id="listaForm">     
     	<input type="text" th:value="${session.usuariosession.id}" name="idUsuario">
      </form >
-     
-     <button type="submit" form="listaForm">agregar lista</button >
-            
+     <button type="submit" form="listaForm" class="btn btn-success mb-5">Agregar a mi lista</button >
+     </div >
+
+     <!-- BOTON QUITAR DE LISTA!!!!!!! -->
+     <div th:if="${inscripto == true}">
+     <form th:action="@{/cursos/sacardemilista/{idCurso}(idCurso=${curso.id})}"  method="post" class="d-none" id="quitaForm">     
+    	<input type="text" th:value="${session.usuariosession.id}" name="idUsuario">
+     </form >
+    
+     <button type="submit" form="quitaForm" class="btn btn-danger mb-5">Sacar de mi lista</button >
+     </div >      
            <div class="ratio ratio-21x9">
                  <iframe th:src="@{https://www.youtube.com/embed/} + ${curso.url}" title="YouTube video" allowfullscreen width="100%" height="500px"></iframe>
             </div>
@@ -51,8 +62,10 @@
     <hr width="60%" class="bg-dark ">
     
     <div class="container pt-2">
-        <p th:text="${curso.descripcion}">
-        </p>
+
+
+        <p th:text="${curso.descripcion}"></p>
+
     </div>
     <div class="container d-flex justify-content-center pt-2">
         <!-- ESTA RUTA CREO QUE AHORA CAMBIÓ. PRESTAR ATENCIÓN!!!!!!! -->
@@ -63,4 +76,7 @@
 	<div th:replace="fragments/footer :: footer-front"></div>
 	
 </body>
+
 </html>
+
+

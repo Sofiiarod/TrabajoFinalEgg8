@@ -43,7 +43,6 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 				
 				.rememberMe()
 				.key("myUniqueKey")		
-				.rememberMeCookieName("websparrow-login-remember-me")
 				.tokenValiditySeconds(10000000)
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and().csrf()
 				.disable();

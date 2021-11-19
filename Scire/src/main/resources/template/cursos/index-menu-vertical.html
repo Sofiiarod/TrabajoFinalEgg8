@@ -2,31 +2,31 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Vista cursos</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Vista cursos</title>
 
-    <!--estilo css-->
-    <link rel="stylesheet" href="/css/estilo.css">
-    
-    <!--estilo css footer-->
-    <link rel="stylesheet" href="/css/footer-style.css">
-    
-    <!--google fonts, iconos-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
-     
-     	<style>
-	.colornombre{
-	color: #613E7A;
-	font-weight: bold;
-}
+	<!--estilo css-->
+	<link rel="stylesheet" href="/css/estilo.css">
 
+	<!--estilo css footer-->
+	<link rel="stylesheet" href="/css/footer-style.css">
+
+	<!--google fonts, iconos-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+	<style>
+		.colornombre {
+			color: #613E7A;
+			font-weight: bold;
+		}
 	</style>
 </head>
 
@@ -72,7 +72,7 @@
 	</div>
 <div>
         <main class="listado-cursos">
-            <div th:each="curso : ${cursos}" class="card" style="width: 14.5rem;"> 
+            <div th:each="curso : ${cursos}" class="card" style="width: 13.5rem;"> 
             <img th:src="@{https://img.youtube.com/vi/__${curso.url}__/0.jpg}" class="card-img-top tamanio-imagen" alt="imagen del curso">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <h5 th:text="${curso.nombre}" class="card-title"></h5>
@@ -87,14 +87,16 @@
 </div> <!--Cierra seccion-cursos-usuario (abarca toda la página excepto el footer)-->
 
 	<!--FRAGMENTO FOOTER BARBY-->
-<footer th:replace="/fragments/footer :: footer-front"></footer>
+	<footer th:replace="/fragments/footer :: footer-front"></footer>
 
 
-    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-    <script src="/js/jquery.js"></script>
+	<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+	<script src="/js/jquery.js"></script>
 
-    <script src="/js/main.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -43,10 +43,10 @@ public class UsuarioServicio implements UserDetailsService {
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public Usuario guardar(MultipartFile archivo, String nombre, String apellido, String email, String clave,
+	public Usuario guardar(String nombre, String apellido, String email, String clave,
 			String clave2) throws ErrorException {
 
-		validar(nombre, apellido, email, clave, clave2);
+		validarCompleto(nombre, apellido, email, clave, clave2);
 
 		Usuario entidad = new Usuario();
 
@@ -62,17 +62,7 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 
-		if( archivo == null ) {
-			Foto foto = fotoServicio.guardar(null);
-			entidad.setFoto(foto);
-		}else {
-			Foto foto = fotoServicio.guardar(archivo);
-			entidad.setFoto(foto);
-		}
-		
-		
-
-//		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
+			//		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
 
 		
 		this.mailBienvenida(entidad);		
@@ -103,26 +93,15 @@ public class UsuarioServicio implements UserDetailsService {
 	
 	
 	//HAGO LAS VALIDACIONES NECESARIAS PARA CREAR EL USUARIO
-	public void validar(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
+	public void validarCompleto(String nombre, String apellido, String email, String clave, String clave2) throws ErrorException {
 		
 		if(!clave.equals(clave2)) {
 
 			throw new ErrorException("Las claves no coinciden");
 		}
 
-		if (nombre == null || nombre.isEmpty() || nombre.contains("  ")) {
-			throw new ErrorException("Debe tener un nombre valido");
-		}
 
-		if (apellido == null || apellido.isEmpty() || apellido.contains("  ")) {
-			throw new ErrorException("Debe tener un apellido valido");
-		}
-
-		if (email == null || email.isEmpty() || email.contains("  ")) {
-			throw new ErrorException("Debe tener un email valido");
-		}
-
-
+		validarBasico(nombre,apellido,email);
 
 	if (!usuarioRepo.findByEmail(email).isEmpty()) {
 		throw new ErrorException("El Email ya esta en uso");
@@ -199,22 +178,39 @@ public class UsuarioServicio implements UserDetailsService {
 	// MODIFICAR USUARIO
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
-	public void modificar(MultipartFile archivo,String id, String nombre, String apellido,String email, String clave, String clave2)
+	public void modificarFoto(String id, MultipartFile archivo) throws ErrorException {
+		Usuario entidad = usuarioRepo.getById(id);
+		String idFoto = null;
+		if(entidad.getFoto() != null) {
+			idFoto = entidad.getFoto().getId();
+		}
+		Foto foto = fotoServicio.actualizar(idFoto, archivo);
+		entidad.setFoto(foto);
+		usuarioRepo.save(entidad);
+	}
+	
+	public void validarBasico(String nombre,String apellido, String email) throws ErrorException {
+		if (nombre == null || nombre.trim().isEmpty()) {
+			throw new ErrorException ("El nombre no puede ser nulo");
+		}
+		if (apellido == null || apellido.trim().isEmpty()) {
+			throw new ErrorException ("El apellido no puede ser nulo");
+		}
+		if (email == null || email.trim().isEmpty()) {
+			throw new ErrorException ("El email no puede ser nulo");
+		}
+	}
+	
+	
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ErrorException.class })
+	public void modificarDatos(String id, String nombre, String apellido,String email)
 			throws ErrorException {
 		try {
-			validar(nombre, apellido, email, clave, clave2);
+			validarBasico(nombre, apellido, email);
 			Usuario entidad = usuarioRepo.getById(id);
 			entidad.setNombre(nombre);
 			entidad.setApellido(apellido);
 			entidad.setEmail(email);
-			String encriptada = new BCryptPasswordEncoder().encode(clave);
-			entidad.setClave(encriptada);
-			String idFoto = null;
-			if(entidad.getFoto() != null) {
-				idFoto = entidad.getFoto().getId();
-			}
-			Foto foto = fotoServicio.actualizar(idFoto, archivo);
-			entidad.setFoto(foto);
 			usuarioRepo.save(entidad);
 		} catch (Exception e) {
 			System.out.println("Error:" + e.getMessage());
@@ -247,6 +243,18 @@ public class UsuarioServicio implements UserDetailsService {
 			}else {
 			       throw new ErrorException ("La clave actual no es la correcta");
 			      }	
+		}
+
+		public Boolean compararClavesNuevas(String clave1, String clave2) throws ErrorException{
+			if(clave1.trim().isEmpty()|| clave1==null){
+				throw new ErrorException("La clave ingresada no puede ser nula");
+			}
+
+			if(clave2.trim().isEmpty() || clave2 == null){
+				throw new ErrorException ("la clave ingresada no puede ser nula");
+			}
+
+			return clave1.equals(clave2);
 		}
 	
 		
