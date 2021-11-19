@@ -43,7 +43,7 @@ public class UsuarioServicio implements UserDetailsService {
 	// CREA UN NUEVO USUARIO Y LO GUARDA EN LA BASE DE DATOS SI ES POSIBLE
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public Usuario guardar(MultipartFile archivo, String nombre, String apellido, String email, String clave,
+	public Usuario guardar(String nombre, String apellido, String email, String clave,
 			String clave2) throws ErrorException {
 
 		validarCompleto(nombre, apellido, email, clave, clave2);
@@ -53,26 +53,12 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setNombre(nombre);
 		entidad.setApellido(apellido);
 		entidad.setEmail(email);
-
-//		String claveEncriptada = new BCryptPasswordEncoder().encode(clave);
-//		entidad.setClave(claveEncriptada);
 		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
-
 		entidad.setRol(Rol.USER);
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
 
-		if( archivo == null ) {
-			Foto foto = fotoServicio.guardar(null);
-			entidad.setFoto(foto);
-		}else {
-			Foto foto = fotoServicio.guardar(archivo);
-			entidad.setFoto(foto);
-		}
-		
-		
 
-//		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
 
 		
 		this.mailBienvenida(entidad);		

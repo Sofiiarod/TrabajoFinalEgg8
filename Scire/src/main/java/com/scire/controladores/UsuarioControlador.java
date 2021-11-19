@@ -31,25 +31,23 @@ public class UsuarioControlador {
 	}
 
 	@PostMapping("/registrar")
-	public String registrar(ModelMap model, MultipartFile archivo, @RequestParam String nombre,
-			@RequestParam String apellido, @RequestParam String email, @RequestParam String clave,
-			@RequestParam String clave2) throws ErrorException {
+	public String registrar(ModelMap model, @RequestParam String nombre, @RequestParam String apellido,
+			@RequestParam String email, @RequestParam String clave, @RequestParam String clave2) throws ErrorException {
+		try {
 
-			try {
-				if (archivo == null) {
-				usuarioServicio.guardar(null, nombre, apellido, email, clave, clave2);
-				}
-				usuarioServicio.guardar(archivo, nombre, apellido, email, clave, clave2);
-				model.put("exito", "Se ha registrado con exito");
-			} catch (ErrorException e) {
+			usuarioServicio.guardar(nombre, apellido, email, clave, clave2);
 
-				model.put("error", e.getMessage());
+			model.put("exito", "Se ha registrado con exito");
 
-				return "registrarse.html";
+		} catch (ErrorException e) {
 
-			}
+			model.put("error", e.getMessage());
 
-			return "redirect:/login";
+			return "registrarse.html";
+
+		}
+
+		return "redirect:/login";
 
 	}
 
@@ -71,7 +69,6 @@ public class UsuarioControlador {
 
 			return "/perfil/index-perfil";
 
-
 		} catch (ErrorException e) {
 
 			// model.addAttribute("error", e.getMessage());
@@ -91,10 +88,13 @@ public class UsuarioControlador {
 															// registrado
 	@GetMapping("/editar-perfil")
 	public String editarPerfil(HttpSession session, @RequestParam String id, ModelMap model) {
-		Usuario logueado = (Usuario) session.getAttribute("usuariosession"); // aca va a obtener y usar un usuario logueado usa logueado como variable
-		if (logueado == null || !logueado.getId().equals(id)) {// si logueado es null significa que en esa session no hay ningun usuario
-			
-			return "index.html"; // || y si el usuario logueado no es igual al usuario que quiere modificar lo mando a la csm
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession"); // aca va a obtener y usar un usuario
+																				// logueado usa logueado como variable
+		if (logueado == null || !logueado.getId().equals(id)) {// si logueado es null significa que en esa session no
+																// hay ningun usuario
+
+			return "index.html"; // || y si el usuario logueado no es igual al usuario que quiere modificar lo
+									// mando a la csm
 		}
 		try {
 
@@ -114,47 +114,45 @@ public class UsuarioControlador {
 
 	}
 
-
-	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )") // El Usuario puede editar el perfil si solo si está registrado
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )") // El Usuario puede editar el perfil si solo si está
+															// registrado
 	@PostMapping("/actualizar-perfil")
 	public String actualizar(ModelMap model, HttpSession session, @RequestParam String id, @RequestParam String nombre,
 			@RequestParam String apellido, String email) {
 
-			String idRedirect = "";	
+		String idRedirect = "";
 
-			Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 
-			if (logueado == null || !logueado.getId().equals(id)) {
+		if (logueado == null || !logueado.getId().equals(id)) {
 
 			return "index.html";
 
-			}
+		}
 
-			try {
+		try {
 
-				Usuario usuario = usuarioServicio.buscarPorId(id);
+			Usuario usuario = usuarioServicio.buscarPorId(id);
 
-				usuarioServicio.modificarDatos(id, nombre, apellido, email);
+			usuarioServicio.modificarDatos(id, nombre, apellido, email);
 
-				session.setAttribute("usuariosession", usuario); // es para usar el usuario logueado en thymeleaf
+			session.setAttribute("usuariosession", usuario); // es para usar el usuario logueado en thymeleaf
 
-				idRedirect = "?id=".concat(usuario.getId());
+			idRedirect = "?id=".concat(usuario.getId());
 
-				return "redirect:/usuario/editar-perfil".concat(idRedirect);
+			return "redirect:/usuario/editar-perfil".concat(idRedirect);
 
-			} catch (ErrorException e) {
+		} catch (ErrorException e) {
 
-				model.addAttribute("error", e.getMessage());
+			model.addAttribute("error", e.getMessage());
 
-				System.out.println("Error: 103" + e.getMessage());
+			System.out.println("Error: 103" + e.getMessage());
 
-				return "/perfil/editar-perfil.html";
-			
-			}
+			return "/perfil/editar-perfil.html";
 
+		}
 
 	}
-
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/editar-foto")
@@ -184,7 +182,6 @@ public class UsuarioControlador {
 		return "/perfil/editar-foto.html";
 
 	}
-
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@PostMapping("/guardar-foto")
@@ -216,67 +213,64 @@ public class UsuarioControlador {
 
 			System.out.println("Error: 138" + e.getMessage());
 
-			return "/perfil/editar-foto.html";
+			return "redirect:/usuario/editar-foto".concat(idRedirect);
 
 		}
 
 	}
 
-
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
-	@GetMapping("/modificar-contraseña")
-	public String modificarContraseña(ModelMap model, HttpSession session,@RequestParam String id) {
-		
+	@GetMapping("/modificar-contrasenia")
+	public String modificarContraseña(ModelMap model, HttpSession session, @RequestParam String id) {
+
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 		if (logueado == null || !logueado.getId().equals(id)) {
 			return "index.html";
-			}
+		}
 
-		
 		try {
-			   Usuario usuario = usuarioServicio.buscarPorId(id);
-			   model.addAttribute("perfil", usuario);
-               return "perfil/modificar-contraseña";
+			Usuario usuario = usuarioServicio.buscarPorId(id);
+			model.addAttribute("perfil", usuario);
+			return "perfil/modificar-contrasenia";
 		} catch (ErrorException e) {
-			System.out.println("Error: 191" + e.getMessage());
-			return "perfil/perfil.html";
+			return "perfil/modificar-contrasenia";
 		}
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@PostMapping("/editar-contraseña")
-	public String guardarContraseñaModificada(ModelMap model,HttpSession session,
-	  @RequestParam String id,
-	  @RequestParam("antiguaClave") String clave,
-	  @RequestParam("claveNueva1") String claveNueva1,
-	  @RequestParam("claveNueva2") String claveNueva2){
+	public String guardarContraseñaModificada(ModelMap model, HttpSession session,
+			@RequestParam(required = false) String error, @RequestParam String id,
+			@RequestParam("antiguaClave") String clave, @RequestParam("claveNueva1") String claveNueva1,
+			@RequestParam("claveNueva2") String claveNueva2) throws ErrorException {
 
 		String idRedirect = "";
 		Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 		if (logueado == null || !logueado.getId().equals(id)) {
 			return "redirect:/";
 		}
-
+		Usuario usuario = usuarioServicio.buscarPorId(id);
 		try {
-			
-			if(usuarioServicio.compararClavesNuevas(claveNueva1, claveNueva2)){
-				Usuario usuario = usuarioServicio.buscarPorId(id);
+
+			if (usuarioServicio.compararClavesNuevas(claveNueva1, claveNueva2)) {
 				usuarioServicio.modificarClave(id, clave, claveNueva1);
 				session.setAttribute("usuariosession", usuario);
 				idRedirect = "?id=".concat(usuario.getId());
-				return "redirect:/usuario/perfil".concat(idRedirect);
+				if (error == null) {
+					model.put("exito", "Se ha modificado con éxito");
+					return "redirect:/usuario/modificar-contrasenia".concat(idRedirect);
+				}
+				return "redirect:/usuario/modificar-contrasenia".concat(idRedirect);
 			}
-			
+
 		} catch (ErrorException e) {
-			System.out.println("Error: 138" + e.getMessage());
-			idRedirect = "?id=".concat(id);
-			return "redirec:/usuario/perfil".concat(idRedirect);
+			idRedirect = "?id=".concat(usuario.getId());
+			model.put("error", "Se ha producido un error, intente de nuevo");
+			return "redirect:/usuario/modificar-contrasenia".concat(idRedirect);
 		}
 
-		return "redirec:/usuario/perfil?id=".concat(id);
+		return "redirect:/usuario/modificar-contrasenia".concat(idRedirect);
 	}
-
-	
 
 	@GetMapping("/recuperar")
 	public String recuperacion() {
@@ -304,7 +298,7 @@ public class UsuarioControlador {
 		}
 
 		model.put("exito", "Se ha enviado tu nueva contraseña a tu mail. Luego podrás cambiarla en tu perfil.");
-		
+
 		return "login.html";
 
 	}

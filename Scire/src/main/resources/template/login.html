@@ -85,22 +85,20 @@ p {
 									<div class="text-center">
 										<h1 class="h4">SCIRE</h1>
 										<p>¡Bienvenido de nuevo!</p>
-										<div th:if="${exito}!=null"
+										<div th:if="${exito != null}"
 											class="card text-white bg-success mb-3">
 											<div class="card-body">
 												<h5 class="card-title">Exito</h5>
 												<p class="card-text" th:text="${exito}"></p>
 											</div>
 										</div>
-										<div th:if="${error}!=null"
+										<div th:if="${error != null}"
 											class="card text-white bg-danger mb-3">
 											<div class="card-body">
 												<h5 class="card-title">Error</h5>
 												<p class="card-text" th:text="${error}"></p>
 											</div>
 										</div>
-										<p th:text=${exito}></p>
-										
 									</div>
 									<form class="col-12" th:action="@{/logincheck}" method="POST">
 

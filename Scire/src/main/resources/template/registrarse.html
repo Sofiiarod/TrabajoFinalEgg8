@@ -59,13 +59,13 @@
                                 <h1 class="h4 mb-4">Regístrate para ver videos de cursos</h1>
                             </div>
                             <!-- Inicio Mensajes emergentes -->
-                            <div th:if="${exito}!=null" class="card text-white bg-success mb-3">
+                            <div th:if="${exito !=null}" class="card text-white bg-success mb-3">
 			                   <div class="card-body">
 	                                <h5 class="card-title">Exito</h5>
 	                                <p class="card-text" th:text="${exito}"></p>
                                </div>
 		                    </div>
-		                    <div th:if="${error}!=null" class="card text-white bg-danger mb-3">
+		                    <div th:if="${error != null}" class="card text-white bg-danger mb-3">
 			                  <div class="card-body">
 	                            <h5 class="card-title">Error</h5>
 	                            <p class="card-text" th:text="${error}"></p>
@@ -82,8 +82,6 @@
 											placeholder="Ingrese su apellido"> 
 									<label>Email</label> <input type="email" class="form-control" name="email"
 											placeholder="Ingrese su Email">
-									<label>Foto</label> <input type="file" class="form-control" name="archivo"
-											>
 									<div class="form-group" id="contrasena-group">
 										<label>Clave</label> <input type="password" class="form-control" 
 										   name="clave" placeholder="Ingrese su clave">
