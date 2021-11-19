@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head :: head-front"></head>
+    
 <body>
 	<header th:fragment="header-front">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,8 +23,8 @@
 		      </ul>
 		      <span th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}" class="px-3 colornombre"></span>
 		      <div th:if="${session.usuariosession == null}">
-		      	<a href="#" th:href="@{/login}" class="btn btn-outline-dark mx-2">Entrar</a>
-		      	<a href="#" th:href="@{/usuario/registrar}" class="btn btn-outline-dark">Crear cuenta</a>
+		      	<a href="#" th:href="@{/login}" class="btn mx-2">Entrar</a>
+		      	<a href="#" th:href="@{/usuario/registrar}" class="btn">Crear cuenta</a>
 		      </div>
 		      <div th:if="${session.usuariosession != null}">
 		      		<a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Perfil</a>

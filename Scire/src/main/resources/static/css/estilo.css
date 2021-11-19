@@ -13,13 +13,13 @@
 
 
 h1,h2,h3,h4,a {
-    font-family: 'Lora', serif;
+    font-family: 'Lora', serif !important;
     font-weight: bold;
     
 }
 
 p {
-    font-family: 'Yaldevi', sans-serif;
+    font-family: 'Yaldevi', sans-serif !important;
 
 }
 

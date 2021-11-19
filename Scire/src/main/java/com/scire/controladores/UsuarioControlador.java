@@ -39,6 +39,7 @@ public class UsuarioControlador {
 
 			model.put("exito", "Se ha registrado con exito");
 
+
 		} catch (ErrorException e) {
 
 			model.put("error", e.getMessage());

@@ -68,7 +68,16 @@
 
 	 <!--MAIN SECION TARJETAS CURSOS-->
 	<div> 
-		<p th:if="${cursos==null}">No posee cursos</p> 
+		
+		<div th:if="${cursos==null}" style=" margin: 30px; margin-left: 30px; background-color: #fecc62;" class=" card">
+				<div class="card-body">
+					<h3 class="h2 text-center">Oops!</h3>
+					<p class="card-text text-center">¡Usted no posee cursos en su lista!</p> 
+					<p class="card-text text-center">¡Puedes incribirte fácilmente!</p> 
+					<p class="card-text">Desde la sección "Todos los cursos", "Profesores/as" o "Categorías"</p>
+				</div>
+			</div>
+			
 	</div>
 <div>
         <main class="listado-cursos">
