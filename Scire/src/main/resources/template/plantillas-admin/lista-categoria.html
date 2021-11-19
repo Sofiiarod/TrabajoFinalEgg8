@@ -21,11 +21,11 @@
     <style>
 		
 		html{
-			background-color:black;
+			background-color:rgb(31, 31, 31);
 		}
 		
 		body{
-		background-color:black;
+		background-color:rgb(31, 31, 31);
 		}
 		
         a,h1,h2,h3,h4,h5,h6{
@@ -100,9 +100,9 @@
                     <td th:text="${categoria.id}"></td>
                     <td th:text="${categoria.nombre}"></td>
                     <td>
-                        <a th:href="@{/admin/editar-categoria/{id}(id=${categoria.id})}" id="btn-editar"  class="btn btn-warning" uk-icon="pencil"></a>
+                        <a th:href="@{/admin/editar-categoria/{id}(id=${categoria.id})}" id="btn-editar"  class="uk-button btn-warning" uk-icon="icon:pencil;ratio: 1.2"></a>
                     </td>
-                </tr>
+                    </tr>
             </tbody>
         </table>
     </div>

@@ -45,6 +45,7 @@
     	<input type="text" th:value="${session.usuariosession.id}" name="idUsuario">
      </form >
      <button type="submit" form="listaForm" class="btn btn-success mb-5">Agregar a mi lista</button >
+     <a th:href="@{/cursos/misCursos(idUsuario=${session.usuariosession.id})}" class="btn btn-secondary mb-5">Mis cursos</a>
      </div >
 
      <!-- BOTON QUITAR DE LISTA!!!!!!! -->
@@ -54,6 +55,8 @@
      </form >
     
      <button type="submit" form="quitaForm" class="btn btn-danger mb-5">Sacar de mi lista</button >
+     <a th:href="@{/cursos/misCursos(idUsuario=${session.usuariosession.id})}" class="btn btn-secondary mb-5">Mis cursos</a>
+    
      </div >      
            <div class="ratio ratio-21x9">
                  <iframe th:src="@{https://www.youtube.com/embed/} + ${curso.url}" title="YouTube video" allowfullscreen width="100%" height="500px"></iframe>
@@ -69,7 +72,7 @@
     </div>
     <div class="container d-flex justify-content-center pt-2">
         <!-- ESTA RUTA CREO QUE AHORA CAMBIÓ. PRESTAR ATENCIÓN!!!!!!! -->
-        <a href="#" th:href="@{/cursos}" class="btn btn-dark mb-5">Volver a cursos</a>
+        <a href="#" th:href="@{/cursos}" class="btn btn-dark mb-5">Volver a cursos</a>        
     </div>
 	
 	
