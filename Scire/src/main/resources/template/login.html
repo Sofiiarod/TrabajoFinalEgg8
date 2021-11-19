@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
 
 <head>
 
+<!-- CSS EMI -->
+    <link rel="stylesheet" href="/css/emi.css">
+    
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -66,7 +70,33 @@ p {
 </head>
 
 <body>
-<header th:replace="fragments/header :: header-front"></header>
+<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <div class="container-fluid">
+		    <a class="navbar-brand font-weight-bold mx-5" href="#" th:href="@{/}">SCIRE</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		     <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        <li class="nav-item mx-2">
+		          <a class="nav-link" href="#" th:href="@{/cursos}">Cursos</a>
+		        </li>
+		     
+		      </ul>
+		      <span th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}" class="px-3 colornombre"></span>
+		      <div th:if="${session.usuariosession == null}">
+		      	<a href="#" th:href="@{/usuario/registrar}" class="btn">Crear cuenta</a>
+		      </div>
+		      <div th:if="${session.usuariosession != null}">
+		      		<a th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Editar Perfil</a>
+		      		<a th:href="@{/logout(id=__${session.usuariosession.id}__)}" class="btn btn-outline-dark">Logout</a>
+		      </div>
+		    </div>
+		  </div>
+		</nav>
+	</header>
+
 	<div class="container">
 
 
@@ -139,6 +169,7 @@ p {
 
 	</div>
 
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
