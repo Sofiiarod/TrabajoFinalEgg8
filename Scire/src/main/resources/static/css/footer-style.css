@@ -66,6 +66,7 @@ p{
     text-align: center;
     transition: all 0.5s ease;
     border-radius: 50%;
+    text-decoration: none;
 }
 .pie-pagina .grupo-1 .red-social a:hover{
     color: #24262b;
