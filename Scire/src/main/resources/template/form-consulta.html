@@ -8,10 +8,12 @@
 </head>
 <link rel="stylesheet" href="/src/main/resources/static/css/form-style.css">
 <body>
+    <!-- <header th:replace="fragments/header :: header-front"></header> -->
+
     <div class="contenedor">
         <form action="" class="form">
             <div class="form-header">
-                <h1 class="form-title">Scire<span> Contacto</span></h1>
+                <h1 class="form-title"><span> Contacto</span></h1>
             </div>
             <label for="nombre" class="form-label">Nombre:</label>
             <input type="text" id="nombre" class="form-input" placeholder="Ingrese su nombre">
@@ -39,5 +41,6 @@
             <input type="submit" class="btn-submit" value="Enviar">
         </form>
     </div>
+    <!-- <div th:replace="fragments/footer :: footer-front"></div> -->
 </body>
 </html>

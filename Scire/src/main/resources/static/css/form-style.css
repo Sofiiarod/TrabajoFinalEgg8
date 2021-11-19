@@ -8,7 +8,7 @@
 
 body{
     /* background: url(../img/img.jpg); */
-    background: #848484;
+    background: #b3b3b3;
     -webkit-background-size: cover;
     background-size: cover;
     background-attachment: fixed;
@@ -16,16 +16,15 @@ body{
 
 .contenedor .form .form-header .form-title{
     font-weight: normal;
-    font-family: sans-serif;
-    color: #fff;
+    font-family: 'Lora', serif;
     text-align: center;
 }
 .contenedor .form .form-header .form-title span{
-    color: #fecc62;
+    color: black;
 }
 
 .contenedor .form{
-    background: #5e5e5e;
+    background: #e9e9e9;
     width: 90%;
     max-width: 650px;
     margin: auto;
@@ -37,17 +36,17 @@ body{
 
 .contenedor .form .form-label{
     display:block;
-    color: #fecc62;
+    color: #5e5e5e;
     font-size: 16px;
-    font-family: sans-serif;
+    font-family: 'Yaldevi', sans-serif;
     position: relative;
 }
 
 .contenedor .form .form-input, .form-textarea{
-    background: rgba(0, 0, 0, 0.356);
+    /* background: #c6c6c6; */
     border: none;
     outline: none;
-    border-bottom: 2px solid #fecc62;
+    border-bottom: 2px solid #a59d86;
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -67,17 +66,17 @@ body{
     width: 100%;
     font-family: sans-serif;
     outline:none;
-    background: #fecc62;
+    background: #8a67a3;
     font-size: 16px;
     border: none;
-    color: #000000;
+    color: #fff;
     padding: 15px 0;
     cursor: pointer;
     transition: all .5s ease;
 }
 
 .contenedor .form .btn-submit:hover {
-    background: #f3c323;
+    background: #613E7A;
 }
 
 select{
@@ -88,11 +87,11 @@ select{
     outline: 0;
     box-shadow: none;
     border: 0!important;
-    background: rgba(0, 0, 0, 0.356);
+    /* background: #bdbdbd; */
     background-image: none;
     flex:1;
     padding: 0 .5em;
-    color: #fecc62;
+    color: #807f7d;
     cursor: pointer; 
     font-size: 1em;
     font-family: sans-serif;
@@ -110,9 +109,9 @@ select{
     line-height: 3;
     overflow: hidden;
     border-radius: .25em;
-    border-bottom: 2px solid #fecc62;
+    border-bottom: 2px solid #a59d86;
+    
 }
-
 
 .select::after {
     content: '\2B9F';
@@ -120,7 +119,7 @@ select{
     top: 0;
     right: 0;
     padding: 0 1em;
-    background: #fecc62;
+    background: #8a67a3;
     cursor:pointer;
     pointer-events: none;
     transition: 1s all ease;
