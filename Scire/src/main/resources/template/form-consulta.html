@@ -11,36 +11,76 @@
     <!-- <header th:replace="fragments/header :: header-front"></header> -->
 
     <div class="contenedor">
-        <form action="" class="form">
+    
+         <form id="form" class="form" action="https://formspree.io/f/mdoyqqdo" method="POST">
+
             <div class="form-header">
-                <h1 class="form-title"><span> Contacto</span></h1>
+                <h1 class="form-title">Contacto</h1>
             </div>
-            <label for="nombre" class="form-label">Nombre:</label>
-            <input type="text" id="nombre" class="form-input" placeholder="Ingrese su nombre">
+            <label for="nombre" class="form-label">Nombre: <span>*</span></label>
+            <input name="Nombre" required type="text" id="nombre" class="form-input" placeholder="Ingrese su nombre">
 
-            <label for="apellido" class="form-label">Apellido:</label>
-            <input type="text" id="apellido" class="form-input" placeholder="Ingrese su apellido">
+            <label for="apellido" class="form-label">Apellido: <span>*</span></label>
+            <input name="Apellido" required type="text" id="apellido" class="form-input" placeholder="Ingrese su apellido">
 
-            <label for="mail" class="form-label">Correo Electrónico:</label>
-            <input type="text" id="mail" class="form-input" placeholder="Ingrese su correo electrónico">
+            <label for="mail" class="form-label">Correo Electrónico: <span>*</span></label>
+            <input name="Mail" required type="text" id="mail" class="form-input" placeholder="Ingrese su correo electrónico">
 
-            <label for="opciones" class="form-label">Opciones:</label>
-            
+            <label for="opciones" class="form-label">Opciones: <span>*</span></label>
+
             <div class="select">
-                <select name="opciones" id="opciones">
+                <select name="Opciones" id="opciones">
                     <option value="none" selected disabled hidden>Seleccionar</option>
-                    <option value="consultas">Consultas</option>
-                    <option value="comentarios">Comentarios</option>
-                    <option value="curso">Añadir Curso</option>
+                    <option value="Consultas">Consultas</option>
+                    <option value="Comentarios">Comentarios</option>
+                    <option value="Curso">Añadir Curso</option>
                 </select>
             </div> <br>
 
-            <label for="descripcion" class="form-label">Descripción:</label>
-            <input type="text" id="descripcion" class="form-textarea" placeholder="Ingrese descripción de la opción seleccionada">
+            <label for="descripcion" class="form-label">Descripción: <span>*</span></label>
+            <input name="Descripción" required type="text" id="descripcion" class="form-textarea" placeholder="Ingrese descripción de la opción seleccionada">
 
             <input type="submit" class="btn-submit" value="Enviar">
         </form>
+        <!-- <a href="mailto:scireedu@gmail.com" id="trucazo">mail</a> // opcion 1 js-->
     </div>
     <!-- <div th:replace="fragments/footer :: footer-front"></div> -->
+
+<!-- Opcion 1 con js -->
+    <!-- <script>
+        const $form = document.getElementById('#form') //document.querySelector
+        const $buttonMailto = document.getElementById('#trucazo')
+
+        $form.addEventListener('submit', handleSubmit)
+
+        function handleSubmit(event){
+            event.preventDefault()
+            const form = new FormData(this)
+            console.log(form.get('name'))
+            $buttonMailto.setAttribute('href', `mailto:scireedu@gmail.com?subject=${form.get('name')}${form.get('lastname')}${form.get('email')}&body=${form.get('desc')}`)
+            $buttonMailto.click()
+        }
+    </script> -->
+
+    <script>
+        async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("form");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+      }).then(response => {
+        status.innerHTML = "Gracias por contactarte con nosotros! Brevemente responderemos tu consulta :)";
+        form.reset()
+      }).catch(error => {
+        status.innerHTML = "Oops! Hubo un problema al enviar tu consulta :("
+      });
+    }
+    form.addEventListener("submit", handleSubmit)
+    </script>
 </body>
 </html>
