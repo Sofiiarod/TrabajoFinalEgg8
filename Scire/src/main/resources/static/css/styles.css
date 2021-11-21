@@ -3,6 +3,7 @@
     --bs-brown: #a59d86;
 }
 
+
 /*ID cursos*/
 .main{
     /*background-image: url(/img/escritorio.jpg);*/
@@ -118,4 +119,10 @@ p{
 .seccion-profesores{
 	background-color: #e9e9eb;
 }
+
+.body-index{
+ background-color: #e9e9eb;
+ 
+}
+
 

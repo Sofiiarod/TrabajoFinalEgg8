@@ -54,7 +54,7 @@
 #hero .btn-get-started:hover {
   background: #e3e3e3 ;
   border: 2px solid #dcdbd7;
-  color: #141419;
+  color: #613E7A;
 }
 
 
@@ -85,7 +85,8 @@
   /*background-color: #363636;
 }*/
 body{
-  background-color: #eaeaea;
+  background-color: #e9e9eb;
+ 
 }
 
 h1, h2, a {
@@ -101,4 +102,10 @@ a{
 	color: #613E7A;
 	font-weight: bold;
 }
+
+.btn:hover{
+	background-color: #613E7A;
+	color:white !important;
+}
+
 
