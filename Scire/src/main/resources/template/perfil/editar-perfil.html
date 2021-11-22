@@ -45,8 +45,7 @@
                 </div>
                 <!-- FOTO DE PERFIL -->
                     <div class="img-redonda">
-                        <img th:if="${perfil.foto == null}" class="bi-circle-fill" src="/img/img-perfil/img-usuario-estandar.jpg" alt="foto de perfil">
-                        <img th:if="${perfil.foto != null}" class="bi-circle-fill" th:src="${'/foto/usuario?id='+ perfil.id}" alt="foto de perfil">
+                       <img src="/img/logo-completo.png">
                     </div>
                 <!-- NOMBRE DE USUARIO  -->
                 <span class="white-text name" th:text="${perfil.nombre}"></span>
@@ -58,6 +57,7 @@
         <li><a th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}">Editar perfil</a></li>
         <li><a th:href="@{/usuario/editar-foto(id=__${session.usuariosession.id}__)}">Editar foto</a></li>
         <li><a th:href="@{/usuario/modificar-contrasenia(id=__${session.usuariosession.id}__)}">Editar contraseña</a></li>
+
         <img class="uk-align-center" data-src="/img/admin/Logo-scire-sin-fondo.png" width="80" height="80" alt="scire logo" uk-img>
         <br>
         <li th:if="${#strings.toString(perfil.rol) == 'ADMIN'}"><a th:href="@{/admin/inicio}">Administrador</a></li>
