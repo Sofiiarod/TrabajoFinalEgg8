@@ -13,6 +13,8 @@
 
 	<!--estilo css footer-->
 	<link rel="stylesheet" href="/css/footer-style.css">
+	
+	<link rel="stylesheet" href="/css/form-style.css">
 
 	<!--google fonts, iconos-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +30,7 @@
 		}
 	</style>
 </head>
+
 
 <body class="body">
 
@@ -93,6 +96,67 @@
 </div> 
         
 </div> <!--Cierra seccion-cursos-usuario (abarca toda la página excepto el footer)-->
+
+<div class="contenedor">
+    
+         <form id="form" class="form" action="https://formspree.io/f/mdoyqqdo" method="POST">
+
+            <div class="form-header">
+                <h1 class="form-title">Contacto</h1>
+            </div>
+            <label for="nombre" class="form-label">Nombre: <span>*</span></label>
+            <input name="Nombre" required type="text" id="nombre" class="form-input" placeholder="Ingrese su nombre">
+
+            <label for="apellido" class="form-label">Apellido: <span>*</span></label>
+            <input name="Apellido" required type="text" id="apellido" class="form-input" placeholder="Ingrese su apellido">
+
+            <label for="mail" class="form-label">Correo Electrónico: <span>*</span></label>
+            <input name="Mail" required type="text" id="mail" class="form-input" placeholder="Ingrese su correo electrónico">
+
+            <label for="opciones" class="form-label">Opciones: <span>*</span></label>
+
+            <div class="select">
+                <select name="Opciones" id="opciones">
+                    <option value="none" selected disabled hidden>Seleccionar</option>
+                    <option value="Consultas">Consultas</option>
+                    <option value="Comentarios">Comentarios</option>
+                    <option value="Curso">Añadir Curso</option>
+                </select>
+            </div> <br>
+
+            <label for="descripcion" class="form-label">Descripción: <span>*</span></label>
+            <input name="Descripción" required type="text" id="descripcion" class="form-textarea" placeholder="Ingrese descripción de la opción seleccionada">
+
+            <input type="submit" class="btn-submit" value="Enviar">
+        </form>
+        
+    </div>
+    
+    <br>
+    <br>
+    <br>
+
+    <script>
+        async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("form");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+      }).then(response => {
+        status.innerHTML = "Gracias por contactarte con nosotros! Brevemente responderemos tu consulta :)";
+        form.reset()
+      }).catch(error => {
+        status.innerHTML = "Oops! Hubo un problema al enviar tu consulta :("
+      });
+    }
+    form.addEventListener("submit", handleSubmit)
+    </script>
+    
 
 	<!--FRAGMENTO FOOTER BARBI-->
 	<footer th:replace="/fragments/footer :: footer-front"></footer>
