@@ -135,20 +135,6 @@
         </div>
         <div class="uk-flex-middle uk-overlay uk-overlay-default" uk-grid>
           <div class="uk-width-2-3@m" style="overflow: hidden">
-            <div class="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid>
-              <div>
-                  <div th:if="${exito != null}" class="uk-card green accent-4 uk-card-body">
-                      <h3 class="uk-card-title"></h3>
-                      <p th:text="${exito}"></p>
-                  </div>
-              </div>
-              <div>
-                  <div th:if="${error != null}" class="uk-card red accent-4 uk-card-body">
-                      <h3 class="uk-card-title"></h3>
-                      <p th:text="${error}"></p>
-                  </div>
-              </div>
-          </div>
             <form
               th:action="@{/usuario/editar-contraseña(id=__${session.usuariosession.id}__)}"
               method="post"
