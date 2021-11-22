@@ -56,9 +56,11 @@
         <li><a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}">Perfil público</a></li>
         <li><a th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}">Editar perfil</a></li>
         <li><a th:href="@{/usuario/editar-foto(id=__${session.usuariosession.id}__)}">Editar foto</a></li>
-        <li><a th:href="@{/usuario/modificar-contrasenia(id=__${session.usuariosession.id}__)}">Editar contraseña</a></li>
 
-        <img class="uk-align-center" data-src="/img/admin/Logo-scire-sin-fondo.png" width="80" height="80" alt="scire logo" uk-img>
+        <li><a th:href="@{/usuario/modificar-contrasenia(id=__${session.usuariosession.id}__)}">Editar contraseña</a></li>
+        <br>
+        <br>
+        <br>
         <br>
         <li th:if="${#strings.toString(perfil.rol) == 'ADMIN'}"><a th:href="@{/admin/inicio}">Administrador</a></li>
         <br>

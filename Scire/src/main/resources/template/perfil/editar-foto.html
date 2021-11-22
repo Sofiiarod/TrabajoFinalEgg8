@@ -99,18 +99,13 @@
           >Editar contraseña</a
         >
       </li>
-      <img
-        class="uk-align-center"
-        data-src="/img/admin/Logo-scire-sin-fondo.png"
-        width="80"
-        height="80"
-        alt="scire logo"
-        uk-img
-      />
-      <br/>
+      <br >
+      <br >
+      <br >
+      <br>
       <li th:if="${#strings.toString(perfil.rol) == 'ADMIN'}"><a th:href="@{/admin/inicio}">Administrador</a></li>
-      <br />
-      <br />
+      <br >
+      <br >
       <li><a th:href="@{/logout}">Cerrar sesión</a></li>
     </ul>
     <a href="" data-target="slide-out" class="sidenav-trigger"
