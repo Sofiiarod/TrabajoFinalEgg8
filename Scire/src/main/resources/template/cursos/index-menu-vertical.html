@@ -14,11 +14,14 @@
 	<!--estilo css footer-->
 	<link rel="stylesheet" href="/css/footer-style.css">
 
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
 	<!--google fonts, iconos-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
+
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 
@@ -68,7 +71,16 @@
 
 	 <!--MAIN SECION TARJETAS CURSOS-->
 	<div> 
-		<p th:if="${cursos==null}">No posee cursos</p> 
+		
+		<div th:if="${cursos==null}" style=" margin: 30px; margin-left: 30px; background-color: #fecc62;" class=" card">
+				<div class="card-body">
+					<h3 class="h2 text-center">Oops!</h3>
+					<p class="card-text text-center">¡Usted no posee cursos en su lista!</p> 
+					<p class="card-text text-center">¡Puedes incribirte fácilmente!</p> 
+					<p class="card-text">Desde la sección "Todos los cursos", "Profesores/as" o "Categorías"</p>
+				</div>
+			</div>
+			
 	</div>
 <div>
         <main class="listado-cursos">
