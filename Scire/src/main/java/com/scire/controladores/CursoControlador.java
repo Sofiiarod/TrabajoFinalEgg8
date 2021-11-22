@@ -115,7 +115,7 @@ public class CursoControlador {
 	public String registro() {
 		return "registro-curso.html";
 	}
-
+	
 	@PostMapping("/registrar")
 	public String registrar(ModelMap model,@RequestParam String nombre,@RequestParam String descripcion,@RequestParam String url,@RequestParam Categoria categoriaID,@RequestParam Profesor profesorID) throws ErrorException{
 		try {
