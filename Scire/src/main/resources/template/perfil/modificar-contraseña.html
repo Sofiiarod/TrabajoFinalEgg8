@@ -48,9 +48,8 @@
                 </div>
                 <!-- FOTO DE PERFIL -->
                     <div class="img-redonda">
-                        <img th:if="${perfil.foto == null}" class="bi-circle-fill" src="/img/img-perfil/img-usuario-estandar.jpg" alt="foto de perfil">
-                        <img th:if="${perfil.foto != null}" class="bi-circle-fill" th:src="${'/foto/usuario?id='+ perfil.id}" alt="foto de perfil">
-                    </div>
+                        <img src="/img/logo-completo.png">
+                        </div>
                 <!-- NOMBRE DE USUARIO  -->
                 <span class="white-text name" th:text="${perfil.nombre}"></span>
                 <!-- Email de usuario -->
@@ -59,7 +58,7 @@
         </li>
         <li><a th:href="@{/usuario/perfil(id=__${session.usuariosession.id}__)}">Perfil público</a></li>
         <li><a th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}">Editar perfil</a></li>
-        <li><a th:href="@{/usuario/editar-foto(id=__${session.usuariosession.id}__)}">Modificar foto</a></li>
+        <li><a th:href="@{/usuario/editar-foto(id=__${session.usuariosession.id}__)}">Editar foto</a></li>
         <li><a th:href="@{/usuario/modificar-contraseña(id=__${session.usuariosession.id}__)}">Editar contraseña</a></li>
         <img class="uk-align-center" data-src="/img/admin/Logo-scire-sin-fondo.png" width="80" height="80" alt="scire logo" uk-img>
         <br>
@@ -83,7 +82,7 @@
                     <form th:action="@{/usuario/editar-contraseña(id=__${session.usuariosession.id}__)}" method="post">
                         
                                 <label for=""><b>Ingrese su contraseña anterior</b></label>
-                                <input name="antiguaClave" class="uk-input validate" id="contraseña" type="text" required>
+                                <input name="antiguaClave" class="uk-input validate" id="contraseña" type="password" required>
 
                                 <label for=""><b>Ingrese su contraseña nueva</b></label>
                                 <input name="claveNueva1" class="uk-input validate" id="contraseña" type="password" required>
