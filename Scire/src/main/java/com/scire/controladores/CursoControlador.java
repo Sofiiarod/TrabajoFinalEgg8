@@ -29,15 +29,6 @@ import com.scire.servicios.UsuarioServicio;
 @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 @RequestMapping("/cursos")
 public class CursoControlador {
-	
-//	
-//	@Autowired
-//	private CursoServicio cursoServicio;
-//	
-//	@GetMapping("/programacion")
-//	public String programacion() {
-//		return "cursos/cursos.html";
-
 
 	@Autowired
 	CursoServicio cursoServicio;
