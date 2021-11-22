@@ -11,19 +11,21 @@
 	<!--estilo css-->
 	<link rel="stylesheet" href="/css/estilo.css">
 
-	<!--estilo css footer-->
-	<link rel="stylesheet" href="/css/footer-style.css">
 
-	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 
 	<!--google fonts, iconos-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/a7fa374378.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/084d908e85.js" crossorigin="anonymous"></script>
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+		
+		<!--estilo css footer-->
+	<link rel="stylesheet" href="/css/footer-style.css">
+
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 
 	<style>
 		.colornombre {
@@ -99,13 +101,14 @@
 </div> <!--Cierra seccion-cursos-usuario (abarca toda la página excepto el footer)-->
 
 	<!--FRAGMENTO FOOTER BARBY-->
-	<footer th:replace="/fragments/footer :: footer-front"></footer>
+	<div th:replace="/fragments/footer :: footer-front"></div>
 
 
 	<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 	<script src="/js/jquery.js"></script>
 
 	<script src="/js/main.js"></script>
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
