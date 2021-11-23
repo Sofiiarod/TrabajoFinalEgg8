@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.scire.entidades.Categoria;
 import com.scire.entidades.Curso;
 import com.scire.entidades.Profesor;
 

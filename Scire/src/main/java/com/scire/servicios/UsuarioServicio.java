@@ -59,7 +59,7 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setFechaCreado(new Date());
 
 		
-		this.mailBienvenida(entidad);		
+		mailBienvenida(entidad);		
 
 
 		return usuarioRepo.save(entidad);
