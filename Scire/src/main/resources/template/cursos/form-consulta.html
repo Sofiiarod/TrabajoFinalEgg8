@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Formulario de contacto</title>
+
+	<!--estilo CSS-->
+  <link rel="stylesheet" href="/css/form-style.css">
+
+
+
+	<!--google fonts, iconos-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lora&family=Yaldevi:wght@300&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/084d908e85.js" crossorigin="anonymous"></script>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+		
+		<!--estilo css footer-->
+	<link rel="stylesheet" href="/css/footer-style.css">
+
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+	<style>
+		.colornombre {
+			color: #613E7A;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body class="body">
+
+<!--CONTENEDOR DE LA PAGINA COMPLETA "SECCION-CURSOS-USUARIO"-->
+   
+<div class="seccion-cursos-usuario">
+
+<!--FRAGMENTO HEADER EMI-->
+
+<header th:replace="/fragments/header :: header-front"></header>
+    
+    <!--MENU LATERAL-->
+  
+
+	 <!--MAIN SECION TARJETAS CURSOS-->
+
+
+        
+          <div class="contenedor">
+    
+            <form id="form" class="form" action="https://formspree.io/f/mdoyqqdo" method="POST">
+   
+               <div class="form-header">
+                   <h1 class="form-title">Contacto</h1>
+               </div>
+               <label for="nombre" class="form-label">Nombre: <span>*</span></label>
+               <input name="Nombre" required type="text" id="nombre" class="form-input" placeholder="Ingrese su nombre">
+   
+               <label for="apellido" class="form-label">Apellido: <span>*</span></label>
+               <input name="Apellido" required type="text" id="apellido" class="form-input" placeholder="Ingrese su apellido">
+   
+               <label for="mail" class="form-label">Correo Electrónico: <span>*</span></label>
+               <input name="Mail" required type="text" id="mail" class="form-input" placeholder="Ingrese su correo electrónico">
+   
+               <label for="opciones" class="form-label">Opciones: <span>*</span></label>
+   
+               <div class="select">
+                   <select name="Opciones" id="opciones">
+                       <option value="none" selected disabled hidden>Seleccionar</option>
+                       <option value="Consultas">Consultas</option>
+                       <option value="Comentarios">Comentarios</option>
+                       <option value="Curso">Añadir Curso</option>
+                   </select>
+               </div> <br>
+   
+               <label for="descripcion" class="form-label">Descripción: <span>*</span></label>
+               <input name="Descripción" required type="text" id="descripcion" class="form-textarea" placeholder="Ingrese descripción de la opción seleccionada">
+   
+               <input type="submit" class="btn-submit" value="Enviar">
+           </form>
+           
+       </div>
+        
+
+        
+</div> <!--Cierra seccion-cursos-usuario (abarca toda la página excepto el footer)-->
+
+	<!--FRAGMENTO FOOTER BARBY-->
+	<div th:replace="/fragments/footer :: footer-front"></div>
+
+
+	<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+	<!--<script src="/js/jquery.js"></script>-->
+
+	<!--<script src="/js/main.js"></script>-->
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+    <!--script js barbi-->
+    <script>
+      async function handleSubmit(event) {
+    event.preventDefault();
+    var status = document.getElementById("form");
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+          'Accept': 'application/json'
+      }
+    }).then(response => {
+      status.innerHTML = "Gracias por contactarte con nosotros! Brevemente responderemos tu consulta :)";
+      form.reset()
+    }).catch(error => {
+      status.innerHTML = "Oops! Hubo un problema al enviar tu consulta :("
+    });
+  }
+  form.addEventListener("submit", handleSubmit)
+  </script>
+</body>
+

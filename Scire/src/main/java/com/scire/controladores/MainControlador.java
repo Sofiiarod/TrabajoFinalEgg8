@@ -11,6 +11,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.scire.entidades.Categoria;
 import com.scire.entidades.Curso;
 import com.scire.entidades.Profesor;
 
@@ -124,6 +126,13 @@ public class MainControlador {
 		return "redirect:/admin/inicio";
 	}
 
+	
+	
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
+	@GetMapping("/contacto")
+	public String contacto(ModelMap modelo){
+		return "cursos/form-consulta.html";
+	}
 	
 	}
 	

@@ -6,12 +6,50 @@
     box-sizing: border-box;
 }
 
-body{
-    /* background: url(../img/img.jpg); */
-    background: #b3b3b3;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-attachment: fixed;
+
+.body {
+    background-color: #b3b3b3;
+    line-height: 18px;
+}
+
+
+h1,h2,h3,h4 {
+    font-family: 'Lora', serif !important;
+    font-weight: bold;
+    
+}
+
+p {
+    font-family: 'Yaldevi', sans-serif !important;
+
+}
+
+.a {
+    text-decoration: none;
+}
+
+
+/*ESTILO MAQUETADO CONTENEDOR GENERAL*/
+header{
+    width: 100%;
+}
+
+.footer{
+    width: 100%;
+}
+
+.seccion-cursos-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-evenly;
+}
+
+
+/*DISPLAY SECCION FORMULARIO*/
+.contenedor {
+	width:100%;
+	margin-bottom: 4%;
 }
 
 .contenedor .form .form-header .form-title{
@@ -19,9 +57,17 @@ body{
     font-family: 'Lora', serif;
     text-align: center;
 }
-.contenedor .form .form-header .form-title span{
+.contenedor .form .form-header .form-title{
     color: black;
 }
+
+span{
+    color: red;
+}
+
+/* #trucazo {
+    opacity: 0;
+} */
 
 .contenedor .form{
     background: #e9e9e9;
@@ -52,7 +98,7 @@ body{
     margin-bottom: 20px;
     border-radius: 2px;
     font-size: 14px;
-    color: #fff;
+    color: black;
     font-family: sans-serif;
 }
 
@@ -132,3 +178,118 @@ select{
 
 /* marron #a59d86
 gris #848484 */
+
+
+
+/*ESTILOS SIDEBAR CONTENEDOR MENU*/
+.seccion-cursos-usuario .contenedor-menu{
+    flex-basis: 20rem;
+    flex-grow:1;
+}
+
+.cambio-color{
+    text-decoration: none;
+    color: #5e5e5e;
+}
+
+.cambio-color:hover{
+    color: lightgrey;
+}
+
+.contenedor-menu {
+    width: 20%; 
+    min-width: 300px;
+    margin: 30px;
+    margin-right: 15px;
+    display: inline-table;
+    line-height: 18px;
+}
+
+.contenedor-menu .menu-scire {
+    width: 100%;
+    background: #e9e9e9; /*con esto se acomoda lo de bootstrap*/
+    padding: 0em;
+    margin-bottom: 0rem;
+}
+
+.contenedor-menu ul {
+    list-style: none;
+    padding: 0rem;
+}
+
+.contenedor-menu .menu-scire li a{ 
+    background: #e9e9e9;
+    display: block;
+    padding: 15px 20px;
+}
+
+.contenedor-menu .menu-scire li a:hover {
+    background-color: #a59d86;
+    color:white; 
+}
+
+.contenedor-menu .menu-scire li .icono {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.contenedor-menu .menu-scire li .icono.izquierda {
+    float:  left;
+    margin-right: 10px;
+}
+
+.contenedor-menu .menu-scire li .icono.derecha {
+    float: right;
+    margin-right: 10px;
+}
+
+.contenedor-menu .menu-scire ul {
+    display: none;
+    list-style: none;
+ }
+
+.contenedor-menu .menu-scire ul li a {
+    background: #c6c6c6;
+}
+
+.contenedor-menu .menu-scire li.activado > a {
+    background:#a59d86;
+    color: white;
+}
+
+/*RESPONSIVIDAD*/
+@media screen and (min-width:200px) and (max-width: 768px)  {
+    
+    .div-aside {
+		width:100%;
+	}
+    
+    .contenedor-menu {
+        margin: 0px;
+        width: 100%;
+        top: 0px;
+        z-index: 1000;
+    }
+
+   .contenedor-menu .menu-scire {
+        display:block;
+        width: 100%;
+    }
+    
+    .listado-cursos{
+    	display:flex;
+    	flex-direction:row;
+    	flex-wrap: wrap;
+    	justify-content: center;
+    	
+    }
+    .colornombre{
+	color: #613E7A;
+	font-weight: bold;
+
+}
+
+    
+}
+
+

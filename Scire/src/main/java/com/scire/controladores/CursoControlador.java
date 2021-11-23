@@ -195,4 +195,10 @@ public class CursoControlador {
 			cursoServicio.desinscripcion(idUsuario, idCurso);	
 			return "redirect:/cursos/ver?idCurso=".concat(idCurso);
 	}
+	
 }
+
+
+
+
+
