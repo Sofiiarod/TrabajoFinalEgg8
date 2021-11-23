@@ -65,7 +65,7 @@
 		      </ul>
 		      <span th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}" class="px-3 colornombre"></span>
 		      <div th:if="${session.usuariosession == null}">
-		      	<a href="#" th:href="@{/login}" class="btn mx-2">Entrar</a>
+		      	<a  th:href="@{/login}" class="btn mx-2">Entrar</a>
 		      	
 		      </div>
 		      <div th:if="${session.usuariosession != null}">
