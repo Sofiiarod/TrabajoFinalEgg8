@@ -53,16 +53,10 @@ public class UsuarioServicio implements UserDetailsService {
 		entidad.setNombre(nombre);
 		entidad.setApellido(apellido);
 		entidad.setEmail(email);
-
-//		String claveEncriptada = new BCryptPasswordEncoder().encode(clave);
-//		entidad.setClave(claveEncriptada);
 		entidad.setClave(new BCryptPasswordEncoder().encode(clave));
-
 		entidad.setRol(Rol.USER);
 		entidad.setAlta(true);
 		entidad.setFechaCreado(new Date());
-
-			//		notificacionServ.enviar("Bievenido a la comunidad de Scire", "Scire.edu", entidad.getEmail());
 
 		
 		this.mailBienvenida(entidad);		

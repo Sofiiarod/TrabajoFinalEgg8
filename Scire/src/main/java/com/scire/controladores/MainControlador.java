@@ -93,7 +93,7 @@ public class MainControlador {
 		if (error != null) {
 			model.put("error","Nombre de Usuario o clave incorrectos");
 		}else {
-			model.addAttribute("error",error);
+			model.addAttribute("error", error);
 		}
 		if (logout != null) { 
 			model.addAttribute("logout","Ha salido correctamente");

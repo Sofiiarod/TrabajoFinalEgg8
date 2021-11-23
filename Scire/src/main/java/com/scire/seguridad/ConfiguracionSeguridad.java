@@ -40,7 +40,6 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 				.defaultSuccessUrl("/") //aca definimos a que url va a ingresar si el usuario se logueo correctamente
 				.failureUrl("/login?error=error")
 				.permitAll().and()
-				
 				.rememberMe()
 				.key("myUniqueKey")		
 				.tokenValiditySeconds(10000000)

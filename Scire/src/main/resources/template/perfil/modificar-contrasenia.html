@@ -50,12 +50,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.2/js/materialize.min.js"></script>
 
     <link rel="stylesheet" href="/css/css-perfil/estilo-perfil.css" />
-
-
-
     <title>Perfil</title>
   </head>
-  
   <body>
     <ul id="slide-out" class="sidenav sidenav-fixed">
       <li>
@@ -99,46 +95,79 @@
           >Editar contraseña</a
         >
       </li>
-      <br >
-      <br >
-      <br >
       <br>
-      <li th:if="${#strings.toString(perfil.rol) == 'ADMIN'}"><a th:href="@{/admin/inicio}">Administrador</a></li>
-      <br >
-      <br >
+      <br>
+      <br>
+      <br>
+      <li th:if="${#strings.toString(perfil.rol) == 'ADMIN'}">
+        <a th:href="@{/admin/inicio}">Administrador</a>
+      </li>
+      <br />
+      <br />
       <li><a th:href="@{/logout}">Cerrar sesión</a></li>
     </ul>
     <a href="" data-target="slide-out" class="sidenav-trigger"
       ><i class="material-icons">menu</i></a
     >
+
     <main class="">
-       <div class="uk-container uk-container-large ">
-           <div class="uk-r uk-container-large">
-               <h1>Bienvenido a tu perfil: <span th:text="${perfil.nombre}"></span></h1>
-           </div>
-            <div class=" uk-flex-middle uk-overlay uk-overlay-default" uk-grid>
-              <form th:action="@{/usuario/guardar-foto}" method="POST" enctype="multipart/form-data">
-                <div class="form-separacion">
-                  <input type="hidden" name="id" th:value="${perfil.id}">
-                      <h3>Ingrese su foto nueva</h3>
-                      <div class="file-field input-field">
-                        <div class="btn  blue-grey">
-                          <span><i class="small material-icons">file_upload</i></span>
-                          <input type="file" name="archivo">
-                        </div>
-                        <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text" nmae="archivo">
-                        </div>
-                      </div>
-                      <button class="btn  blue-grey darken-3">Guardar</button>
-                </div>
-              </form>
-              <div class="uk-width-1-3@m uk-flex-first">
-                <img th:if="${perfil.foto == null}" style="border-radius: 50%;" src="/img/admin/Logo-scire-sin-fondo.png" alt="foto de perfil">
-                <img th:if="${perfil.foto != null}" th:src="${'/foto/usuario?id='+ perfil.id}" alt="foto de perfil">
-              </div>
-            </div>
-          </form>
+      <div class="uk-container uk-container-large">
+        <div class="uk-container uk-container-large">
+          <h1>
+            Bienvenido a tu perfil: <span th:text="${perfil.nombre}"></span>
+          </h1>
+        </div>
+        <div class="uk-flex-middle uk-overlay uk-overlay-default" uk-grid>
+          <div class="uk-width-2-3@m" style="overflow: hidden">
+            <form
+              th:action="@{/usuario/editar-contraseña(id=__${session.usuariosession.id}__)}"
+              method="post"
+            >
+              <label for=""><b>Ingrese su contraseña anterior</b></label>
+              <input
+                name="antiguaClave"
+                class="uk-input validate"
+                id="contraseña"
+                type="text"
+                required
+              />
+
+              <label for=""><b>Ingrese su contraseña nueva</b></label>
+              <input
+                name="claveNueva1"
+                class="uk-input validate"
+                id="contraseña"
+                type="password"
+                required
+              />
+
+              <label for=""><b>Vuelva a ingresar su constreña nueva</b></label>
+              <input
+                name="claveNueva2"
+                class="uk-input validate"
+                id="contraseña"
+                type="password"
+                required
+              />
+
+              <button type="submit" class="btn blue-grey darken-3">
+                Guardar cambios
+              </button>
+            </form>
+          </div>
+          <div class="uk-width-1-3@m uk-flex-first">
+            <img
+              th:if="${perfil.foto == null}"
+              style="border-radius: 50%"
+              src="/img/admin/Logo-scire-sin-fondo.png"
+              alt="foto de perfil"
+            />
+            <img
+              th:if="${perfil.foto != null}"
+              th:src="${'/foto/usuario?id='+ perfil.id}"
+              alt="foto de perfil"
+            />
+          </div>
         </div>
       </div>
     </main>
