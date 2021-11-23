@@ -64,7 +64,6 @@ public class CursoControlador {
 
 
 
-
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN' )")
 	@GetMapping("/ver")
 	public String vistaCurso(ModelMap model,@RequestParam String idCurso, HttpSession session) throws ErrorException {
