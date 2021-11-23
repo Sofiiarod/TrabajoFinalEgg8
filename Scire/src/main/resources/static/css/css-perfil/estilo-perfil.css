@@ -66,6 +66,13 @@ input{
     
 }
 
+.lista-flex{
+    height: 60%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .form-separacion{
     display:flex;
     flex-direction: column;

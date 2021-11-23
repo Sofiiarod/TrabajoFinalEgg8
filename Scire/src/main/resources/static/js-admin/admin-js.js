@@ -10,7 +10,7 @@ $(document).ready(function(){
     
     if(charRemain <= 0){
         
-        document.getElementById("charNum").innerHTML = '<span style="color: red;">Ah excedido el límite de '+maxLength+' carácteres</span>';
+        document.getElementById("charNum").innerHTML = '<span style="color: red;">Excedió el límite de '+maxLength+' carácteres</span>';
         document.getElementById("boton").style.cssText = 'display:none;';
         
     }else{
