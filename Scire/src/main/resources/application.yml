@@ -2,7 +2,7 @@ spring:
   mail: 
     host: smtp.gmail.com
     port: 587
-    username: scireedu@gmail.com
+    username: scirecomunidad@gmail.com
     password: hola1234!
     properties:
         mail:
@@ -27,7 +27,7 @@ spring:
     prefix: classpath:/template/
     cache: false 
 server:
-  port: 8081
+  port: 8080
   error:
     whitelabel:
       enabled: false
