@@ -95,7 +95,7 @@ public class UsuarioControlador {
 																// hay ningun usuario
 
 			return "index.html"; // || y si el usuario logueado no es igual al usuario que quiere modificar lo
-									// mando a la csm
+									// mando al index
 		}
 		try {
 
