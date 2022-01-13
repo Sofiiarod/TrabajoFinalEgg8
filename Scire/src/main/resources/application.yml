@@ -12,17 +12,17 @@ spring:
                    enable: true
 
   datasource: 
-    url: jdbc:mysql://localhost:3306/scire?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8&createDatabaseIfNotExist=true
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver 
+    url: jdbc:postgres://kuffuhcdihulja:2e777fda307be7c3ee8eb6180d923c5bea0fa8d7938c61981c3f1f82a1484fcc@ec2-35-169-119-56.compute-1.amazonaws.com:5432/dfiu8stm6jt5nn&createDatabaseIfNotExist=true
+    username: kuffuhcdihulja
+    password: 2e777fda307be7c3ee8eb6180d923c5bea0fa8d7938c61981c3f1f82a1484fcc
+    driver-class-name: org.postgresql.Driver 
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect      
+        dialect: org.hibernate.dialect.PostgreSQLDialect     
   thymeleaf:
     prefix: classpath:/template/
     cache: false 
