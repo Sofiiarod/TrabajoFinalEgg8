@@ -27,7 +27,7 @@ spring:
     prefix: classpath:/template/
     cache: false 
 server:
-  port: 8081
+  port: 8080
   error:
     whitelabel:
       enabled: false

@@ -18,7 +18,7 @@ public class NotificacionServicio {
 		SimpleMailMessage mensaje = new SimpleMailMessage();
 
 		mensaje.setTo(email);
-		mensaje.setFrom("scireedu@gmail.com");
+		mensaje.setFrom("scirecomunidad@gmail.com");
 		mensaje.setSubject(titulo);
 		mensaje.setText(cuerpo);
 
